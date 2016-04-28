@@ -1,4 +1,4 @@
-package at.campus02.gang_of_four.learningapp.at.campus02.gang_of_four.leaningapp.model;
+package at.campus02.gang_of_four.learningapp.model;
 
 /**
  * Created by Jakob on 21.04.2016.

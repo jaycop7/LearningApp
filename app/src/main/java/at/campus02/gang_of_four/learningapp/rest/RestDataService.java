@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import at.campus02.gang_of_four.learningapp.at.campus02.gang_of_four.leaningapp.model.Frage;
+import at.campus02.gang_of_four.learningapp.model.Frage;
 
 /**
  * Created by Jakob on 21.04.2016.
