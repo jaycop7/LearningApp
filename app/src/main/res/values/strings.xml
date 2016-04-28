@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Learning App</string>
+    <string name="menu_fragen_anzeigen">Fragen anzeigen</string>
+    <string name="menu_fragen_erstellen">Fragen erstellen</string>
+    <string name="menu_einstellungen">Einstellungen</string>
+    <string name="erstellen_frage">Frage</string>
+    <string name="erstellen_antwort">Antwort</string>
+    <string name="erstellen_schwierigkeit">Schwierigkeit</string>
+    <string name="erstellen_kategorie">Kategorie</string>
+    <string name="erstellen_position">Längen- und Breitengrad</string>
+    <string name="erstellen_bild">Bild</string>
+    <string name="ansehen_alle_kategorien">Alle Kategorien</string>
+    <string name="ansehen_kategorie">nach Kategorie</string>
+    <string name="ansehen_umgebung">Fragen in der Umgebung</string>
+    <string name="ansehen_wiederholungsfragen">Wiederholungsfragen</string>
+    <string name="ansehen_eigenefragen">Eigene Fragen</string>
+    <string name="detail_antwort_einblenden">Antwort anzeigen</string>
+    <string name="detail_frage">Frage</string>
+    <string name="detail_antwort">Antwort</string>
+    <string name="detail_wiederholen">Frage wiederholen</string>
+    <string name="einstellungen_max_fragen">max. Fragen pro Runde</string>
+    <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>
+    <string name="einstellungen_benutzername">Benutzername</string>
+    <string name="einstellungen_schwierigkeit">Schwierigkeitsgrad</string>
+    <string name="einstellungen_speichern">Einstellungen speichern</string>
+</resources>
