@@ -52,7 +52,7 @@ public class RestDataService {
     }
 
     public void createFrage(){
-        //Test
+        //Test new
     }
 
     public void getFrage(String id){
