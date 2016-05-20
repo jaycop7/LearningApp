@@ -9,6 +9,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // test
+        // rest
         setContentView(R.layout.activity_frage_erstellen);
     }
 }
