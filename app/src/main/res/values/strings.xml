@@ -23,5 +23,6 @@
     <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>
     <string name="einstellungen_benutzername">Benutzername</string>
     <string name="einstellungen_schwierigkeit">Schwierigkeitsgrad</string>
+    <string name="einstellungen_anzahl_fragen_ueberspringen">Anz. Fragen überspr.</string>
     <string name="einstellungen_speichern">Einstellungen speichern</string>
 </resources>

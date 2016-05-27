@@ -22,7 +22,6 @@ public class FragenAuswahlActivity extends AppCompatActivity {
     }
 
     public void fragenNachKategorie(View view) {
-        getSystemService(ACCOUNT_SERVICE);
         Intent intent = new Intent(this, FragenKategorieAuswahl.class);
         startActivity(intent);
     }
