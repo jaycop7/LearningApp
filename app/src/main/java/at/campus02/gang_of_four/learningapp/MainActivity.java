@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,7 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Test Jakob Github 2
+        if(!Utils.isNetworkOnline(this)) {
+            String text = getString(R.string.no_network);
+            Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void fragenAnzeigen(View view) {

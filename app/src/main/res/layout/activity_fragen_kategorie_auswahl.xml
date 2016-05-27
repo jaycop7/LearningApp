@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="at.campus02.gang_of_four.learningapp.FragenAuswahlActivity">
+    tools:context="at.campus02.gang_of_four.learningapp.FragenKategorieAuswahl">
     <Space
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -19,51 +19,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:text="@string/ansehen_alle_kategorien"
+        android:text="Mathe"
         android:background="@color/default_button_color" />
     <Space
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="0.5" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:text="@string/ansehen_kategorie"
-        android:onClick="fragenNachKategorie"
+        android:text="Geographie"
         android:background="@color/default_button_color" />
     <Space
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="0.5" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:text="@string/ansehen_umgebung"
+        android:text="Sprachen"
         android:background="@color/default_button_color" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:text="@string/ansehen_wiederholungsfragen"
-        android:background="@color/default_button_color" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:text="@string/ansehen_eigenefragen"
-        android:background="@color/default_button_color" />
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+
+    </LinearLayout>

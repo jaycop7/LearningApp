@@ -3,6 +3,7 @@
     package="at.campus02.gang_of_four.learningapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +20,8 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".FragenAuswahlActivity" />
-        <activity android:name=".FrageErstellenActivity"></activity>
-
+        <activity android:name=".FrageErstellenActivity" />
+        <activity android:name=".FragenKategorieAuswahl" />
     </application>
 
 </manifest>
