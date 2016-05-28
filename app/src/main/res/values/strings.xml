@@ -5,11 +5,14 @@
     <string name="menu_fragen_erstellen">Fragen erstellen</string>
     <string name="menu_einstellungen">Einstellungen</string>
     <string name="erstellen_frage">Frage</string>
+    <string name="erstellen_frage_hint">Eingabe der Frage</string>
     <string name="erstellen_antwort">Antwort</string>
+    <string name="erstellen_antwort_hint">Eingabe der Antwort</string>
     <string name="erstellen_schwierigkeit">Schwierigkeit</string>
     <string name="erstellen_kategorie">Kategorie</string>
     <string name="erstellen_position">Längen- und Breitengrad</string>
     <string name="erstellen_bild">Bild</string>
+    <string name="erstellen_speichern">Frage erstellen</string>
     <string name="ansehen_alle_kategorien">Alle Kategorien</string>
     <string name="ansehen_kategorie">nach Kategorie</string>
     <string name="ansehen_umgebung">Fragen in der Umgebung</string>
@@ -25,4 +28,5 @@
     <string name="einstellungen_schwierigkeit">Schwierigkeitsgrad</string>
     <string name="einstellungen_anzahl_fragen_ueberspringen">Anz. Fragen überspr.</string>
     <string name="einstellungen_speichern">Einstellungen speichern</string>
+
 </resources>
