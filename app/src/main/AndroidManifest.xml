@@ -22,7 +22,7 @@
         <activity android:name=".FragenAuswahlActivity" />
         <activity android:name=".FrageErstellenActivity" />
         <activity android:name=".FragenKategorieAuswahl" />
-        <activity android:name=".FrageAnzeige"></activity>
+        <activity android:name=".FrageAnzeige" />
     </application>
 
 </manifest>

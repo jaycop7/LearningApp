@@ -15,6 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
+import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncBooleanResponse;
+import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncFrageResponse;
+import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncFragenResponse;
+import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncKategorienResponse;
 
 /**
  * Created by Jakob on 21.04.2016.
@@ -28,7 +32,7 @@ public class RestDataService {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-    public void getKategorien(){
+    public void getKategorien(AsyncKategorienResponse listener){
         String url = baseUrl + "kategorie";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
@@ -51,15 +55,15 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void createFrage(){
+    public void createFrage(Frage frage, AsyncBooleanResponse listener){
         //Test new
     }
 
-    public void getFrage(String id){
+    public void getFrage(String id, AsyncFrageResponse listener){
 
     }
 
-    public void getFragen(){
+    public void getFragen(AsyncFragenResponse listener){
         String url = baseUrl + "fragen";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
@@ -82,6 +86,5 @@ public class RestDataService {
         } );
         requestQueue.add(request);
     }
-
 
 }
