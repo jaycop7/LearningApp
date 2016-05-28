@@ -1,70 +1,68 @@
 package at.campus02.gang_of_four.learningapp.model;
 
-/**
- * Created by Jakob on 21.04.2016.
- */
+
 public class Frage {
-    private String frageID;
-    private String fragetext;
-    private String antwort;
-    private int schwierigkeitsgrad;
-    private String kategorie;
-    private String laengenUndBreitengrad;
-    private String bild;
+    private String FrageID;
+    private String Fragetext;
+    private String Antwort;
+    private int Schwierigkeitsgrad;
+    private String Kategorie;
+    private String LaengenUndBreitengrad;
+    private String Bild;
 
     public String getFrageID() {
-        return frageID;
+        return FrageID;
     }
 
     public void setFrageID(String frageID) {
-        this.frageID = frageID;
+        this.FrageID = frageID;
     }
 
     public String getFragetext() {
-        return fragetext;
+        return Fragetext;
     }
 
     public void setFragetext(String fragetext) {
-        this.fragetext = fragetext;
+        this.Fragetext = fragetext;
     }
 
     public String getAntwort() {
-        return antwort;
+        return Antwort;
     }
 
     public void setAntwort(String antwort) {
-        this.antwort = antwort;
+        this.Antwort = antwort;
     }
 
     public int getSchwierigkeitsgrad() {
-        return schwierigkeitsgrad;
+        return Schwierigkeitsgrad;
     }
 
     public void setSchwierigkeitsgrad(int schwierigkeitsgrad) {
-        this.schwierigkeitsgrad = schwierigkeitsgrad;
+        this.Schwierigkeitsgrad = schwierigkeitsgrad;
     }
 
     public String getKategorie() {
-        return kategorie;
+        return Kategorie;
     }
 
     public void setKategorie(String kategorie) {
-        this.kategorie = kategorie;
+        this.Kategorie = kategorie;
     }
 
     public String getLaengenUndBreitengrad() {
-        return laengenUndBreitengrad;
+        return LaengenUndBreitengrad;
     }
 
     public void setLaengenUndBreitengrad(String laengenUndBreitengrad) {
-        this.laengenUndBreitengrad = laengenUndBreitengrad;
+        this.LaengenUndBreitengrad = laengenUndBreitengrad;
     }
 
     public String getBild() {
-        return bild;
+        return Bild;
     }
 
     public void setBild(String bild) {
-        this.bild = bild;
+        this.Bild = bild;
     }
 }
