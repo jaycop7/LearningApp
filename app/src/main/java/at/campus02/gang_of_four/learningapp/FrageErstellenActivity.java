@@ -10,7 +10,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // test
         // rest Jakob
-        // test test phips
+        // test test phips 5
         setContentView(R.layout.activity_frage_erstellen);
     }
 }
