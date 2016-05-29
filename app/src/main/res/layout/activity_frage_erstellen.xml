@@ -10,99 +10,92 @@
     tools:context="at.campus02.gang_of_four.learningapp.FrageErstellenActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
 
             <TextView
+                android:id="@+id/textView_Frage"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_frage"
-                android:textAlignment="left"
-                android:id="@+id/textView_Frage" />
+                android:text="@string/erstellen_frage" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 android:id="@+id/editText_Frage"
-                android:selectAllOnFocus="true"
-                android:textAlignment="left"
-                android:hint="@string/erstellen_frage_hint" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="@string/erstellen_antwort"
-                android:textAlignment="left"
-                android:id="@+id/textView_Antwort" />
-
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/erstellen_frage_hint"
                 android:inputType="textMultiLine"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView_Antwort"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/erstellen_antwort" />
+
+            <EditText
                 android:id="@+id/editText_Antwort"
-                android:selectAllOnFocus="true"
-                android:textAlignment="left"
-                android:hint="@string/erstellen_antwort_hint" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/erstellen_antwort_hint"
+                android:inputType="textMultiLine"
+                android:selectAllOnFocus="true" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView_Schwierigkeit"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_schwierigkeit"
-                android:textAlignment="left"
-                android:id="@+id/textView_Schwierigkeit" />
+                android:text="@string/erstellen_schwierigkeit" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
                 android:id="@+id/editText_Schwierigkeit"
-                android:selectAllOnFocus="true"
-                android:textAlignment="center"
-                android:hint="" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:inputType="number"
+                android:selectAllOnFocus="true" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView_Kategorie"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_kategorie"
-                android:textAlignment="left"
-                android:id="@+id/textView_Kategorie" />
+                android:text="@string/erstellen_kategorie" />
 
             <EditText
+                android:id="@+id/editText_Kategorie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint=""
                 android:inputType="text"
-                android:id="@+id/editText_Kategorie"
                 android:selectAllOnFocus="true"
-                android:textAlignment="center"
-                android:hint="" />
+                android:textAlignment="center" />
         </LinearLayout>
 
         <RelativeLayout
@@ -111,71 +104,68 @@
             android:layout_weight="0.10">
 
             <TextView
+                android:id="@+id/textView_Position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_position"
-                android:textAlignment="left"
-                android:id="@+id/textView_Position"
-                android:layout_row="0"
-                android:layout_column="0"
                 android:layout_alignBaseline="@+id/switch1"
                 android:layout_alignBottom="@+id/switch1"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:text="@string/erstellen_position" />
 
             <Switch
+                android:id="@+id/switch1"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/switch1"
-                android:layout_row="0"
-                android:layout_column="5"
-                android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_column="5"
+                android:layout_row="0"
+                android:checked="false" />
 
             <TextView
 
+                android:id="@+id/textView_aktuelle_position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_aktuelle_position"
-                android:id="@+id/textView_aktuelle_position"
-                android:layout_weight="0.42"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="17dp" />
+                android:layout_marginBottom="17dp"
+                android:layout_weight="0.42"
+                android:text="@string/erstellen_aktuelle_position" />
         </RelativeLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView_Bild"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="@string/erstellen_bild"
-                android:textAlignment="left"
-                android:id="@+id/textView_Bild" />
+                android:text="@string/erstellen_bild" />
 
             <EditText
+                android:id="@+id/editText6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/erstellen_bild_hint"
                 android:inputType="number"
-                android:id="@+id/editText6"
-                android:selectAllOnFocus="true"
-                android:textAlignment="left"
-                android:hint="@string/erstellen_bild_hint" />
+                android:selectAllOnFocus="true" />
         </LinearLayout>
 
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/erstellen_speichern"
-        android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="@string/erstellen_speichern" />
 
 </RelativeLayout>
