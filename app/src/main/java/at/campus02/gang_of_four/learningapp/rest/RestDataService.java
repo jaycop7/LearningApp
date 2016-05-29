@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -11,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -19,7 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
@@ -66,47 +70,19 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void createFrage(Frage frage, final AsyncSuccessResponse listener) {
+    public void getFragen(AsyncFragenResponse listener) {
         String url = baseUrl + "fragen";
-        try {
-            JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class));
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    listener.success();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    listener.error();
-                }
-            });
-            requestQueue.add(request);
-        } catch (JSONException e) {
-            listener.error();
-        }
+        getFragen(url, listener);
     }
 
-    //FIXME CopyPaste Code
-    public void updateFrage(Frage frage, final AsyncSuccessResponse listener) {
-        String url = baseUrl + "fragen/" + frage.getFrageID();
-        try {
-            JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class));
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, jsonObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    listener.success();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    listener.error();
-                }
-            });
-            requestQueue.add(request);
-        } catch (JSONException e) {
-            listener.error();
-        }
+    public void getFragenByKategorie(String kategorie, AsyncFragenResponse listener) {
+        String url = baseUrl + "fragen/kategorie/" + kategorie;
+        getFragen(url, listener);
+    }
+
+    public void getFragenBySchwierigkeit(Schwierigkeit schwierigkeit, AsyncFragenResponse listener) {
+        String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit.getId();
+        getFragen(url, listener);
     }
 
     public void getFrage(String id, final AsyncFrageResponse listener) {
@@ -126,19 +102,30 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void getFragen(AsyncFragenResponse listener) {
+    public void createFrage(Frage frage, final AsyncSuccessResponse listener) {
         String url = baseUrl + "fragen";
-        getFragen(url, listener);
+        sendFrage(frage, url, Request.Method.POST, listener);
     }
 
-    public void getFragenByKategorie(String kategorie, AsyncFragenResponse listener) {
-        String url = baseUrl + "fragen/kategorie/" + kategorie;
-        getFragen(url, listener);
+    public void updateFrage(Frage frage, final AsyncSuccessResponse listener) {
+        String url = baseUrl + "fragen/" + frage.getFrageID();
+        sendFrage(frage, url, Request.Method.PUT, listener);
     }
 
-    public void getFragenBySchwierigkeit(Schwierigkeit schwierigkeit, AsyncFragenResponse listener) {
-        String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit.getId();
-        getFragen(url, listener);
+    public void deleteFrage(Frage frage, final AsyncSuccessResponse listener) {
+        String url = baseUrl + "fragen/" + frage.getFrageID();
+        StringRequest request = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                listener.success();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.error();
+            }
+        });
+        requestQueue.add(request);
     }
 
     private void getFragen(String url, final AsyncFragenResponse listener) {
@@ -169,6 +156,64 @@ public class RestDataService {
             }
         });
         requestQueue.add(request);
+    }
+
+    private void sendFrage(Frage frage, String url, int method, final AsyncSuccessResponse listener) {
+        try {
+            final JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class));
+//            StringRequest request = new StringRequest(method, url, new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String guid) {
+//                    listener.success();
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    listener.error();
+//                }
+//            }) {
+//                @Override
+//                public byte[] getBody() throws AuthFailureError {
+//                    return jsonObject.toString().getBytes();
+//                }
+//
+//                @Override
+//                public Map<String, String> getHeaders() throws AuthFailureError {
+//                    HashMap<String, String> headers = new HashMap<String, String>();
+//                    headers.put("Content-Type", "application/json; charset=utf-8");
+//                    return headers;
+//                }
+//            };
+            JsonObjectRequest request = new JsonObjectRequest(
+                    method,
+                    url,
+                    jsonObject,
+
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            listener.success();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            listener.error();
+                        }
+                    }) {
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json; charset=utf-8");
+                    return headers;
+                }
+            };
+            requestQueue.add(request);
+
+        } catch (JSONException e) {
+            listener.error();
+        }
     }
 
     public void loadImage(String imageUrl, final AsyncImageResponse listener) {
