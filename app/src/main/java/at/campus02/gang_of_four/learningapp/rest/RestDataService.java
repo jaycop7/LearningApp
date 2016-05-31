@@ -27,11 +27,11 @@ import java.util.Map;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
-import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncFrageResponse;
-import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncFragenResponse;
-import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncImageResponse;
-import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncKategorienResponse;
-import at.campus02.gang_of_four.learningapp.rest.asyncResponse.AsyncSuccessResponse;
+import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 
 public class RestDataService {
     private static final String baseUrl = "http://campus02learningapp.azurewebsites.net/api/";
@@ -42,7 +42,7 @@ public class RestDataService {
         requestQueue = Volley.newRequestQueue(context);
     }
 
-    public void getKategorien(final AsyncKategorienResponse listener) {
+    public void getKategorien(final KategorienListener listener) {
         String url = baseUrl + "kategorie";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
@@ -70,22 +70,22 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void getFragen(AsyncFragenResponse listener) {
+    public void getFragen(FragenListener listener) {
         String url = baseUrl + "fragen";
         getFragen(url, listener);
     }
 
-    public void getFragenByKategorie(String kategorie, AsyncFragenResponse listener) {
+    public void getFragenByKategorie(String kategorie, FragenListener listener) {
         String url = baseUrl + "fragen/kategorie/" + kategorie;
         getFragen(url, listener);
     }
 
-    public void getFragenBySchwierigkeit(Schwierigkeit schwierigkeit, AsyncFragenResponse listener) {
+    public void getFragenBySchwierigkeit(Schwierigkeit schwierigkeit, FragenListener listener) {
         String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit.getId();
         getFragen(url, listener);
     }
 
-    public void getFrage(String id, final AsyncFrageResponse listener) {
+    public void getFrage(String id, final FrageListener listener) {
         String url = baseUrl + "fragen/" + id;
         GsonRequest<Frage> request = new GsonRequest<>(url, Frage.class, null, new Response.Listener<Frage>() {
             @Override
@@ -102,17 +102,17 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void createFrage(Frage frage, final AsyncSuccessResponse listener) {
+    public void createFrage(Frage frage, final SuccessListener listener) {
         String url = baseUrl + "fragen";
         sendFrage(frage, url, Request.Method.POST, listener);
     }
 
-    public void updateFrage(Frage frage, final AsyncSuccessResponse listener) {
+    public void updateFrage(Frage frage, final SuccessListener listener) {
         String url = baseUrl + "fragen/" + frage.getFrageID();
         sendFrage(frage, url, Request.Method.PUT, listener);
     }
 
-    public void deleteFrage(Frage frage, final AsyncSuccessResponse listener) {
+    public void deleteFrage(Frage frage, final SuccessListener listener) {
         String url = baseUrl + "fragen/" + frage.getFrageID();
         StringRequest request = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
             @Override
@@ -128,7 +128,7 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    private void getFragen(String url, final AsyncFragenResponse listener) {
+    private void getFragen(String url, final FragenListener listener) {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
             @Override
@@ -158,7 +158,7 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    private void sendFrage(Frage frage, String url, int method, final AsyncSuccessResponse listener) {
+    private void sendFrage(Frage frage, String url, int method, final SuccessListener listener) {
         try {
             final JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class));
 //            StringRequest request = new StringRequest(method, url, new Response.Listener<String>() {
@@ -198,7 +198,10 @@ public class RestDataService {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            listener.error();
+                            if (error.getCause() instanceof JSONException)
+                                listener.success();
+                            else
+                                listener.error();
                         }
                     }) {
 
@@ -216,7 +219,7 @@ public class RestDataService {
         }
     }
 
-    public void loadImage(String imageUrl, final AsyncImageResponse listener) {
+    public void loadImage(String imageUrl, final ImageListener listener) {
         ImageRequest request = new ImageRequest(imageUrl,
                 new Response.Listener<Bitmap>() {
                     @Override
