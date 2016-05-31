@@ -6,15 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
 import at.campus02.gang_of_four.learningapp.rest.RestDataService;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
+import at.campus02.gang_of_four.learningapp.utils.Utils;
 
-public class FrageErstellenActivity extends AppCompatActivity {
+public class FrageErstellenActivity  extends AppCompatActivity  {
 
 
     EditText frage = null;
@@ -22,6 +29,9 @@ public class FrageErstellenActivity extends AppCompatActivity {
     Spinner schwierigkeit = null;
     EditText kategorie = null;
     EditText bild = null;
+    TextView position =null;
+
+    String coordinate=null;
 
     Frage newFrage = null;
 
@@ -37,6 +47,31 @@ public class FrageErstellenActivity extends AppCompatActivity {
      //   schwierigkeit = (Spinner)findViewById(R.id.schwierigkeit);
 
          bild = (EditText)findViewById(R.id.editText_bild);
+        position = (TextView)findViewById(R.id.textView_aktuelle_position);
+
+
+
+        Location location = Utils.getCurrentLocation(this);
+
+        if(location != null)
+        {
+            String latidue = String.valueOf(location.getLatitude());
+            String altitude = String.valueOf(location.getAltitude());
+
+            coordinate = latidue+"N "+altitude+"E";
+        }
+
+        else {
+
+            String fail = getString(R.string.location_nicht_moeglich);
+            Toast toast = Toast.makeText(this, fail, Toast.LENGTH_LONG);
+            toast.show();
+
+            coordinate = getString(R.string.erstellen_aktuelle_position);
+
+        }
+
+        position.setText(coordinate);
 
 
         newFrage = new Frage();
