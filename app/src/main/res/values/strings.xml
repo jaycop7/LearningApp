@@ -10,7 +10,7 @@
     <string name="erstellen_antwort_hint">Eingabe der Antwort</string>
     <string name="erstellen_schwierigkeit">Schwierigkeitsgrad</string>
     <string name="erstellen_kategorie">Kategorie</string>
-    <string name="erstellen_position">Koordinaten</string>
+    <string name="erstellen_position">Position</string>
     <string name="erstellen_aktuelle_position">default: campus02 (47°05\'21.5"N 15°26\'24.4"E)</string>
     <string name="erstellen_bild">Bild</string>
     <string name="erstellen_bild_hint">URL hier eingeben </string>
