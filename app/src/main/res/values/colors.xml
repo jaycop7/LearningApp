@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="default_button_color">@android:color/holo_green_light</color>
+    <color name="fragen_erstellen_color" >@android:color/holo_blue_light</color>
 </resources>

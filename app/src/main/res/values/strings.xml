@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Learning App</string>
     <string name="no_network">Es ist keine Netzwerkverbindung vorhanden. Bitte stellen sie sicher, dass sie eine aufrechte Verbindung haben.</string>
+    <string name="frage_erstellt">Ihre Frage wurde erfolgreich erstellt</string>
+    <string name="frage_nicht_erstellt">Ihre Frage konnte nicht erstellt werden</string>
     <string name="menu_fragen_anzeigen">Fragen anzeigen</string>
     <string name="menu_fragen_erstellen">Fragen erstellen</string>
     <string name="menu_einstellungen">Einstellungen</string>
