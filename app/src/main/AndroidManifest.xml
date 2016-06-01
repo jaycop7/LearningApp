@@ -32,7 +32,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".FragenAuswahlActivity" />
         <activity android:name=".FrageErstellenActivity" />
-        <activity android:name=".FragenKategorieAuswahl" />
+        <activity android:name=".FragenKategorieAuswahlActivity" />
         <activity android:name=".FrageAnzeigeActivity" />
     </application>
 

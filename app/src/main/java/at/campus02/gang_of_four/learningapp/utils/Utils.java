@@ -2,6 +2,7 @@ package at.campus02.gang_of_four.learningapp.utils;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -9,10 +10,12 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import at.campus02.gang_of_four.learningapp.MainActivity;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
 
 public class Utils {
@@ -35,7 +38,19 @@ public class Utils {
         return liste;
     }
 
+    public static void navigateToMainActivity(Context context) {
+        //redirect to main activity
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
+    public static void showToast(String message, Context context) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+
+    @SuppressWarnings("ResourceType")
     public static Location getCurrentLocation(Context context) {
         // Get the location manager
         LocationManager locationManager = (LocationManager)

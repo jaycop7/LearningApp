@@ -1,6 +1,7 @@
 package at.campus02.gang_of_four.learningapp.rest;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -8,22 +9,23 @@ import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 
-public class RestServiceTest {
+public class TestRestService {
     Context context = null;
     RestDataService service = null;
 
-    public RestServiceTest(Context context) {
+    public TestRestService(Context context) {
         this.context = context;
         service = new RestDataService(context);
     }
 
     public void requestFragen() {
-        service.getFragen(new FragenListener() {
+        service.getAlleFragen(new FragenListener() {
             @Override
-            public void processResponse(List<Frage> fragen) {
+            public void success(List<Frage> fragen) {
                 Log.i("Success", "Fragen success, count " + fragen.size());
             }
 
@@ -64,9 +66,9 @@ public class RestServiceTest {
     }
 
     public void updateFragen() {
-        service.getFragen(new FragenListener() {
+        service.getAlleFragen(new FragenListener() {
             @Override
-            public void processResponse(List<Frage> fragen) {
+            public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
                     if ("Frage200".equals(f.getFragetext())) {
                         f.setSchwierigkeitsgrad(2);
@@ -94,9 +96,9 @@ public class RestServiceTest {
     }
 
     public void deleteTestFragen() {
-        service.getFragen(new FragenListener() {
+        service.getAlleFragen(new FragenListener() {
             @Override
-            public void processResponse(List<Frage> fragen) {
+            public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
                     if ("Frage200".equals(f.getFragetext())) {
                         service.deleteFrage(f, new SuccessListener() {
@@ -118,6 +120,20 @@ public class RestServiceTest {
             @Override
             public void error() {
 
+            }
+        });
+    }
+
+    public void getImage() {
+        service.getImage("http://images.clipartpanda.com/test-clip-art-cpa-school-test.png", new ImageListener() {
+            @Override
+            public void success(Bitmap immage) {
+                Log.i("Success", "Image loaded successful.");
+            }
+
+            @Override
+            public void error() {
+                Log.e("Error", "Error loading image.");
             }
         });
     }

@@ -10,79 +10,74 @@
     tools:context=".FrageAnzeigeActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/frageAnzeigeKategorie"
-        android:layout_marginTop="10dp"
-        android:text="Geografie (2):"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="@dimen/fragen_anzeige_textsize"
-        />
+        <TextView
+            android:id="@+id/frageAnzeigeKategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Geografie (2):"
+            android:textSize="@dimen/fragen_anzeige_textsize"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/frageAnzeigeFrage"
-        android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
-        android:textSize="@dimen/fragen_anzeige_textsize"
-        />
+        <TextView
+            android:id="@+id/frageAnzeigeFrage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
+            android:textSize="@dimen/fragen_anzeige_textsize" />
 
-    <ImageView
+        <ImageView
 
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:src="@drawable/bayern_logo"
+            android:id="@+id/frageAnzeigeFrageFoto"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
 
-        android:layout_marginTop="20dp"
-        android:id="@+id/frageAnzeigeFrageFoto"/>
+            android:layout_marginTop="20dp"
+            android:src="@drawable/bayern_logo" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/frageAnzeigeButtonAnwortEinblenden"
-        android:background="@color/default_button_color"
-        android:text="@string/detail_antwort_einblenden"
-         />
+        <Button
+            android:id="@+id/frageAnzeigeButtonAnwortEinblenden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/default_fragen_color"
+            android:text="@string/detail_antwort_einblenden" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/frageAnzeigeAntwortZeigen"
-        android:text="@string/detail_antwort"
-        android:layout_marginTop="20dp"
-        />
+        <TextView
+            android:id="@+id/frageAnzeigeAntwortZeigen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/detail_antwort" />
 
-     <Button
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
-         android:id="@+id/frageAnzeigeWiederholungsfrage"
-         android:text="@string/detail_wiederholen"
-         android:background="@color/default_button_color"
-         />
+        <Button
+            android:id="@+id/frageAnzeigeWiederholungsfrage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/default_fragen_color"
+            android:text="@string/detail_wiederholen" />
 
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/frageAnzeigen1von10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/frageAnzeigen1von10"
         android:layout_alignParentBottom="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="20dp"
-        android:gravity="center"
         android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp"
         android:text="@string/detail_frage_bottom"
 
         />

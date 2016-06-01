@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import at.campus02.gang_of_four.learningapp.rest.RestServiceTest;
+import java.util.List;
+
+import at.campus02.gang_of_four.learningapp.rest.TestRestService;
+import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,10 +24,22 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
-        RestServiceTest test = new RestServiceTest(this);
+        TestRestService test = new TestRestService(this);
         test.createFrage();
         test.updateFragen();
-        test.deleteTestFragen();
+//        test.deleteTestFragen();
+        Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
+//        test.getImage();
+    }
+
+    public void displayKategorien(List<String> kategorien) {
+
+        Utils.showToast(kategorien.get(0), this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     public void fragenAnzeigen(View view) {

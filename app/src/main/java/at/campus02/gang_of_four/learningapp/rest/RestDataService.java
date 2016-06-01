@@ -2,6 +2,7 @@ package at.campus02.gang_of_four.learningapp.rest;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -26,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
-import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
@@ -70,7 +70,7 @@ public class RestDataService {
         requestQueue.add(request);
     }
 
-    public void getFragen(FragenListener listener) {
+    public void getAlleFragen(FragenListener listener) {
         String url = baseUrl + "fragen";
         getFragen(url, listener);
     }
@@ -80,8 +80,18 @@ public class RestDataService {
         getFragen(url, listener);
     }
 
-    public void getFragenBySchwierigkeit(Schwierigkeit schwierigkeit, FragenListener listener) {
-        String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit.getId();
+    public void getFragenBySchwierigkeit(int schwierigkeit, FragenListener listener) {
+        String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit;
+        getFragen(url, listener);
+    }
+
+    public void getFragenByGpsKoordinaten(Location location, int distance, FragenListener listener) {
+        String url = baseUrl + String.format("fragen/koordinaten/?la=%s&lo=%s&di=%s", location.getLatitude(), location.getLongitude(), distance);
+        getFragen(url, listener);
+    }
+
+    public void getFragenWithPaging(int ueberspringen, int anzahl, FragenListener listener) {
+        String url = baseUrl + String.format("fragen/paging/?ueberspringen=%s&anzahl=%s", ueberspringen, anzahl);
         getFragen(url, listener);
     }
 
@@ -140,7 +150,7 @@ public class RestDataService {
                         Frage frage = gson.fromJson(jsonString, Frage.class);
                         fragen.add(frage);
                     }
-                    listener.processResponse(fragen);
+                    listener.success(fragen);
                     Log.i("SUCCESS", "Fragen loaded successful");
                 } catch (JSONException e) {
                     listener.error();
@@ -219,7 +229,8 @@ public class RestDataService {
         }
     }
 
-    public void loadImage(String imageUrl, final ImageListener listener) {
+    //FIXME Not working yet
+    public void getImage(String imageUrl, final ImageListener listener) {
         ImageRequest request = new ImageRequest(imageUrl,
                 new Response.Listener<Bitmap>() {
                     @Override
