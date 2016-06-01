@@ -38,17 +38,15 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxWidth="150dp"
-        android:maxHeight="150dp"
-        android:layout_gravity="center"
+        android:layout_height="130dp"
+        android:src="@drawable/bayern_logo"
         android:layout_marginTop="20dp"
         android:id="@+id/frageAnzeigeFrageFoto"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/frageAnzeigeButtonAnwortEinblenden"
         android:background="@color/default_button_color"
         android:text="@string/detail_antwort_einblenden"
@@ -79,8 +77,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/frageAnzeigen1von10"
         android:layout_alignParentBottom="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
         android:gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/detail_frage_bottom"
 
         />
