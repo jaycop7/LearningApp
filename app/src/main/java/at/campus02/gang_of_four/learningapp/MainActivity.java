@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void fragenErstellen(View view) {
         Intent intent = new Intent(this, FrageErstellenActivity.class);
         startActivity(intent);
+        //Servus
     }
 
     public void einstellungenOeffnen(View view) {
