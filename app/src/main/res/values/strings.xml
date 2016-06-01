@@ -26,7 +26,8 @@
     <string name="detail_antwort_einblenden">Antwort anzeigen</string>
     <string name="detail_frage">Frage</string>
     <string name="detail_antwort">Antwort</string>
-    <string name="detail_wiederholen">Frage wiederholen</string>
+    <string name="detail_wiederholen">Nicht gewusst? Frage merken</string>
+    <string name="detail_frage_bottom">Frage</string>
     <string name="einstellungen_max_fragen">max. Fragen pro Runde</string>
     <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>
     <string name="einstellungen_benutzername">Benutzername</string>
