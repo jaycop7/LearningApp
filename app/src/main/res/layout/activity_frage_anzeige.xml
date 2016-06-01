@@ -37,9 +37,11 @@
         />
 
     <ImageView
+
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:src="@drawable/bayern_logo"
+
         android:layout_marginTop="20dp"
         android:id="@+id/frageAnzeigeFrageFoto"/>
 
