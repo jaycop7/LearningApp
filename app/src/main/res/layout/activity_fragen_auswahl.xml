@@ -32,6 +32,7 @@
 
         <Button
             style="@style/FragenAuswahlButton"
+            android:drawableLeft="@drawable/ic_gps_fixed_black_48dp"
             android:onClick="fragenNachGpsUmkreisClick"
             android:text="@string/auswahl_umgebung" />
 
