@@ -6,6 +6,7 @@
     <string name="location_nicht_moeglich">GPS Koordinaten nicht möglich. Default Koordinaten übernommen</string>
     <string name="menu_fragen_anzeigen">Fragen anzeigen</string>
     <string name="menu_fragen_erstellen">Fragen erstellen</string>
+    <string name="menu_eigene_fragen">Eigene Fragen</string>
     <string name="menu_einstellungen">Einstellungen</string>
     <string name="erstellen_frage">Frage</string>
     <string name="erstellen_frage_hint">Eingabe der Frage</string>
@@ -18,20 +19,20 @@
     <string name="erstellen_bild">Bild</string>
     <string name="erstellen_bild_hint">URL hier eingeben </string>
     <string name="erstellen_speichern">Frage erstellen</string>
+    <string name="eigene_fragen_header">In dieser Ansicht finden Sie Fragen, welche Sie selbst erstellt haben.\nUm diese zu bearbeiten, einfach auf die entsprechende Frage klicken.</string>
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>
     <string name="auswahl_umgebung">Fragen in der Umgebung</string>
     <string name="auswahl_schwierigkeit">nach Schwierigkeit</string>
     <string name="auswahl_wiederholungsfragen">Wiederholungsfragen</string>
     <string name="auswahl_eigenefragen">Eigene Fragen</string>
-    <string name="auswahl_kategorien_fehler">Kategorien konnten leider nicht geladen werden.</string>
+    <string name="auswahl_kategorien_fehler">Kategorien konnten nicht geladen werden.</string>
     <string name="detail_antwort_einblenden">Antwort anzeigen</string>
     <string name="detail_frage">Frage</string>
     <string name="detail_antwort">Antwort</string>
     <string name="detail_wiederholen">Frage merken</string>
     <string name="detail_wiederholen_gemerkt">Frage gemerkt</string>
     <string name="detail_frage_bottom">Frage</string>
-    <string name="detail_fragen_error">Es sind keine Fragen verfügbar.</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
     <string name="detail_frage_gemerkt">Die Frage wurde zur Wiederholung gespeichert.</string>
@@ -43,5 +44,6 @@
     <string name="einstellungen_speichern">Einstellungen speichern</string>
     <string name="frage_geladen">Frage geladen</string>
     <string name="fragen_geladen">Fragen geladen</string>
+    <string name="keine_fragen_verfuegbar">Es sind keine Fragen verfügbar.</string>
 
 </resources>

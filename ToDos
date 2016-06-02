@@ -1,12 +1,11 @@
 - Filteroptionen Fragen überspringen nicht gleichzeitig mit anderen Fragen-Modi
-- Phips Eigene Fragen anzeigen/laden/updaten
-- IDs der eigenen und wiederholungsfragen speichern (Jakob)
+- Phips Eigene Fragen anzeigen/laden/updaten (Auswahl hab ich bereits vorbereitet, muss nur mehr auf Frage edit/create umgeleitet werden)
+- IDs der eigenen fragen speichern, Restservice muss ID zurückgeben (Jakob)
 - Landscape modus testen
 - FUCKING GPS (Phips)
 - SMS Anbindung (Eniman)
 - Logo einfügen???
 - Save State beim Neigen
-- Id's für Wiederholungsfragen/Eigene Fragen speichern (Jakob)
 - Willkommenstoast nur beim Starten der App
 - Spiellogik (Anzahl Fragen, laut Einstellungen) (Jakob)
 - Fragen nach Schwierigkeit? oder was mit Schwierigkeit machen?

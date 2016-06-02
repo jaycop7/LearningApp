@@ -87,7 +87,11 @@ public class Preferences {
     }
 
     public static Set<String> getEigeneFragenIds(Context context) {
-        return getSettings(context).getStringSet(EIGENE_FRAGEN, new HashSet<String>());
+        HashSet<String> defaultSet = new HashSet<>();
+        //FIXME Remove default settings
+        defaultSet.add("34b7e4fa-5485-4747-9511-147432a1dee5");
+        defaultSet.add("ac831158-31af-4c55-bbda-60692988d45f");
+        return getSettings(context).getStringSet(EIGENE_FRAGEN, defaultSet);
     }
 
     public static void setEigeneFragenIds(Set<String> ids, Context context) {

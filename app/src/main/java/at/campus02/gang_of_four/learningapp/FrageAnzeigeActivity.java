@@ -260,7 +260,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
 
     private void displayFragenErrorMessage() {
         progress.setVisibility(View.INVISIBLE);
-        Utils.showToast(getString(R.string.detail_fragen_error), this);
+        Utils.showToast(getString(R.string.keine_fragen_verfuegbar), this);
     }
 
     private void setBild(String url) {

@@ -12,57 +12,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="at.campus02.gang_of_four.learningapp.MainActivity">
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" />
-
     <Button
-        style="@style/BasicButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        style="@style/MainMenuButton"
         android:background="@android:color/holo_green_light"
         android:drawableLeft="@drawable/ic_play_arrow_black_48dp"
         android:onClick="fragenAnzeigen"
-        android:paddingLeft="50dp"
         android:text="@string/menu_fragen_anzeigen" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <Button
-        style="@style/BasicButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="@color/fragen_erstellen_color"
+        style="@style/MainMenuButton"
+        android:background="@color/default_fragen_erstellen_color"
         android:drawableLeft="@drawable/ic_add_black_48dp"
         android:onClick="fragenErstellen"
-        android:paddingLeft="50dp"
         android:text="@string/menu_fragen_erstellen" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <Button
+        style="@style/MainMenuButton"
+        android:background="@color/default_eigene_fragen_color"
+        android:drawableLeft="@drawable/ic_person_black_48dp"
+        android:onClick="eigeneFragen"
+        android:text="@string/menu_eigene_fragen" />
 
     <Button
-        style="@style/BasicButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        style="@style/MainMenuButton"
         android:background="@color/default_settings_color"
         android:drawableLeft="@drawable/ic_settings_black_48dp"
         android:onClick="einstellungenOeffnen"
-        android:paddingLeft="50dp"
         android:text="@string/menu_einstellungen" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
 </LinearLayout>

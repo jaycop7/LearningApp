@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import at.campus02.gang_of_four.learningapp.rest.TestRestService;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
@@ -17,18 +16,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkNetwork();
-        // TODO remove
-        testRestService();
         Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
     }
 
-    private void testRestService() {
-        TestRestService test = new TestRestService(this);
-        test.createFrage();
-        test.updateFragen();
-        test.deleteTestFragen();
-        test.getImage();
-    }
+//    private void testRestService() {
+//        TestRestService test = new TestRestService(this);
+//        test.createFrage();
+//        test.updateFragen();
+//        test.deleteTestFragen();
+//        test.getImage();
+//    }
 
     private void checkNetwork() {
         if (!Utils.isNetworkOnline(this)) {
@@ -50,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void fragenErstellen(View view) {
         Intent intent = new Intent(this, FrageErstellenActivity.class);
+        startActivity(intent);
+    }
+
+    public void eigeneFragen(View view) {
+        Intent intent = new Intent(this, EigeneFragenAuswahlActivity.class);
         startActivity(intent);
     }
 
