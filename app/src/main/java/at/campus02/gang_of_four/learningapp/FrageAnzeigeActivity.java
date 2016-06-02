@@ -1,13 +1,9 @@
 package at.campus02.gang_of_four.learningapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +20,7 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
-public class FrageAnzeigeActivity extends AppCompatActivity {
+public class FrageAnzeigeActivity extends SwipeActivity {
     public static final String EXTRA_FRAGEN_MODUS = "at.campus02.gang_of_four.learningapp.ExtraFragenModus";
     public static final String EXTRA_FRAGEN_KATEGORIE = "at.campus02.gang_of_four.learningapp.ExtraFragenKategorie";
 
@@ -48,7 +44,7 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frage_anzeige);
-        registerSwipeControl();
+//        registerSwipeControl();
         service = new RestDataService();
         linkLayout();
         gpsUmkreis = Preferences.getGpsUmkreis(this);
@@ -56,6 +52,16 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         ladeFragen();
+    }
+
+    @Override
+    protected void swipePrevious() {
+        displayPreviousFrage();
+    }
+
+    @Override
+    protected void swipeNext() {
+        displayNextFrage();
     }
 
     public void displayNextFrage() {
@@ -118,13 +124,10 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
         anzeigeLayout.setVisibility(View.VISIBLE);
     }
 
-    private void registerSwipeControl() {
-        View root = findViewById(R.id.frageAnzeigeRootlayout);
-        if (root == null)
-            root = findViewById(R.id.frageAnzeigeRootlayoutLandscape);
-
-        root.setOnTouchListener(new SwipeTouchListener(this));
-    }
+//    private void registerSwipeControl() {
+//        View root = findViewById(R.id.frageAnzeigenSwipeControl);
+//        root.setOnTouchListener(new SwipeTouchListener(this));
+//    }
 
     private void retrieveIntentExtra(Intent intent) {
         fragenModus = (FragenModus) intent.getSerializableExtra(EXTRA_FRAGEN_MODUS);
@@ -169,7 +172,7 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
         frageAntwort.setText(frage.getAntwort());
         frageAntwort.setVisibility(View.INVISIBLE);
         updateNavigator();
-        if (frage.getBild() != null) {
+        if (frage.getBild() != null && !frage.getBild().isEmpty()) {
             setBild(frage.getBild());
         } else
             showLayout();
@@ -208,54 +211,5 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     private void imageError() {
         bildAnzeige.setVisibility(View.INVISIBLE);
         showLayout();
-    }
-
-    /**
-     * Detects left and right swipes across a view.
-     */
-    private class SwipeTouchListener implements View.OnTouchListener {
-
-        private final GestureDetector gestureDetector;
-
-        public SwipeTouchListener(Context context) {
-            gestureDetector = new GestureDetector(context, new GestureListener());
-        }
-
-        public void onSwipeLeft() {
-            displayNextFrage();
-        }
-
-        public void onSwipeRight() {
-            displayPreviousFrage();
-        }
-
-        public boolean onTouch(View v, MotionEvent event) {
-            return gestureDetector.onTouchEvent(event);
-        }
-
-        private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
-
-            private static final int SWIPE_DISTANCE_THRESHOLD = 100;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                float distanceX = e2.getX() - e1.getX();
-                float distanceY = e2.getY() - e1.getY();
-                if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (distanceX > 0)
-                        onSwipeRight();
-                    else
-                        onSwipeLeft();
-                    return true;
-                }
-                return false;
-            }
-        }
     }
 }
