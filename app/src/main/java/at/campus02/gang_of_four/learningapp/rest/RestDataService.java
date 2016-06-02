@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.ApplicationController;
 import at.campus02.gang_of_four.learningapp.model.Frage;
@@ -86,6 +87,27 @@ public class RestDataService {
     public void getFragenWithPaging(int ueberspringen, int anzahl, FragenListener listener) {
         String url = baseUrl + String.format("fragen/paging/?ueberspringen=%s&anzahl=%s", ueberspringen, anzahl);
         getFragen(url, listener);
+    }
+
+    public void getFragenByIdSet(final Set<String> ids, final FragenListener listener) {
+        String url = baseUrl + "fragen";
+        getFragen(url, new FragenListener() {
+            @Override
+            public void success(List<Frage> fragen) {
+                List<Frage> filteredFragen = new ArrayList<>();
+                for (Frage frage : fragen) {
+                    if (ids.contains(frage.getFrageID())) {
+                        filteredFragen.add(frage);
+                    }
+                }
+                listener.success(filteredFragen);
+            }
+
+            @Override
+            public void error() {
+                listener.error();
+            }
+        });
     }
 
     public void getFrage(String id, final FrageListener listener) {

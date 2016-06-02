@@ -37,7 +37,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_frage_erstellen);
         service = new RestDataService();
         populateSchwierigkeitSpinner();
-        linkLayout();
+        linkLayoutViews();
 
         Location location = Utils.getCurrentLocation(this);
         if (location != null) {
@@ -54,7 +54,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
         newFrage = new Frage();
     }
 
-    private void linkLayout() {
+    private void linkLayoutViews() {
         frage = (EditText) findViewById(R.id.editText_Frage);
         antwort = (EditText) findViewById(R.id.editText_Antwort);
         schwierigkeit = (Spinner) findViewById(R.id.editText_Schwierigkeit);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
@@ -39,20 +40,20 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     String kategorie = "";
     int schwierigkeit = 0;
     int gpsUmkreis = 0;
+    Set<String> wiederholungsFragenIds = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frage_anzeige);
-//        registerSwipeControl();
         service = new RestDataService();
-        linkLayout();
-        gpsUmkreis = Preferences.getGpsUmkreis(this);
-        schwierigkeit = Preferences.getSchwierigkeit(this);
+        linkLayoutViews();
+        loadPreferences();
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         ladeFragen();
     }
+
 
     @Override
     protected void swipePrevious() {
@@ -85,6 +86,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     public void wiederholungsFrageClick(View view) {
+        addCurrentToWiederholungsfragen();
         Utils.showToast(getString(R.string.detail_frage_gemerkt), this);
     }
 
@@ -110,6 +112,9 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             case SCHWIERIGKEIT:
                 service.getFragenBySchwierigkeit(schwierigkeit, new FragenListenerImpl());
                 break;
+            case WIEDERHOLUNG:
+                service.getFragenByIdSet(wiederholungsFragenIds, new FragenListenerImpl());
+                break;
             default:
                 service.getAlleFragen(new FragenListenerImpl());
                 break;
@@ -124,17 +129,32 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         anzeigeLayout.setVisibility(View.VISIBLE);
     }
 
-//    private void registerSwipeControl() {
-//        View root = findViewById(R.id.frageAnzeigenSwipeControl);
-//        root.setOnTouchListener(new SwipeTouchListener(this));
-//    }
+    private void addCurrentToWiederholungsfragen() {
+        Frage frage = fragen.get(currentFragePosition);
+        if (!wiederholungsFragenIds.contains(frage.getFrageID())) {
+            wiederholungsFragenIds.add(frage.getFrageID());
+            saveWiederholungsfragenIds();
+        }
+    }
+
+    private void removeCurrentFromWiederholungsfragen() {
+        Frage frage = fragen.get(currentFragePosition);
+        if (wiederholungsFragenIds.contains(frage.getFrageID())) {
+            wiederholungsFragenIds.remove(frage.getFrageID());
+            saveWiederholungsfragenIds();
+        }
+    }
+
+    private void saveWiederholungsfragenIds() {
+        Preferences.setWiederholungsFragenIds(wiederholungsFragenIds, this);
+    }
 
     private void retrieveIntentExtra(Intent intent) {
         fragenModus = (FragenModus) intent.getSerializableExtra(EXTRA_FRAGEN_MODUS);
         kategorie = intent.getStringExtra(EXTRA_FRAGEN_KATEGORIE);
     }
 
-    private void linkLayout() {
+    private void linkLayoutViews() {
         progress = findViewById(R.id.fragenAnzeigeProgress);
         anzeigeLayout = (LinearLayout) findViewById(R.id.frageAnzeigeLayout);
         fragenHeader = (TextView) findViewById(R.id.frageAnzeigeHeader);
@@ -142,6 +162,12 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         frageAntwort = (TextView) findViewById(R.id.frageAnzeigeAntwort);
         frageNavigator = (TextView) findViewById(R.id.frageAnzeigeNavigator);
         bildAnzeige = (ImageView) findViewById(R.id.frageAnzeigeFrageFoto);
+    }
+
+    private void loadPreferences() {
+        gpsUmkreis = Preferences.getGpsUmkreis(this);
+        schwierigkeit = Preferences.getSchwierigkeit(this);
+        wiederholungsFragenIds = Preferences.getWiederholungsFragenIds(this);
     }
 
     private class FragenListenerImpl implements FragenListener {
@@ -161,7 +187,8 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         progress.setVisibility(View.INVISIBLE);
         this.fragen = fragenList;
         Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
-        displayFrage();
+        if (fragen != null && fragen.size() > 0)
+            displayFrage();
     }
 
     private void displayFrage() {
