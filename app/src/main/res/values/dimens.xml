@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fragen_anzeige_textsize">20dp</dimen>
-    <dimen name="button_textsize">25dp</dimen>
-    <dimen name="default_button_height">70dp</dimen>
+    <dimen name="button_textsize">20dp</dimen>
+    <dimen name="speichern_button_height">70dp</dimen>
     <dimen name="fragen_auswahl_space">7dp</dimen>
 </resources>

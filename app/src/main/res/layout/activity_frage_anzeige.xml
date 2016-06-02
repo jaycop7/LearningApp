@@ -45,6 +45,7 @@
 
         <Button
             android:id="@+id/frageAnzeigeButtonAnwortEinblenden"
+            style="@style/BasicButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -60,6 +61,7 @@
 
         <Button
             android:id="@+id/frageAnzeigeWiederholungsfrage"
+            style="@style/BasicButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

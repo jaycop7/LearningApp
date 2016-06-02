@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,17 +21,20 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     RestDataService service = null;
     List<String> kategorien = new ArrayList<>();
+    ProgressBar progress = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragen_kategorie_auswahl);
+        progress = (ProgressBar) findViewById(R.id.fragenKategorieProgress);
         service = new RestDataService(this);
         loadKategorien();
     }
 
 
     private void loadKategorien() {
+        progress.setVisibility(View.VISIBLE);
         service.getKategorien(new KategorienListener() {
             @Override
             public void success(List<String> kategorienListe) {
@@ -45,6 +49,7 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     }
 
     private void populateKategorien(List<String> kategorieListe) {
+//        progress.setVisibility(View.GONE);
         this.kategorien = kategorieListe;
         ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.kategorie_item, kategorien);
         GridView gridView = (GridView) findViewById(R.id.kategorieAuswahlGrid);

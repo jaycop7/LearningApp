@@ -53,10 +53,13 @@ public class RestDataService {
                     for (int i = 0; i < response.length(); i++) {
                         kategorien.add(response.getString(i));
                     }
+                    Thread.sleep(5000); //TODO REMOVE
                     listener.success(kategorien);
                 } catch (JSONException e) {
                     listener.error();
                     Log.e("ERROR", "Json error in getKategorien." + e.getLocalizedMessage());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {

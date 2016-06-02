@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         TestRestService test = new TestRestService(this);
         test.createFrage();
         test.updateFragen();
-//        test.deleteTestFragen();
+        test.deleteTestFragen();
         Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
 //        test.getImage();
     }

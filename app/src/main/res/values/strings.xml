@@ -21,7 +21,7 @@
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>
     <string name="auswahl_umgebung">Fragen in der Umgebung</string>
-    <string name="auswahl_wiederholungsfragen">Wiederholungs-Fragen</string>
+    <string name="auswahl_wiederholungsfragen">Wiederholungsfragen</string>
     <string name="auswahl_eigenefragen">Eigene Fragen</string>
     <string name="auswahl_kategorien_fehler">Kategorien konnten leider nicht geladen werden.</string>
     <string name="detail_antwort_einblenden">Antwort anzeigen</string>

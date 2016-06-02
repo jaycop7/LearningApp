@@ -118,11 +118,9 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/SpeichernButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:height="@dimen/default_button_height"
         android:background="@color/default_settings_color"
         android:onClick="einstellungenSpeichern"
         android:text="@string/einstellungen_speichern" />

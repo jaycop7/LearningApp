@@ -7,10 +7,6 @@
     android:padding="@dimen/fragen_auswahl_space"
     tools:context="at.campus02.gang_of_four.learningapp.FragenAuswahlActivity">
 
-    <!--<Space-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="0.5" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,25 +14,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/fragen_auswahl_space"
-            android:layout_weight="1"
-            android:background="@color/default_fragen_color"
-            android:gravity="center"
+            style="@style/FragenAuswahlButton"
             android:onClick="alleFragenClick"
-            android:padding="10dp"
             android:text="@string/auswahl_alle_kategorien" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/fragen_auswahl_space"
-            android:layout_weight="1"
-            android:background="@color/default_fragen_color"
-            android:gravity="center"
+            style="@style/FragenAuswahlButton"
             android:onClick="fragenNachKategorieClick"
-            android:padding="10dp"
             android:text="@string/auswahl_kategorie" />
     </LinearLayout>
 
@@ -47,26 +31,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/fragen_auswahl_space"
-            android:layout_weight="1"
-            android:background="@color/default_fragen_color"
-            android:gravity="center"
+            style="@style/FragenAuswahlButton"
             android:onClick="fragenNachGpsUmkreisClick"
-            android:padding="10dp"
             android:text="@string/auswahl_umgebung" />
 
-
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/fragen_auswahl_space"
-            android:layout_weight="1"
-            android:background="@color/default_fragen_color"
-            android:gravity="center"
+            style="@style/FragenAuswahlButton"
             android:onClick="wiederholungsFragenClick"
-            android:padding="10dp"
             android:text="@string/auswahl_wiederholungsfragen" />
     </LinearLayout>
 
@@ -77,19 +48,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/fragen_auswahl_space"
-            android:layout_weight="1"
-            android:background="@color/default_fragen_color"
-            android:gravity="center"
+            style="@style/FragenAuswahlButton"
             android:onClick="eigeneFragenClick"
-            android:padding="10dp"
             android:text="@string/auswahl_eigenefragen" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>
