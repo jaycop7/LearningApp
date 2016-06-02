@@ -28,10 +28,15 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragen_kategorie_auswahl);
         progress = (ProgressBar) findViewById(R.id.fragenKategorieProgress);
-        service = new RestDataService(this);
+        service = new RestDataService();
         loadKategorien();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FragenAuswahlActivity.class);
+        startActivity(intent);
+    }
 
     private void loadKategorien() {
         progress.setVisibility(View.VISIBLE);
@@ -49,7 +54,7 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     }
 
     private void populateKategorien(List<String> kategorieListe) {
-//        progress.setVisibility(View.GONE);
+        progress.setVisibility(View.GONE);
         this.kategorien = kategorieListe;
         ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.kategorie_item, kategorien);
         GridView gridView = (GridView) findViewById(R.id.kategorieAuswahlGrid);
@@ -66,8 +71,6 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     private void kategorieClicked(int position) {
         String kategorie = kategorien.get(position);
-//        Utils.showToast("Start Fragen der Kategorie: " + kategorie, this);
-
         Intent intent = new Intent(this, FrageAnzeigeActivity.class);
         intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_MODUS, FragenModus.KATEGORIE);
         intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_KATEGORIE, kategorie);

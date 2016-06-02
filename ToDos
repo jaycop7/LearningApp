@@ -1,9 +1,13 @@
 - Filteroptionen Fragen überspringen nicht gleichzeitig mit anderen Fragen-Modi
 - Phips Eigene Fragen anzeigen/laden/updaten
 - IDs der eigenen und wiederholungsfragen speichern
-- Landscape modus testen- Logo einfügen
+- Landscape modus testen
 - FUCKING GPS
 - SMS Anbindung
-- Logo einfügen
+- Logo einfügen??
 - Einheitliche Button-Textsize
 - Async nicht wirklich async :)
+- Save State beim Neigen
+- Id's für Wiederholungsfragen/Eigene Fragen speichern
+- Willkommenstoast nur beim Starten der App
+- Spiellogik (Anzahl Fragen, laut Einstellungen)

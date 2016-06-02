@@ -1,20 +1,17 @@
 package at.campus02.gang_of_four.learningapp.rest;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -26,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import at.campus02.gang_of_four.learningapp.ApplicationController;
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
@@ -35,12 +33,7 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 
 public class RestDataService {
     private static final String baseUrl = "http://campus02learningapp.azurewebsites.net/api/";
-    private static RequestQueue requestQueue = null;
     Gson gson = new Gson();
-
-    public RestDataService(Context context) {
-        requestQueue = Volley.newRequestQueue(context);
-    }
 
     public void getKategorien(final KategorienListener listener) {
         String url = baseUrl + "kategorie";
@@ -53,13 +46,10 @@ public class RestDataService {
                     for (int i = 0; i < response.length(); i++) {
                         kategorien.add(response.getString(i));
                     }
-                    Thread.sleep(5000); //TODO REMOVE
                     listener.success(kategorien);
                 } catch (JSONException e) {
                     listener.error();
                     Log.e("ERROR", "Json error in getKategorien." + e.getLocalizedMessage());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
@@ -70,7 +60,7 @@ public class RestDataService {
                 Log.e("ERROR", "Error in getKategorien!");
             }
         });
-        requestQueue.add(request);
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
     public void getAlleFragen(FragenListener listener) {
@@ -112,7 +102,7 @@ public class RestDataService {
                 Log.e("ERROR", "Error in RestDataService.getFrage.");
             }
         });
-        requestQueue.add(request);
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
     public void createFrage(Frage frage, final SuccessListener listener) {
@@ -138,7 +128,7 @@ public class RestDataService {
                 listener.error();
             }
         });
-        requestQueue.add(request);
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
     private void getFragen(String url, final FragenListener listener) {
@@ -168,7 +158,7 @@ public class RestDataService {
                 Log.e("ERROR", "Error in RestDateService.getFragen.");
             }
         });
-        requestQueue.add(request);
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
     private void sendFrage(Frage frage, String url, int method, final SuccessListener listener) {
@@ -225,14 +215,13 @@ public class RestDataService {
                     return headers;
                 }
             };
-            requestQueue.add(request);
+            ApplicationController.getInstance().addToRequestQueue(request);
 
         } catch (JSONException e) {
             listener.error();
         }
     }
 
-    //FIXME Not working yet
     public void getImage(String imageUrl, final ImageListener listener) {
         ImageRequest request = new ImageRequest(imageUrl,
                 new Response.Listener<Bitmap>() {
@@ -249,6 +238,7 @@ public class RestDataService {
 //                        mImageView.setImageResource(R.drawable.image_load_error);
                     }
                 });
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
 }

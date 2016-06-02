@@ -6,15 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
+import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class FragenAuswahlActivity extends AppCompatActivity {
-
-    //private ProgressDialog progressDialog = new ProgressDialog(FragenAuswahlActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragen_auswahl);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Utils.navigateToMainActivity(this);
     }
 
     public void alleFragenClick(View view) {

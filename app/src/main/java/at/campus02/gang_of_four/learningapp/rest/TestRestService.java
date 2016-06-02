@@ -19,7 +19,7 @@ public class TestRestService {
 
     public TestRestService(Context context) {
         this.context = context;
-        service = new RestDataService(context);
+        service = new RestDataService();
     }
 
     public void requestFragen() {

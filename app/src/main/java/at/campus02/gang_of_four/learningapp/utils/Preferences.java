@@ -35,17 +35,17 @@ public class Preferences {
         return getSettings(context).getInt(GPS_UMKREIS, 20);
     }
 
-    public static void setGpsUmkreis(int gpsUmkreis, Context context){
+    public static void setGpsUmkreis(int gpsUmkreis, Context context) {
         SharedPreferences.Editor settingsEditor = getSettingsEditor(context);
         settingsEditor.putInt(GPS_UMKREIS, gpsUmkreis);
         settingsEditor.commit();
     }
 
     public static String getBenutzername(Context context) {
-        return getSettings(context).getString(BENUTZER_NAME, "Benutzer 1");
+        return getSettings(context).getString(BENUTZER_NAME, "Neuer Benutzer");
     }
 
-    public static void setBenutzername(String benutzername, Context context){
+    public static void setBenutzername(String benutzername, Context context) {
         SharedPreferences.Editor settingsEditor = getSettingsEditor(context);
         settingsEditor.putString(BENUTZER_NAME, benutzername);
         settingsEditor.commit();
@@ -55,7 +55,7 @@ public class Preferences {
         return getSettings(context).getInt(SCHWIERIGKEIT, 10); //10 = zufällige Schwierigkeit
     }
 
-    public static void setSchwierigkeit(int schwierigkeit, Context context){
+    public static void setSchwierigkeit(int schwierigkeit, Context context) {
         SharedPreferences.Editor settingsEditor = getSettingsEditor(context);
         settingsEditor.putInt(SCHWIERIGKEIT, schwierigkeit);
         settingsEditor.commit();
@@ -65,7 +65,7 @@ public class Preferences {
         return getSettings(context).getInt(FRAGEN_UEBERSPRINGEN, 1);
     }
 
-    public static void setFragenUeberspringenAnzahl(int fragenUeberspringenAnzahl, Context context){
+    public static void setFragenUeberspringenAnzahl(int fragenUeberspringenAnzahl, Context context) {
         SharedPreferences.Editor settingsEditor = getSettingsEditor(context);
         settingsEditor.putInt(FRAGEN_UEBERSPRINGEN, fragenUeberspringenAnzahl);
         settingsEditor.commit();

@@ -31,7 +31,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frage_erstellen);
-        service = new RestDataService(this);
+        service = new RestDataService();
 
         frage = (EditText) findViewById(R.id.editText_Frage);
         antwort = (EditText) findViewById(R.id.editText_Antwort);

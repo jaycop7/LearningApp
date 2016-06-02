@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="150dp"
+                android:width="@dimen/settings_label_width"
                 android:text="@string/einstellungen_max_fragen" />
 
             <EditText
@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/einstellungen_max_fragen"
                 android:inputType="number"
+                android:paddingLeft="10dp"
                 android:selectAllOnFocus="true" />
         </LinearLayout>
 
@@ -45,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="150dp"
+                android:width="@dimen/settings_label_width"
                 android:text="@string/einstellungen_gps_umkreis" />
 
             <EditText
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/einstellungen_gps_umkreis"
                 android:inputType="number"
+                android:paddingLeft="10dp"
                 android:selectAllOnFocus="true" />
         </LinearLayout>
 
@@ -65,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="150dp"
+                android:width="@dimen/settings_label_width"
                 android:text="@string/einstellungen_benutzername" />
 
             <EditText
@@ -74,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/einstellungen_benutzername"
                 android:inputType="textPersonName"
+                android:paddingLeft="10dp"
                 android:selectAllOnFocus="true" />
         </LinearLayout>
 
@@ -85,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="150dp"
+                android:width="@dimen/settings_label_width"
                 android:text="@string/einstellungen_schwierigkeit" />
 
             <Spinner
@@ -104,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="150dp"
+                android:width="@dimen/settings_label_width"
                 android:text="@string/einstellungen_anzahl_fragen_ueberspringen" />
 
             <EditText
@@ -113,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/einstellungen_anzahl_fragen_ueberspringen"
                 android:inputType="number"
+                android:paddingLeft="10dp"
                 android:selectAllOnFocus="true" />
         </LinearLayout>
     </LinearLayout>

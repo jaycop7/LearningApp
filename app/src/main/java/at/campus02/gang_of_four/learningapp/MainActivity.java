@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.List;
-
 import at.campus02.gang_of_four.learningapp.rest.TestRestService;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
@@ -18,23 +16,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkNetwork();
+        // TODO remove
+        testRestService();
+        Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
+    }
+
+    private void testRestService() {
+        TestRestService test = new TestRestService(this);
+        test.createFrage();
+        test.updateFragen();
+        test.deleteTestFragen();
+        test.getImage();
+    }
+
+    private void checkNetwork() {
         if (!Utils.isNetworkOnline(this)) {
             String text = getString(R.string.no_network);
             Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();
         }
-
-        TestRestService test = new TestRestService(this);
-        test.createFrage();
-        test.updateFragen();
-        test.deleteTestFragen();
-        Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
-//        test.getImage();
-    }
-
-    public void displayKategorien(List<String> kategorien) {
-
-        Utils.showToast(kategorien.get(0), this);
     }
 
     @Override

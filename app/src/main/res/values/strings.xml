@@ -27,14 +27,19 @@
     <string name="detail_antwort_einblenden">Antwort anzeigen</string>
     <string name="detail_frage">Frage</string>
     <string name="detail_antwort">Antwort</string>
-    <string name="detail_wiederholen">Nicht gewusst? Frage merken</string>
+    <string name="detail_wiederholen">Frage merken</string>
     <string name="detail_frage_bottom">Frage</string>
     <string name="detail_fragen_error">Fragen konnten leider nicht vom Server geladen werden.</string>
+    <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
+    <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
+    <string name="detail_frage_gemerkt">Die Frage wurde zur Wiederholung gespeichert.</string>
     <string name="einstellungen_max_fragen">max. Fragen pro Runde</string>
     <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>
     <string name="einstellungen_benutzername">Benutzername</string>
     <string name="einstellungen_schwierigkeit">Schwierigkeitsgrad</string>
     <string name="einstellungen_anzahl_fragen_ueberspringen">Anz. Fragen überspr.</string>
     <string name="einstellungen_speichern">Einstellungen speichern</string>
+    <string name="frage_geladen">Frage geladen</string>
+    <string name="fragen_geladen">Fragen geladen</string>
 
 </resources>
