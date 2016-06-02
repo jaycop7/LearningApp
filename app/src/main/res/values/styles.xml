@@ -20,6 +20,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:height">@dimen/speichern_button_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
+        <item name="android:drawableLeft">@drawable/ic_done_black_24dp</item>
     </style>
 
     <style name="FragenAuswahlButton" parent="BasicButton">
@@ -35,13 +39,13 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_margin">20dp</item>
-        <item name="android:textSize">@dimen/button_textsize</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:background">@color/default_fragen_color</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingBottom">50dp</item>
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
-        <item name="android:paddingTop">50dp</item>
+        <item name="android:paddingBottom">40dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">40dp</item>
         <item name="android:textColor">@color/default_text_color</item>
     </style>
 

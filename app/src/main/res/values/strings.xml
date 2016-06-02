@@ -21,6 +21,7 @@
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>
     <string name="auswahl_umgebung">Fragen in der Umgebung</string>
+    <string name="auswahl_schwierigkeit">nach Schwierigkeit</string>
     <string name="auswahl_wiederholungsfragen">Wiederholungsfragen</string>
     <string name="auswahl_eigenefragen">Eigene Fragen</string>
     <string name="auswahl_kategorien_fehler">Kategorien konnten leider nicht geladen werden.</string>
@@ -29,7 +30,7 @@
     <string name="detail_antwort">Antwort</string>
     <string name="detail_wiederholen">Frage merken</string>
     <string name="detail_frage_bottom">Frage</string>
-    <string name="detail_fragen_error">Fragen konnten leider nicht vom Server geladen werden.</string>
+    <string name="detail_fragen_error">Es wurden keine Fragen gefunden.</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
     <string name="detail_frage_gemerkt">Die Frage wurde zur Wiederholung gespeichert.</string>

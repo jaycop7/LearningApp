@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     public static final String EXTRA_FRAGEN_KATEGORIE = "at.campus02.gang_of_four.learningapp.ExtraFragenKategorie";
 
     RestDataService service = null;
-    RelativeLayout progress = null;
+    View progress = null;
     LinearLayout anzeigeLayout = null;
     TextView fragenHeader = null;
     TextView frageText = null;
@@ -80,7 +79,7 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     }
 
     public void wiederholungsFrageClick(View view) {
-
+        Utils.showToast(getString(R.string.detail_frage_gemerkt), this);
     }
 
     @Override
@@ -120,7 +119,11 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     }
 
     private void registerSwipeControl() {
-        findViewById(R.id.frageAnzeigeRootlayout).setOnTouchListener(new SwipeTouchListener(this));
+        View root = findViewById(R.id.frageAnzeigeRootlayout);
+        if (root == null)
+            root = findViewById(R.id.frageAnzeigeRootlayoutLandscape);
+
+        root.setOnTouchListener(new SwipeTouchListener(this));
     }
 
     private void retrieveIntentExtra(Intent intent) {
@@ -129,7 +132,7 @@ public class FrageAnzeigeActivity extends AppCompatActivity {
     }
 
     private void linkLayout() {
-        progress = (RelativeLayout) findViewById(R.id.fragenKategorieProgress);
+        progress = findViewById(R.id.fragenAnzeigeProgress);
         anzeigeLayout = (LinearLayout) findViewById(R.id.frageAnzeigeLayout);
         fragenHeader = (TextView) findViewById(R.id.frageAnzeigeHeader);
         frageText = (TextView) findViewById(R.id.frageAnzeigeFrage);

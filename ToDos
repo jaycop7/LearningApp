@@ -1,14 +1,14 @@
 - Filteroptionen Fragen überspringen nicht gleichzeitig mit anderen Fragen-Modi
 - Phips Eigene Fragen anzeigen/laden/updaten
-- IDs der eigenen und wiederholungsfragen speichern
+- IDs der eigenen und wiederholungsfragen speichern (Jakob)
 - Landscape modus testen
-- FUCKING GPS
-- SMS Anbindung
-- Logo einfügen??
-- Einheitliche Button-Textsize
-- Async nicht wirklich async :)
+- FUCKING GPS (Phips)
+- SMS Anbindung (Eniman)
+- Logo einfügen???
 - Save State beim Neigen
-- Id's für Wiederholungsfragen/Eigene Fragen speichern
+- Id's für Wiederholungsfragen/Eigene Fragen speichern (Jakob)
 - Willkommenstoast nur beim Starten der App
-- Spiellogik (Anzahl Fragen, laut Einstellungen)
-- Kategorien Textsize (nicht gleich wie buttons)
+- Spiellogik (Anzahl Fragen, laut Einstellungen) (Jakob)
+- Kategorien Textsize (nicht gleich wie buttons) (Jakob)
+- Fragen nach Schwierigkeit? oder was mit Schwierigkeit machen?
+- Gscheite Testfragen in unserem Test anlegen, damit wir dann immer gscheite Fragen bereit haben (Phips/Eniman?)

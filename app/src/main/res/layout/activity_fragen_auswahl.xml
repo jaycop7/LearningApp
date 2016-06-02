@@ -15,11 +15,13 @@
 
         <Button
             style="@style/FragenAuswahlButton"
+            android:drawableStart="@drawable/ic_play_arrow_black_48dp"
             android:onClick="alleFragenClick"
             android:text="@string/auswahl_alle_kategorien" />
 
         <Button
             style="@style/FragenAuswahlButton"
+            android:drawableStart="@drawable/ic_view_week_black_48dp"
             android:onClick="fragenNachKategorieClick"
             android:text="@string/auswahl_kategorie" />
     </LinearLayout>
@@ -32,14 +34,17 @@
 
         <Button
             style="@style/FragenAuswahlButton"
-            android:drawableLeft="@drawable/ic_gps_fixed_black_48dp"
+            android:drawableStart="@drawable/ic_room_black_48dp"
             android:onClick="fragenNachGpsUmkreisClick"
             android:text="@string/auswahl_umgebung" />
 
         <Button
             style="@style/FragenAuswahlButton"
-            android:onClick="wiederholungsFragenClick"
-            android:text="@string/auswahl_wiederholungsfragen" />
+            android:drawableStart="@drawable/ic_trending_up_black_48dp"
+            android:onClick="fragenNachSchwierigkeitClick"
+            android:text="@string/auswahl_schwierigkeit" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -50,12 +55,19 @@
 
         <Button
             style="@style/FragenAuswahlButton"
+            android:drawableStart="@drawable/ic_star_black_48dp"
+            android:onClick="wiederholungsFragenClick"
+            android:text="@string/auswahl_wiederholungsfragen" />
+
+        <Button
+            style="@style/FragenAuswahlButton"
+            android:drawableStart="@drawable/ic_person_black_48dp"
             android:onClick="eigeneFragenClick"
             android:text="@string/auswahl_eigenefragen" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <!--<Space-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
     </LinearLayout>
 </LinearLayout>

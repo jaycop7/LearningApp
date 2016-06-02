@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +13,20 @@ import java.util.List;
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
 import at.campus02.gang_of_four.learningapp.rest.RestDataService;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.utils.KategorieAdapter;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     RestDataService service = null;
     List<String> kategorien = new ArrayList<>();
-    ProgressBar progress = null;
+    View progress = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragen_kategorie_auswahl);
-        progress = (ProgressBar) findViewById(R.id.fragenKategorieProgress);
+        progress = findViewById(R.id.fragenKategorieProgress);
         service = new RestDataService();
         loadKategorien();
     }
@@ -56,7 +55,8 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     private void populateKategorien(List<String> kategorieListe) {
         progress.setVisibility(View.GONE);
         this.kategorien = kategorieListe;
-        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.kategorie_item, kategorien);
+//        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.kategorie_item, kategorien) ;
+        KategorieAdapter adapter = new KategorieAdapter(this, kategorien);
         GridView gridView = (GridView) findViewById(R.id.kategorieAuswahlGrid);
         if (gridView != null) {
             gridView.setAdapter(adapter);
@@ -80,4 +80,6 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     private void showErrorMessage() {
         Utils.showToast(getString(R.string.auswahl_kategorien_fehler), this);
     }
+
+
 }

@@ -12,114 +12,127 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="at.campus02.gang_of_four.learningapp.SettingsActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/speichern_button_height"
+        android:paddingBottom="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="@dimen/settings_label_width"
-                android:text="@string/einstellungen_max_fragen" />
-
-            <EditText
-                android:id="@+id/maxFragen"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/einstellungen_max_fragen"
-                android:inputType="number"
-                android:paddingLeft="10dp"
-                android:selectAllOnFocus="true" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/settings_row_space"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="@dimen/settings_label_width"
+                    android:text="@string/einstellungen_max_fragen" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="@dimen/settings_label_width"
-                android:text="@string/einstellungen_gps_umkreis" />
+                <EditText
+                    android:id="@+id/maxFragen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/einstellungen_max_fragen"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:selectAllOnFocus="true" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/gpsUmkreis"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/einstellungen_gps_umkreis"
-                android:inputType="number"
-                android:paddingLeft="10dp"
-                android:selectAllOnFocus="true" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/settings_row_space"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="@dimen/settings_label_width"
+                    android:text="@string/einstellungen_gps_umkreis" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="@dimen/settings_label_width"
-                android:text="@string/einstellungen_benutzername" />
+                <EditText
+                    android:id="@+id/gpsUmkreis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/einstellungen_gps_umkreis"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:selectAllOnFocus="true" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/benutzername"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/einstellungen_benutzername"
-                android:inputType="textPersonName"
-                android:paddingLeft="10dp"
-                android:selectAllOnFocus="true" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/settings_row_space"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="@dimen/settings_label_width"
+                    android:text="@string/einstellungen_benutzername" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="@dimen/settings_label_width"
-                android:text="@string/einstellungen_schwierigkeit" />
+                <EditText
+                    android:id="@+id/benutzername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/einstellungen_benutzername"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    android:selectAllOnFocus="true" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/schwierigkeit"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="50dp"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/settings_row_space"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:width="@dimen/settings_label_width"
+                    android:text="@string/einstellungen_schwierigkeit" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="@dimen/settings_label_width"
-                android:text="@string/einstellungen_anzahl_fragen_ueberspringen" />
+                <Spinner
+                    android:id="@+id/schwierigkeit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/fragenUeberspringen"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/einstellungen_anzahl_fragen_ueberspringen"
-                android:inputType="number"
-                android:paddingLeft="10dp"
-                android:selectAllOnFocus="true" />
+                android:layout_marginBottom="@dimen/settings_row_space"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:width="@dimen/settings_label_width"
+                    android:text="@string/einstellungen_anzahl_fragen_ueberspringen" />
+
+                <EditText
+                    android:id="@+id/fragenUeberspringen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/einstellungen_anzahl_fragen_ueberspringen"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:selectAllOnFocus="true" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <Button
         style="@style/SpeichernButton"

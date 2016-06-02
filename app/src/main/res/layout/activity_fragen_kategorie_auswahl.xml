@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/fragenKategorieProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:indeterminate="true" />
-
     <GridView
         android:id="@+id/kategorieAuswahlGrid"
         android:layout_width="match_parent"
@@ -25,5 +18,20 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:verticalSpacing="16dp"
         tools:context=".FragenKategorieAuswahlActivity" />
+
+    <RelativeLayout
+        android:id="@+id/fragenKategorieProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:foregroundGravity="fill"
+            android:indeterminate="true"
+            android:visibility="visible" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -74,7 +74,7 @@ public class RestDataService {
     }
 
     public void getFragenBySchwierigkeit(int schwierigkeit, FragenListener listener) {
-        String url = baseUrl + "fragen/schwierigkeit/" + schwierigkeit;
+        String url = baseUrl + "fragen/schwierigkeitsgrad/" + schwierigkeit;
         getFragen(url, listener);
     }
 
