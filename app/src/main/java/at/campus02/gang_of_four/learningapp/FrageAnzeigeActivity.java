@@ -2,9 +2,11 @@ package at.campus02.gang_of_four.learningapp;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +35,8 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     TextView frageAntwort = null;
     TextView frageNavigator = null;
     ImageView bildAnzeige = null;
+    Button wiederholungsButton = null;
+    TextView keineFragen = null;
 
     List<Frage> fragen = new ArrayList<>();
     FragenModus fragenModus = FragenModus.ALLE;
@@ -86,8 +90,13 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     public void wiederholungsFrageClick(View view) {
-        addCurrentToWiederholungsfragen();
-        Utils.showToast(getString(R.string.detail_frage_gemerkt), this);
+        Frage frage = getCurrentFrage();
+        if (frage != null) {
+            if (!wiederholungsFragenIds.contains(frage.getFrageID()))
+                addCurrentToWiederholungsfragen();
+            else
+                removeCurrentFromWiederholungsfragen();
+        }
     }
 
     @Override
@@ -129,19 +138,26 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         anzeigeLayout.setVisibility(View.VISIBLE);
     }
 
+    private Frage getCurrentFrage() {
+        return fragen.get(currentFragePosition);
+    }
+
     private void addCurrentToWiederholungsfragen() {
-        Frage frage = fragen.get(currentFragePosition);
-        if (!wiederholungsFragenIds.contains(frage.getFrageID())) {
+        Frage frage = getCurrentFrage();
+        if (frage != null) {
             wiederholungsFragenIds.add(frage.getFrageID());
             saveWiederholungsfragenIds();
+            Utils.showToast(getString(R.string.detail_frage_gemerkt), this);
+            updateWiederholungsButton();
         }
     }
 
     private void removeCurrentFromWiederholungsfragen() {
-        Frage frage = fragen.get(currentFragePosition);
-        if (wiederholungsFragenIds.contains(frage.getFrageID())) {
+        Frage frage = getCurrentFrage();
+        if (frage != null) {
             wiederholungsFragenIds.remove(frage.getFrageID());
             saveWiederholungsfragenIds();
+            updateWiederholungsButton();
         }
     }
 
@@ -162,6 +178,8 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         frageAntwort = (TextView) findViewById(R.id.frageAnzeigeAntwort);
         frageNavigator = (TextView) findViewById(R.id.frageAnzeigeNavigator);
         bildAnzeige = (ImageView) findViewById(R.id.frageAnzeigeFrageFoto);
+        wiederholungsButton = (Button) findViewById(R.id.frageAnzeigeWiederholungsfrage);
+        keineFragen = (TextView) findViewById(R.id.frageAnzeigenKeineFragen);
     }
 
     private void loadPreferences() {
@@ -187,17 +205,31 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         progress.setVisibility(View.INVISIBLE);
         this.fragen = fragenList;
         Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
-        if (fragen != null && fragen.size() > 0)
+        if (fragen != null && fragen.size() > 0) {
+            hideNoFragen();
             displayFrage();
+        } else {
+            updateNavigator();
+            displayNoFragen();
+        }
+    }
+
+    private void displayNoFragen() {
+        keineFragen.setVisibility(View.VISIBLE);
+    }
+
+    private void hideNoFragen() {
+        keineFragen.setVisibility(View.GONE);
     }
 
     private void displayFrage() {
         hideLayout();
-        Frage frage = fragen.get(currentFragePosition);
+        Frage frage = getCurrentFrage();
         fragenHeader.setText(String.format("%s (%s)", frage.getKategorie(), frage.getSchwierigkeitsgrad()));
         frageText.setText(frage.getFragetext());
         frageAntwort.setText(frage.getAntwort());
         frageAntwort.setVisibility(View.INVISIBLE);
+        updateWiederholungsButton();
         updateNavigator();
         if (frage.getBild() != null && !frage.getBild().isEmpty()) {
             setBild(frage.getBild());
@@ -205,8 +237,24 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             showLayout();
     }
 
+    private void updateWiederholungsButton() {
+        Frage frage = getCurrentFrage();
+        if (wiederholungsFragenIds.contains(frage.getFrageID())) {
+            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_black_48dp); //FIXME Deprecated
+            wiederholungsButton.setCompoundDrawablesWithIntrinsicBounds(dw, null, null, null);
+            wiederholungsButton.setText(getString(R.string.detail_wiederholen_gemerkt));
+        } else {
+            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_border_black_48dp);
+            wiederholungsButton.setCompoundDrawablesWithIntrinsicBounds(dw, null, null, null);
+            wiederholungsButton.setText(getString(R.string.detail_wiederholen));
+        }
+    }
+
     private void updateNavigator() {
-        frageNavigator.setText(String.format("Frage %s von %s", currentFragePosition + 1, fragen.size()));
+        if (fragen.size() == 0)
+            frageNavigator.setText("Frage 0 von 0");
+        else
+            frageNavigator.setText(String.format("Frage %s von %s", currentFragePosition + 1, fragen.size()));
     }
 
 

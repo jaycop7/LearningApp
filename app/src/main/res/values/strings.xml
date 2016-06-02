@@ -29,8 +29,9 @@
     <string name="detail_frage">Frage</string>
     <string name="detail_antwort">Antwort</string>
     <string name="detail_wiederholen">Frage merken</string>
+    <string name="detail_wiederholen_gemerkt">Frage gemerkt</string>
     <string name="detail_frage_bottom">Frage</string>
-    <string name="detail_fragen_error">Es wurden keine Fragen gefunden.</string>
+    <string name="detail_fragen_error">Es sind keine Fragen verfügbar.</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
     <string name="detail_frage_gemerkt">Die Frage wurde zur Wiederholung gespeichert.</string>

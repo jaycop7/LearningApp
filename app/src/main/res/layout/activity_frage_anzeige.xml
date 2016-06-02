@@ -67,6 +67,16 @@
         </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/frageAnzeigenKeineFragen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/detail_fragen_error"
+        android:textSize="@dimen/default_textsize"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,6 +119,14 @@
                 android:paddingTop="5dp"
                 android:text="@string/detail_wiederholen"
                 android:textSize="14dp" />
+
+            <!--<ToggleButton-->
+            <!--android:id="@+id/toggleButton"-->
+            <!--style="@style/toggleButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/ic_toggle_bg"-->
+            <!--android:text="Frage" />-->
 
         </LinearLayout>
 
