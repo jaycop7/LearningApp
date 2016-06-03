@@ -1,6 +1,7 @@
 package at.campus02.gang_of_four.learningapp.utils;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,7 +10,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +23,10 @@ import at.campus02.gang_of_four.learningapp.MainActivity;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
 
 public class Utils {
+
+    private static final int REQUEST_CODE_LOCATION = 2;
+
+
     public static boolean isNetworkOnline(Context context) {
         if (context == null)
             return false;
@@ -51,7 +59,7 @@ public class Utils {
 
 
     @SuppressWarnings("ResourceType")
-    public static Location getCurrentLocation(Context context) {
+    public static Location getCurrentLocation(Activity context) {
         // Get the location manager
 /*        LocationManager locationManager = (LocationManager)
                 context.getSystemService(Context.LOCATION_SERVICE);
@@ -77,15 +85,50 @@ public class Utils {
 */
         Location rv = null;
 
-        LocationManager manager = (LocationManager) context.getSystemService(context.LOCATION_SERVICE);
-        if (manager != null) {
-            rv = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (rv == null) {
-                rv = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Check Permissions Now
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(context,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // Display UI and wait for user interaction
+            } else {
+                ActivityCompat.requestPermissions(
+                        context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_CODE_LOCATION);
             }
         }
 
-        return rv;
+
+
+
+
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.e("GPS check ", "NO PERMISSION");
+            return null;
+        }
+        try {
+
+            LocationManager manager = (LocationManager) context.getSystemService(context.LOCATION_SERVICE);
+            if (manager != null) {
+                rv = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (rv == null) {
+                    rv = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
+            }
+
+            return rv;
+
+        } catch (Exception ex) {
+
+
+            Log.e("LocationManager","Error creating location service: " + ex.getMessage());
+            return null;
+
+
+        }
 
     }
 }
