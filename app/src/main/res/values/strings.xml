@@ -19,6 +19,8 @@
     <string name="erstellen_bild">Bild</string>
     <string name="erstellen_bild_hint">URL hier eingeben </string>
     <string name="erstellen_speichern">Frage erstellen</string>
+    <string name="frage_edit_speichern">Frage speichern</string>
+    <string name="frage_maintenance_error_loading">Gewünschte Frage konnte nicht geladen werden.</string>
     <string name="eigene_fragen_header">In dieser Ansicht finden Sie Fragen, welche Sie selbst erstellt haben.\nUm diese zu bearbeiten, einfach auf die entsprechende Frage klicken.</string>
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>
