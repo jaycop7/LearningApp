@@ -53,7 +53,7 @@ public class Utils {
     @SuppressWarnings("ResourceType")
     public static Location getCurrentLocation(Context context) {
         // Get the location manager
-        LocationManager locationManager = (LocationManager)
+/*        LocationManager locationManager = (LocationManager)
                 context.getSystemService(Context.LOCATION_SERVICE);
 
         // Define the criteria how to select the locatioin provider -> use
@@ -74,5 +74,18 @@ public class Utils {
             return null;
         }
         return locationManager.getLastKnownLocation(provider);
+*/
+        Location rv = null;
+
+        LocationManager manager = (LocationManager) context.getSystemService(context.LOCATION_SERVICE);
+        if (manager != null) {
+            rv = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (rv == null) {
+                rv = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
+        }
+
+        return rv;
+
     }
 }
