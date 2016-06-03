@@ -49,6 +49,8 @@ public class FrageErstellenActivity extends AppCompatActivity {
         populateSchwierigkeitSpinner();
         linkLayoutViews();
 
+
+
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
