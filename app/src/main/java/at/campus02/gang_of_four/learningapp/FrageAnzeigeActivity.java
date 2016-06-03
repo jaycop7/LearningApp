@@ -287,4 +287,18 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         bildAnzeige.setVisibility(View.INVISIBLE);
         showLayout();
     }
+
+    public void frageTeilen(View view) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.detail_teilen_einleitung_nachricht));
+        String bild = "";
+        if (!(getCurrentFrage().getBild() == null || getCurrentFrage().getBild().isEmpty())) {
+            bild = " Hier der Link zum Bild: " + getCurrentFrage().getBild();
+        }
+        String inhalt = "Weißt du die Antwort auf diese Frage? '" + getCurrentFrage().getFragetext() + "'" + bild + " Liebe Grüße " + Preferences.getBenutzername(this);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, inhalt);
+        startActivity(Intent.createChooser(shareIntent, "Share mit ..."));
+    }
+
 }
