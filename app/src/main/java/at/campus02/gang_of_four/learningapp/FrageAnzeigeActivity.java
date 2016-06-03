@@ -228,7 +228,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         fragenHeader.setText(String.format("%s (%s)", frage.getKategorie(), frage.getSchwierigkeitsgrad()));
         frageText.setText(frage.getFragetext());
         frageAntwort.setText(frage.getAntwort());
-        frageAntwort.setVisibility(View.INVISIBLE);
+        frageAntwort.setVisibility(View.GONE);
         updateWiederholungsButton();
         updateNavigator();
         if (frage.getBild() != null && !frage.getBild().isEmpty()) {

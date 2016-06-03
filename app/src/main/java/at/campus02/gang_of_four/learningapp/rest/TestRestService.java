@@ -100,7 +100,8 @@ public class TestRestService {
             @Override
             public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
-                    if (f.getFragetext().contains("Go4")) {
+
+                    if (f.getFragetext() != null && f.getFragetext().contains("Go4")) {
                         service.deleteFrage(f, new SuccessListener() {
                             @Override
                             public void success() {
