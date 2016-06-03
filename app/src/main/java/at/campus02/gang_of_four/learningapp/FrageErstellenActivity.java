@@ -39,6 +39,8 @@ public class FrageErstellenActivity extends AppCompatActivity {
     FrageMaintenanceModus maintenanceModus = null;
     String editFrageId = null;
 
+
+
     RestDataService service = null;
 
     @Override
@@ -66,9 +68,9 @@ public class FrageErstellenActivity extends AppCompatActivity {
     private void fillCurrentLocation() {
         Location location = Utils.getCurrentLocation(this);
         if (location != null) {
-            String latidue = String.valueOf(location.getLatitude());
-            String altitude = String.valueOf(location.getAltitude());
-            coordinate = latidue + "N " + altitude + "E";
+             String latitude = String.valueOf(location.getLatitude());
+             String altitude = String.valueOf(location.getAltitude());
+            coordinate = latitude + "N " + altitude + "E";
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showToast(fail, this);
@@ -133,12 +135,31 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     public void frageSpeichern(View view) {
+        if(frageView.getText().toString().isEmpty() )
+        {showFailMessage("Keine'Frage' angegeben");return;}
+
         newFrage.setFragetext(frageView.getText().toString());
+
+        if(antwortView.getText().toString().isEmpty() )
+        {showFailMessage("Keine 'Antwort' angegeben");return;}
+
         newFrage.setAntwort(antwortView.getText().toString());
-        newFrage.setLaengenUndBreitengrad("default");
-        newFrage.setBild(bildView.getText().toString());
+
+
+        if(! bildView.getText().toString().isEmpty()) {newFrage.setBild(bildView.getText().toString());}
+
+        newFrage.setLaengenUndBreitengrad(coordinate);
+
+        if(kategorieView.getText().toString().isEmpty() )
+        {showFailMessage("Keine 'Kategorie'");return;}
+
         newFrage.setKategorie(kategorieView.getText().toString());
+
+
         newFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
+
+
+     //   "to be defined"
         newFrage.setFrageID("1");
 
         service.createFrage(newFrage, new SuccessListener() {
@@ -149,7 +170,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
 
             @Override
             public void error() {
-                showFailMessage();
+                showFailMessage("");
             }
         });
     }
@@ -160,8 +181,8 @@ public class FrageErstellenActivity extends AppCompatActivity {
         Utils.navigateToMainActivity(this);
     }
 
-    private void showFailMessage() {
-        String fail = getString(R.string.frage_nicht_erstellt);
+    private void showFailMessage(String text) {
+        String fail = getString(R.string.frage_nicht_erstellt)+" "+ text;
         Utils.showToast(fail, this);
     }
 
