@@ -131,12 +131,31 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     public void frageSpeichern(View view) {
+        if (frageView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Frage' angegeben");
+            return;
+        }
         currentFrage.setFragetext(frageView.getText().toString());
+
+        if (antwortView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Antwort' angegeben");
+            return;
+        }
         currentFrage.setAntwort(antwortView.getText().toString());
-        currentFrage.setBild(bildView.getText().toString());
+
+        if (!bildView.getText().toString().isEmpty()) {
+            currentFrage.setBild(bildView.getText().toString());
+        }
+
+        currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
+
+        if (kategorieView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Kategorie'");
+            return;
+        }
         currentFrage.setKategorie(kategorieView.getText().toString());
         currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
-        currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
+
         service.createFrage(currentFrage, new SuccessListener() {
             @Override
             public void success() {
@@ -158,6 +177,11 @@ public class FrageErstellenActivity extends AppCompatActivity {
 
     private void showFailMessage() {
         String fail = getString(R.string.frage_nicht_erstellt);
+        Utils.showToast(fail, this);
+    }
+
+    private void showFailMessage(String text) {
+        String fail = getString(R.string.frage_nicht_erstellt) + " " + text;
         Utils.showToast(fail, this);
     }
 
