@@ -47,6 +47,8 @@ public class FrageErstellenActivity extends AppCompatActivity {
         populateSchwierigkeitSpinner();
         linkLayoutViews();
 
+
+
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
@@ -58,7 +60,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
             speichernButton.setText(getText(R.string.frage_edit_speichern));
         }
     }
-
+// test
     private void fillCurrentLocation() {
         Location location = Utils.getCurrentLocation(this);
         String coordinate;
