@@ -62,7 +62,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
             speichernButton.setText(getText(R.string.frage_edit_speichern));
         }
     }
-
+// test
     private void fillCurrentLocation() {
         Location location = Utils.getCurrentLocation(this);
         if (location != null) {
