@@ -24,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
         Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
     }
 
-//    private void testRestService() {
-//        TestRestService test = new TestRestService(this);
-//        test.createFrage();
-//        test.updateFragen();
-//        test.deleteTestFragen();
-//        test.getImage();
-//    }
-
     private void checkNetwork() {
         if (!Utils.isNetworkOnline(this)) {
             String text = getString(R.string.no_network);

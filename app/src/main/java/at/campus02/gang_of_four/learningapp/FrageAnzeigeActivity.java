@@ -234,7 +234,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         if (frage.getBild() != null && !frage.getBild().isEmpty()) {
             setBild(frage.getBild());
         } else
-            showLayout();
+            imageError();
     }
 
     private void updateWiederholungsButton() {

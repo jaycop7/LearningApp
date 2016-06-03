@@ -1,5 +1,6 @@
 package at.campus02.gang_of_four.learningapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
+import at.campus02.gang_of_four.learningapp.model.FrageMaintenanceModus;
 import at.campus02.gang_of_four.learningapp.rest.RestDataService;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.utils.FragenAdapter;
@@ -80,7 +82,10 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
 
     private void frageClicked(int position) {
         Frage frage = eigeneFragen.get(position);
-        //TODO Phips, new Intent zur Fragen create/update activity
+        Intent intent = new Intent(this, FrageErstellenActivity.class);
+        intent.putExtra(FrageErstellenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.EDIT);
+        intent.putExtra(FrageErstellenActivity.EXTRA_FRAGE_ID, frage.getFrageID());
+        startActivity(intent);
     }
 
     private void keineFragenVerfuegbar() {
