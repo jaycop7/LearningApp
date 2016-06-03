@@ -33,13 +33,9 @@ public class FrageErstellenActivity extends AppCompatActivity {
     TextView positionView = null;
     Button speichernButton = null;
 
-    String coordinate = null;
-    Frage newFrage = null;
-    Frage editFrage = null;
+    Frage currentFrage = null;
     FrageMaintenanceModus maintenanceModus = null;
     String editFrageId = null;
-
-
 
     RestDataService service = null;
 
@@ -52,25 +48,25 @@ public class FrageErstellenActivity extends AppCompatActivity {
         linkLayoutViews();
 
 
-
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
-            fillCurrentLocation();
             speichernButton.setText(getText(R.string.erstellen_speichern));
-            newFrage = new Frage();
+            currentFrage = new Frage();
+            fillCurrentLocation();
         } else {
             loadEditFrage();
             speichernButton.setText(getText(R.string.frage_edit_speichern));
         }
     }
-// test
+
     private void fillCurrentLocation() {
         Location location = Utils.getCurrentLocation(this);
+        String coordinate;
         if (location != null) {
-             String latitude = String.valueOf(location.getLatitude());
-             String altitude = String.valueOf(location.getAltitude());
-            coordinate = latitude + "N " + altitude + "E";
+            String latidue = String.valueOf(location.getLatitude());
+            String altitude = String.valueOf(location.getAltitude());
+            coordinate = latidue + "N " + altitude + "E";
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showToast(fail, this);
@@ -96,7 +92,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     private void loadEditFrage() {
-        if (editFrage != null && !editFrageId.isEmpty())
+        if (!editFrageId.isEmpty())
             service.getFrage(editFrageId, new FrageListener() {
                 @Override
                 public void success(Frage frage) {
@@ -113,7 +109,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     private void editFrageGeladen(Frage frage) {
-        editFrage = frage;
+        currentFrage = frage;
         frageView.setText(frage.getFragetext());
         antwortView.setText(frage.getAntwort());
         kategorieView.setText(frage.getKategorie());
@@ -135,34 +131,32 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     public void frageSpeichern(View view) {
-        if(frageView.getText().toString().isEmpty() )
-        {showFailMessage("Keine'Frage' angegeben");return;}
+        if (frageView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Frage' angegeben");
+            return;
+        }
+        currentFrage.setFragetext(frageView.getText().toString());
 
-        newFrage.setFragetext(frageView.getText().toString());
+        if (antwortView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Antwort' angegeben");
+            return;
+        }
+        currentFrage.setAntwort(antwortView.getText().toString());
 
-        if(antwortView.getText().toString().isEmpty() )
-        {showFailMessage("Keine 'Antwort' angegeben");return;}
+        if (!bildView.getText().toString().isEmpty()) {
+            currentFrage.setBild(bildView.getText().toString());
+        }
 
-        newFrage.setAntwort(antwortView.getText().toString());
+        currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
 
+        if (kategorieView.getText().toString().isEmpty()) {
+            showFailMessage("Keine 'Kategorie'");
+            return;
+        }
+        currentFrage.setKategorie(kategorieView.getText().toString());
+        currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
 
-        if(! bildView.getText().toString().isEmpty()) {newFrage.setBild(bildView.getText().toString());}
-
-        newFrage.setLaengenUndBreitengrad(coordinate);
-
-        if(kategorieView.getText().toString().isEmpty() )
-        {showFailMessage("Keine 'Kategorie'");return;}
-
-        newFrage.setKategorie(kategorieView.getText().toString());
-
-
-        newFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
-
-
-     //   "to be defined"
-        newFrage.setFrageID("1");
-
-        service.createFrage(newFrage, new SuccessListener() {
+        service.createFrage(currentFrage, new SuccessListener() {
             @Override
             public void success() {
                 frageSuccess();
@@ -170,7 +164,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
 
             @Override
             public void error() {
-                showFailMessage("");
+                showFailMessage();
             }
         });
     }
@@ -181,8 +175,13 @@ public class FrageErstellenActivity extends AppCompatActivity {
         Utils.navigateToMainActivity(this);
     }
 
+    private void showFailMessage() {
+        String fail = getString(R.string.frage_nicht_erstellt);
+        Utils.showToast(fail, this);
+    }
+
     private void showFailMessage(String text) {
-        String fail = getString(R.string.frage_nicht_erstellt)+" "+ text;
+        String fail = getString(R.string.frage_nicht_erstellt) + " " + text;
         Utils.showToast(fail, this);
     }
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import at.campus02.gang_of_four.learningapp.model.FrageMaintenanceModus;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void fragenErstellen(View view) {
         Intent intent = new Intent(this, FrageErstellenActivity.class);
+        intent.putExtra(FrageErstellenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.CREATE);
         startActivity(intent);
     }
 

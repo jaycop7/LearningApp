@@ -1,17 +1,17 @@
-- Filteroptionen Fragen überspringen nicht gleichzeitig mit anderen Fragen-Modi
 - Phips Eigene Fragen anzeigen/laden/updaten (Auswahl hab ich bereits vorbereitet, muss nur mehr auf Frage edit/create umgeleitet werden)
 - IDs der eigenen fragen speichern, Restservice muss ID zurückgeben (Jakob)
 - Landscape modus testen
     - bei "neue Frage erstellen" ist durch die Tastatur alles verdeckt. man kann somit keine antwort eingeben
       (da es keine TAB-Taste gibt bzw. man muss auf "zurück" klicken).
 - FUCKING GPS (Phips)
+- GPS icons zum setzen der aktuellen position
 - SMS Anbindung (Eniman)
 - Logo einfügen???
 - Save State beim Neigen
 - Loading bei Bildern (Fragen)
+- Anzahl der Fragen bei Buttons anzeigen
 - Bei Verlassen der App, auf Mainscreen gehen, wenn wieder gestartet
 - Willkommenstoast nur beim Starten der App
-- Spiellogik (Anzahl Fragen, laut Einstellungen) (Jakob)
 - Fragen nach Schwierigkeit? oder was mit Schwierigkeit machen?
 - Gscheite Testfragen in unserem Test anlegen, damit wir dann immer gscheite Fragen bereit haben (Phips/Eniman?)
 - Neue Frage anlegen
@@ -23,4 +23,3 @@
     - Wenn die Frage länger ist und über "höher" als der Bildschirm ist, wird keine Scrollleiste angezeigt
 - Eigene Fragen anzeigen
     - es werden keine eigenen Fragen angezeigt (null)
-- activity_settings => android:drawableStart="@drawable/ic_remove_black_48dp" ändern auf 24dp
