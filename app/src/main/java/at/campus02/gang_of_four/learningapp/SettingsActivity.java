@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
+import at.campus02.gang_of_four.learningapp.rest.TestRestService;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
@@ -69,4 +70,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    public void testFragenErstellen(View view) {
+        TestRestService trs = new TestRestService(this);
+        trs.createTestFragen();
+        Utils.showToast(getString(R.string.einstellungen_testfragen_erstellt), this);
+    }
+
+    public void testFragenLoeschen(View view) {
+        TestRestService trs = new TestRestService(this);
+        trs.deleteTestFragen();
+        Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
+    }
 }
