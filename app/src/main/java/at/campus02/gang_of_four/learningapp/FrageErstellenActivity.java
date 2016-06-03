@@ -155,22 +155,28 @@ public class FrageErstellenActivity extends AppCompatActivity {
         }
         currentFrage.setKategorie(kategorieView.getText().toString());
         currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
+        if (maintenanceModus == FrageMaintenanceModus.CREATE) {
+            service.createFrage(currentFrage, new FrageErstellenListenerImpl());
+        } else {
+            service.updateFrage(currentFrage, new FrageErstellenListenerImpl());
+        }
+    }
 
-        service.createFrage(currentFrage, new SuccessListener() {
-            @Override
-            public void success() {
-                frageSuccess();
-            }
+    private class FrageErstellenListenerImpl implements SuccessListener {
 
-            @Override
-            public void error() {
-                showFailMessage();
-            }
-        });
+        @Override
+        public void success() {
+            frageSuccess();
+        }
+
+        @Override
+        public void error() {
+            showFailMessage();
+        }
     }
 
     private void frageSuccess() {
-        String info = getString(R.string.frage_erstellt);
+        String info = getString(R.string.frage_gespeichert);
         Utils.showToast(info, this);
         Utils.navigateToMainActivity(this);
     }
