@@ -23,4 +23,3 @@
     - Wenn die Frage länger ist und über "höher" als der Bildschirm ist, wird keine Scrollleiste angezeigt
 - Eigene Fragen anzeigen
     - es werden keine eigenen Fragen angezeigt (null)
-- activity_settings => android:drawableStart="@drawable/ic_remove_black_48dp" ändern auf 24dp

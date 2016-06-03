@@ -33,9 +33,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     TextView positionView = null;
     Button speichernButton = null;
 
-    String coordinate = null;
-    Frage newFrage = null;
-    Frage editFrage = null;
+    Frage currentFrage = null;
     FrageMaintenanceModus maintenanceModus = null;
     String editFrageId = null;
 
@@ -52,9 +50,9 @@ public class FrageErstellenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
-            fillCurrentLocation();
             speichernButton.setText(getText(R.string.erstellen_speichern));
-            newFrage = new Frage();
+            currentFrage = new Frage();
+            fillCurrentLocation();
         } else {
             loadEditFrage();
             speichernButton.setText(getText(R.string.frage_edit_speichern));
@@ -63,6 +61,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
 
     private void fillCurrentLocation() {
         Location location = Utils.getCurrentLocation(this);
+        String coordinate;
         if (location != null) {
             String latidue = String.valueOf(location.getLatitude());
             String altitude = String.valueOf(location.getAltitude());
@@ -92,7 +91,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     private void loadEditFrage() {
-        if (editFrage != null && !editFrageId.isEmpty())
+        if (!editFrageId.isEmpty())
             service.getFrage(editFrageId, new FrageListener() {
                 @Override
                 public void success(Frage frage) {
@@ -109,7 +108,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     private void editFrageGeladen(Frage frage) {
-        editFrage = frage;
+        currentFrage = frage;
         frageView.setText(frage.getFragetext());
         antwortView.setText(frage.getAntwort());
         kategorieView.setText(frage.getKategorie());
@@ -131,15 +130,13 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     public void frageSpeichern(View view) {
-        newFrage.setFragetext(frageView.getText().toString());
-        newFrage.setAntwort(antwortView.getText().toString());
-        newFrage.setLaengenUndBreitengrad("default");
-        newFrage.setBild(bildView.getText().toString());
-        newFrage.setKategorie(kategorieView.getText().toString());
-        newFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
-        newFrage.setFrageID("1");
-
-        service.createFrage(newFrage, new SuccessListener() {
+        currentFrage.setFragetext(frageView.getText().toString());
+        currentFrage.setAntwort(antwortView.getText().toString());
+        currentFrage.setBild(bildView.getText().toString());
+        currentFrage.setKategorie(kategorieView.getText().toString());
+        currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
+        currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
+        service.createFrage(currentFrage, new SuccessListener() {
             @Override
             public void success() {
                 frageSuccess();
