@@ -264,6 +264,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     private void setBild(String url) {
+        progress.setVisibility(View.VISIBLE);
         service.getImage(url, new ImageListener() {
             @Override
             public void success(Bitmap immage) {
@@ -280,6 +281,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void imageLoaded(Bitmap image) {
         bildAnzeige.setVisibility(View.VISIBLE);
         bildAnzeige.setImageBitmap(image);
+        progress.setVisibility(View.INVISIBLE);
         showLayout();
     }
 
