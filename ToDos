@@ -2,6 +2,8 @@
 - Phips Eigene Fragen anzeigen/laden/updaten (Auswahl hab ich bereits vorbereitet, muss nur mehr auf Frage edit/create umgeleitet werden)
 - IDs der eigenen fragen speichern, Restservice muss ID zurückgeben (Jakob)
 - Landscape modus testen
+    - bei "neue Frage erstellen" ist durch die Tastatur alles verdeckt. man kann somit keine antwort eingeben
+      (da es keine TAB-Taste gibt bzw. man muss auf "zurück" klicken).
 - FUCKING GPS (Phips)
 - SMS Anbindung (Eniman)
 - Logo einfügen???
@@ -10,3 +12,15 @@
 - Spiellogik (Anzahl Fragen, laut Einstellungen) (Jakob)
 - Fragen nach Schwierigkeit? oder was mit Schwierigkeit machen?
 - Gscheite Testfragen in unserem Test anlegen, damit wir dann immer gscheite Fragen bereit haben (Phips/Eniman?)
+- Neue Frage anlegen
+    - Sollen wir für die Kategorie eine Auswahl bestehender Kategorien anzeigen?
+    - Wenn man die Frage eingibt und dann zur Antwort wechselt, wird die Tastatur am Kopf angzeigt (180° Drehung)
+    - Bei der URL kann ich nur Ziffern eingeben (hätte ich schon auf URI geändert)
+    - Pflichtfelder beim Frage speichern fehlen?
+- Frage anzeigen
+    - Wenn die Frage länger ist und über "höher" als der Bildschirm ist, wird keine Scrollleiste angezeigt
+- Tastatur
+    - Ü beim Schreiben funktioniert nicht
+    - Wenn man die Frage eingibt und dann zur Antwort wechselt, wird die Tastatur am Kopf angzeigt (180° Drehung)
+- Eigene Fragen anzeigen
+    - es werden keine eigenen Fragen angezeigt (null)
