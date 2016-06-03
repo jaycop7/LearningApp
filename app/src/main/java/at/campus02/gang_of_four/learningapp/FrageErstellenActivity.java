@@ -66,7 +66,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
         if (location != null) {
             String latidue = String.valueOf(location.getLatitude());
             String altitude = String.valueOf(location.getAltitude());
-            coordinate = latidue + "N " + altitude + "E";
+            coordinate = latidue + ";" + altitude;
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showToast(fail, this);
@@ -131,25 +131,25 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     public void frageSpeichern(View view) {
-        if (frageView.getText().toString().isEmpty()) {
+        if (frageView.getText() == null || frageView.getText().toString().isEmpty()) {
             showFailMessage("Keine 'Frage' angegeben");
             return;
         }
         currentFrage.setFragetext(frageView.getText().toString());
 
-        if (antwortView.getText().toString().isEmpty()) {
+        if (antwortView.getText() == null || antwortView.getText().toString().isEmpty()) {
             showFailMessage("Keine 'Antwort' angegeben");
             return;
         }
         currentFrage.setAntwort(antwortView.getText().toString());
 
-        if (!bildView.getText().toString().isEmpty()) {
+        if (bildView.getText() != null || !bildView.getText().toString().isEmpty()) {
             currentFrage.setBild(bildView.getText().toString());
         }
 
         currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
 
-        if (kategorieView.getText().toString().isEmpty()) {
+        if (kategorieView.getText() == null || kategorieView.getText().toString().isEmpty()) {
             showFailMessage("Keine 'Kategorie'");
             return;
         }
@@ -198,5 +198,11 @@ public class FrageErstellenActivity extends AppCompatActivity {
         if (userSpinner != null) {
             userSpinner.setAdapter(schwierigkeitAdapter);
         }
+    }
+
+    public void setLocalPosition(View view) {
+
+        fillCurrentLocation();
+
     }
 }

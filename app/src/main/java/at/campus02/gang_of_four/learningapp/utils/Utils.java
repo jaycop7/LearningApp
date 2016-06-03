@@ -60,29 +60,7 @@ public class Utils {
 
     @SuppressWarnings("ResourceType")
     public static Location getCurrentLocation(Activity context) {
-        // Get the location manager
-/*        LocationManager locationManager = (LocationManager)
-                context.getSystemService(Context.LOCATION_SERVICE);
 
-        // Define the criteria how to select the locatioin provider -> use
-        // default
-        Criteria criteria = new Criteria();
-
-        String provider = locationManager.getBestProvider(criteria, false);
-
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return null;
-        }
-        return locationManager.getLastKnownLocation(provider);
-*/
         Location rv = null;
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -98,9 +76,6 @@ public class Utils {
                         REQUEST_CODE_LOCATION);
             }
         }
-
-
-
 
 
         if (Build.VERSION.SDK_INT >= 23 &&
