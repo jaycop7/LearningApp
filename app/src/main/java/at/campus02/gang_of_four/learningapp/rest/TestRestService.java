@@ -258,7 +258,7 @@ public class TestRestService {
         frage13.setAntwort("Dubai");
         frage13.setKategorie("Allgemeinwissen");
         frage13.setSchwierigkeitsgrad(1);
-        frage13.setBild("http://www.greecemedtravel.com.au/filelibrary/images/Products/Tours/Dubai/Burj-Khalifa1.png");
+        frage13.setBild("http://www.omicrono.com/wp-content/uploads/2016/05/objeto-caro-4.jpg");
         frage13.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage13, createFragenListener());
 
