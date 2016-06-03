@@ -271,6 +271,49 @@ public class TestRestService {
         frage14.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage14, createFragenListener());
 
+        Frage frage15 = new Frage();
+        frage15.setFragetext("Go4: Welches Gebirge trennt Europa und Asien?");
+        frage15.setAntwort("Ural");
+        frage15.setKategorie("Erdkunde");
+        frage15.setSchwierigkeitsgrad(2);
+        frage15.setBild("http://phzh.educanet2.ch/asien3/.ws_gen/12/Uralgebirge.jpg");
+        frage15.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage15, createFragenListener());
+
+        Frage frage16 = new Frage();
+        frage16.setFragetext("Go4: Welches Gebirge trennt Europa und Asien?");
+        frage16.setAntwort("Ural");
+        frage16.setKategorie("Erdkunde");
+        frage16.setSchwierigkeitsgrad(1);
+        frage16.setBild("http://phzh.educanet2.ch/asien3/.ws_gen/12/Uralgebirge.jpg");
+        frage16.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage16, createFragenListener());
+
+        Frage frage17 = new Frage();
+        frage17.setFragetext("Go4: Wie heißt der längste Fluss der Erde?");
+        frage17.setAntwort("Der Nil ist der längste Fluss der Erde mit 6671km");
+        frage17.setKategorie("Erdkunde");
+        frage17.setSchwierigkeitsgrad(0);
+        frage17.setBild("http://www.splinterhh.de/nil/nil2.gif");
+        frage17.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage17, createFragenListener());
+
+        Frage frage18 = new Frage();
+        frage18.setFragetext("Go4: Nenne die flächenmäßig 5 größten Länder der Erde!");
+        frage18.setAntwort("Russland, Kanada, USA, China, Brasilien");
+        frage18.setKategorie("Erdkunde");
+        frage18.setSchwierigkeitsgrad(1);
+        frage18.setBild("http://www.splinterhh.de/nil/nil2.gif");
+        service.createFrage(frage18, createFragenListener());
+
+        Frage frage19 = new Frage();
+        frage19.setFragetext("Go4: Nenne die flächenmäßig 5 größten Länder der Erde!");
+        frage19.setAntwort("Russland, Kanada, USA, China, Brasilien");
+        frage19.setKategorie("Erdkunde");
+        frage19.setSchwierigkeitsgrad(1);
+        frage19.setBild("http://www.splinterhh.de/nil/nil2.gif");
+        frage19.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage19, createFragenListener());
 
     }
 
