@@ -180,6 +180,7 @@ public class TestRestService {
         Frage frage1 = new Frage();
         frage1.setFragetext("Go4: Welche der folgenden Sportarten ist nicht olympisch - Taekwondo, Beachvolleyball, Kung Fu, Trampolinspringen, Baseball?");
         frage1.setAntwort("Kung Fu");
+        frage1.setBild("https://s-media-cache-ak0.pinimg.com/736x/63/25/83/6325838c7f63fd1e3281bcb9e6d29165.jpg");
         frage1.setKategorie("Sport");
         frage1.setSchwierigkeitsgrad(1);
         frage1.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
@@ -190,7 +191,7 @@ public class TestRestService {
         frage2.setAntwort("Brasilien");
         frage2.setKategorie("Sport");
         frage2.setSchwierigkeitsgrad(0);
-        frage2.setBild("http://wallpaperstock.net/brasilien-flagge-wallpapers_32951_1920x1200.jpg");
+        frage2.setBild("http://www.spox.com/de/sport/fussball/wm/wm2010/0809/Bilder/ronaldinho-am-boden-514.jpg");
         frage2.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
         service.createFrage(frage2, createFragenListener());
 
@@ -225,7 +226,7 @@ public class TestRestService {
         frage6.setAntwort("112 m");
         frage6.setKategorie("Dschungel");
         frage6.setSchwierigkeitsgrad(1);
-        frage6.setBild("http://static.cosmiq.de/data/de/087/6b/0876b8c97be8439f9b2dd6e6219c67cd_1_orig.jpg");
+        frage6.setBild("http://img.abendblatt.de/img/stormarn/crop120392578/8382608121-w820-cv16_9-q85/Mexikanische-Sumpfzypresse.jpg");
         frage6.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
         service.createFrage(frage6, createFragenListener());
 
@@ -241,6 +242,7 @@ public class TestRestService {
         Frage frage8 = new Frage();
         frage8.setFragetext("Go4:  In welchen Gebäude hielten die alten Römer ihre Gladiatorenwettkämpfe ab?");
         frage8.setAntwort("Kolosseum");
+        frage8.setBild("http://bilder.t-online.de/b/64/42/93/04/id_64429304/610/tid_da/das-kolosseum-in-rom-.jpg");
         frage8.setKategorie("Geschichte");
         frage8.setSchwierigkeitsgrad(1);
         frage8.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
@@ -260,13 +262,14 @@ public class TestRestService {
         frage10.setAntwort("Die Stadt liegt in Frankreich und heißt Paris. Sie hat .... Einwohner, blablablablablabl ablablablabl ablablablablablablabl ablablablablabla blablablabla blablabla blablablablablablablab lablablab lablablabl ablablablab lablab l a blablablabl ablablablablab lablablab lablablab lablablablab lablablab lablabla blablabla blabla blablabl ablabl ablablab lablabla");
         frage10.setKategorie("Allgemeinwissen");
         frage10.setSchwierigkeitsgrad(0);
-        frage10.setBild("http://www.historylines.net/img/eiffel/eiffel6.jpg");
+        frage10.setBild("http://media2.giga.de/2015/03/shutterstock_125112029.jpg");
         frage10.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage10, createFragenListener());
 
         Frage frage11 = new Frage();
         frage11.setFragetext("Go4:  Was hat der Arme, was der Reiche nicht hat, was der Verschwender spart und der Geizige gibt?");
         frage11.setAntwort("Nichts");
+        frage11.setBild("http://cms.groh-design.de/files/nichts_teaserbox3.jpg");
         frage11.setKategorie("Allgemeinwissen");
         frage11.setSchwierigkeitsgrad(0);
         frage11.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
@@ -275,6 +278,7 @@ public class TestRestService {
         Frage frage12 = new Frage();
         frage12.setFragetext("Go4:  Wie lange braucht das Licht in etwa von der Sonne zur Erde?");
         frage12.setAntwort("8 Minuten");
+        frage12.setBild("http://www.on-zine.net/wp-content/bilder/licht.jpg");
         frage12.setKategorie("Allgemeinwissen");
         frage12.setSchwierigkeitsgrad(1);
         frage12.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
@@ -285,7 +289,7 @@ public class TestRestService {
         frage13.setAntwort("Dubai");
         frage13.setKategorie("Allgemeinwissen");
         frage13.setSchwierigkeitsgrad(1);
-        frage13.setBild("http://www.omicrono.com/wp-content/uploads/2016/05/objeto-caro-4.jpg");
+        frage13.setBild("http://imgs.su/tmp/2014-04-25/1398422399-504.jpg");
         frage13.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage13, createFragenListener());
 
@@ -311,6 +315,7 @@ public class TestRestService {
         frage16.setFragetext("Go4: Bor ist ein ...?");
         frage16.setAntwort("Halbleiter");
         frage16.setKategorie("Chemie");
+        frage16.setBild("http://www.chemie-master.de/pse/B_DSCN1026.jpg");
         frage16.setSchwierigkeitsgrad(3);
         frage16.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage16, createFragenListener());
@@ -320,7 +325,7 @@ public class TestRestService {
         frage17.setAntwort("Der Nil ist der längste Fluss der Erde mit 6.671 km");
         frage17.setKategorie("Erdkunde");
         frage17.setSchwierigkeitsgrad(0);
-        frage17.setBild("http://www.splinterhh.de/nil/nil2.gif");
+        frage17.setBild("http://www.nathape.com/images/LB200812Aegypt%20(18).jpg");
         frage17.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage17, createFragenListener());
 
@@ -343,6 +348,7 @@ public class TestRestService {
         Frage frage20 = new Frage();
         frage20.setFragetext("Go4: Wie nennt man Calciumhydroxid noch?");
         frage20.setAntwort("gelöschter Kalk");
+        frage20.setBild("http://www.industriekalk.at/assets/images/6/Kalkhydrat_lose-570f4226.jpg");
         frage20.setKategorie("Chemie");
         frage20.setSchwierigkeitsgrad(3);
         frage20.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
@@ -353,7 +359,7 @@ public class TestRestService {
         frage21.setAntwort("Bauxit");
         frage21.setKategorie("Chemie");
         frage21.setSchwierigkeitsgrad(2);
-        frage21.setBild("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aluminium-4.jpg/150px-Aluminium-4.jpg");
+        frage21.setBild("http://www.capral.com.au/Images/UserUploadedImages/292/extrusion-manufacturing.jpg");
         frage21.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage21, createFragenListener());
 

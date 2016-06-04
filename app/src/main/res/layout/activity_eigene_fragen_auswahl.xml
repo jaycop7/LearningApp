@@ -26,6 +26,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
+            android:animateLayoutChanges="true"
             android:horizontalSpacing="16dp"
             android:numColumns="2"
             android:verticalSpacing="16dp"
@@ -46,6 +47,7 @@
         android:id="@+id/eigeneFragenProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:visibility="gone">
 
         <ProgressBar

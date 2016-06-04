@@ -4,25 +4,21 @@
     - bei "neue Frage erstellen" ist durch die Tastatur alles verdeckt. man kann somit keine antwort eingeben
       (da es keine TAB-Taste gibt bzw. man muss auf "zurück" klicken).
 - FUCKING GPS (Phips) !!!!!! BLOCKER !!!!!!
-- GPS icons zum setzen der aktuellen position - erledigt
-- SMS Anbindung (Eniman) - sollte passen
 - Save State beim Neigen
-- Loading bei Bildern (Fragen) (EMINEM) - sollte passen
+
 - Anzahl der Fragen bei Buttons anzeigen
+
 - Bei Verlassen der App, auf Mainscreen gehen, wenn wieder gestartet
+
 - Willkommenstoast nur beim Starten der App
-- Fragen nach Schwierigkeit?
-    - oder was mit Schwierigkeit machen?
-    - sollten wir hier nicht noch eine Seite einbauen, wo ich die Schwierigkeit auswählen kann oder kommt das immer von den Einstellungen?
-    - hab mal einen Toast hinzugefügt, damit der User weiß, dass die Schwierigkeit von den Einstellungen kommt (Manuel)
-    - in den Einstellungen wäre noch schön, wenn da auch die Ziffer (0-3) stehen würde, da wir die Zahl später bei der Detailfrage anzeigen.
+
 - Neue Frage anlegen
     - Sollen wir für die Kategorie eine Auswahl bestehender Kategorien anzeigen?
     - Pflichtfelder beim Frage speichern fehlen?
-- Frage anzeigen - sollte passen
-    - Wenn die Frage länger ist und über "höher" als der Bildschirm ist, wird keine Scrollleiste angezeigt
+
 - Eigene Fragen anzeigen
     - es werden keine eigenen Fragen angezeigt (null)
+
 - Anzahl der Fragen pro Runde (lt. Einstellungen) wird noch nicht berücksichtigt
 
 - Schwierigkeit Ausschreiben nicht (0-3)

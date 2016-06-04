@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
     android:padding="@dimen/fragen_auswahl_space"
     tools:context="at.campus02.gang_of_four.learningapp.FragenAuswahlActivity">
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:animateLayoutChanges="true"
         android:orientation="horizontal">
 
         <Button
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:animateLayoutChanges="true"
         android:orientation="horizontal">
 
         <Button
@@ -51,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:animateLayoutChanges="true"
         android:orientation="horizontal">
 
         <Button

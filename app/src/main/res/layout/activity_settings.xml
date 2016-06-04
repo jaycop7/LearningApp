@@ -21,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
             <LinearLayout
@@ -136,6 +137,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -148,7 +150,9 @@
                     android:background="@android:color/holo_red_light"
                     android:drawableStart="@drawable/ic_add_black_24dp"
                     android:onClick="testFragenErstellen"
-                    android:text="@string/einstellungen_testfragen_hinzufuegen" />
+                    android:paddingLeft="10dp"
+                    android:text="@string/einstellungen_testfragen_hinzufuegen"
+                    android:textSize="8dp" />
 
                 <Button
                     android:id="@+id/TestFragenLöschen"
@@ -160,7 +164,9 @@
                     android:background="@android:color/holo_red_light"
                     android:drawableStart="@drawable/ic_remove_black_24dp"
                     android:onClick="testFragenLoeschen"
-                    android:text="@string/einstellungen_testfragen_loeschen" />
+                    android:paddingLeft="10dp"
+                    android:text="@string/einstellungen_testfragen_loeschen"
+                    android:textSize="8dp" />
 
                 <Button
                     android:id="@+id/AlleTestFragenLöschen"
@@ -172,7 +178,9 @@
                     android:background="@android:color/holo_red_light"
                     android:drawableStart="@drawable/ic_remove_black_24dp"
                     android:onClick="alleTestFragenLoeschen"
-                    android:text="@string/einstellungen_alle_testfragen_loeschen" />
+                    android:paddingLeft="10dp"
+                    android:text="@string/einstellungen_alle_testfragen_loeschen"
+                    android:textSize="8dp" />
 
             </LinearLayout>
 
