@@ -41,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
         Preferences.setBenutzername(benutzername.getText().toString(), this);
         Preferences.setFragenUeberspringenAnzahl(Integer.valueOf(fragenUeberspringen.getText().toString()), this);
         Preferences.setSchwierigkeit(((Schwierigkeit) schwierigkeit.getSelectedItem()).getId(), this);
+        Utils.showToast(getString(R.string.einstellungen_gespeichert), this);
 
         Utils.navigateToMainActivity(this);
     }
@@ -79,6 +80,12 @@ public class SettingsActivity extends AppCompatActivity {
     public void testFragenLoeschen(View view) {
         TestRestService trs = new TestRestService(this);
         trs.deleteTestFragen();
+        Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
+    }
+
+    public void alleTestFragenLoeschen(View view) {
+        TestRestService trs = new TestRestService(this);
+        trs.deleteAlleTestFragen();
         Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
     }
 }

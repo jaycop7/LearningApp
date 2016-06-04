@@ -162,6 +162,18 @@
                     android:onClick="testFragenLoeschen"
                     android:text="@string/einstellungen_testfragen_loeschen" />
 
+                <Button
+                    android:id="@+id/AlleTestFragenLöschen"
+                    style="@style/BasicButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light"
+                    android:drawableStart="@drawable/ic_remove_black_24dp"
+                    android:onClick="alleTestFragenLoeschen"
+                    android:text="@string/einstellungen_alle_testfragen_loeschen" />
+
             </LinearLayout>
 
         </LinearLayout>

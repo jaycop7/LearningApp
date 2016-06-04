@@ -36,6 +36,7 @@ public class FragenAuswahlActivity extends AppCompatActivity {
     public void fragenNachSchwierigkeitClick(View view) {
         Intent intent = new Intent(this, FrageAnzeigeActivity.class);
         intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_MODUS, FragenModus.SCHWIERIGKEIT);
+        Utils.showToast(getString(R.string.auswahl_schwierigkeit_hinweis), this);
         startActivity(intent);
     }
 

@@ -11,14 +11,16 @@
 - Anzahl der Fragen bei Buttons anzeigen
 - Bei Verlassen der App, auf Mainscreen gehen, wenn wieder gestartet
 - Willkommenstoast nur beim Starten der App
-- Fragen nach Schwierigkeit? oder was mit Schwierigkeit machen?
-- Gscheite Testfragen in unserem Test anlegen, damit wir dann immer gscheite Fragen bereit haben (Phips/Eniman?) - erledigt
+- Fragen nach Schwierigkeit?
+    - oder was mit Schwierigkeit machen?
+    - sollten wir hier nicht noch eine Seite einbauen, wo ich die Schwierigkeit auswählen kann oder kommt das immer von den Einstellungen?
+    - hab mal einen Toast hinzugefügt, damit der User weiß, dass die Schwierigkeit von den Einstellungen kommt (Manuel)
+    - in den Einstellungen wäre noch schön, wenn da auch die Ziffer (0-3) stehen würde, da wir die Zahl später bei der Detailfrage anzeigen.
 - Neue Frage anlegen
     - Sollen wir für die Kategorie eine Auswahl bestehender Kategorien anzeigen?
-    - Wenn man die Frage eingibt und dann zur Antwort wechselt, wird die Tastatur am Kopf angzeigt (180° Drehung)
-    - Bei der URL kann ich nur Ziffern eingeben (hätte ich schon auf URI geändert)
     - Pflichtfelder beim Frage speichern fehlen?
-- Frage anzeigen
+- Frage anzeigen - sollte passen
     - Wenn die Frage länger ist und über "höher" als der Bildschirm ist, wird keine Scrollleiste angezeigt
 - Eigene Fragen anzeigen
     - es werden keine eigenen Fragen angezeigt (null)
+- Anzahl der Fragen pro Runde (lt. Einstellungen) wird noch nicht berücksichtigt

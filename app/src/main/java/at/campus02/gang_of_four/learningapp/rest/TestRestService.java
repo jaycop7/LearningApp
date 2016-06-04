@@ -125,6 +125,32 @@ public class TestRestService {
         });
     }
 
+    public void deleteAlleTestFragen() {
+        service.getAlleFragen(new FragenListener() {
+            @Override
+            public void success(List<Frage> fragen) {
+                for (Frage f : fragen) {
+                    service.deleteFrage(f, new SuccessListener() {
+                        @Override
+                        public void success() {
+                            Log.i("Success", "Testfragen erfolgreich gelöscht.");
+                        }
+
+                        @Override
+                        public void error() {
+                            Log.e("Error", "Fehler beim Löschen der Testfragen.");
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void error() {
+
+            }
+        });
+    }
+
     public void getImage() {
         service.getImage("http://images.clipartpanda.com/test-clip-art-cpa-school-test.png", new ImageListener() {
             @Override
@@ -152,7 +178,7 @@ public class TestRestService {
 
     public void createTestFragen() {
         Frage frage1 = new Frage();
-        frage1.setFragetext("Go4: Welche Sportart ist nicht olympisch?");
+        frage1.setFragetext("Go4: Welche der folgenden Sportarten ist nicht olympisch - Taekwondo, Beachvolleyball, Kung Fu, Trampolinspringen, Baseball?");
         frage1.setAntwort("Kung Fu");
         frage1.setKategorie("Sport");
         frage1.setSchwierigkeitsgrad(1);
@@ -195,7 +221,7 @@ public class TestRestService {
         service.createFrage(frage5, createFragenListener());
 
         Frage frage6 = new Frage();
-        frage6.setFragetext("Go4: Wie hoch ist der höchste Baum?");
+        frage6.setFragetext("Go4: Wie hoch ist der höchste Baum der Welt?");
         frage6.setAntwort("112 m");
         frage6.setKategorie("Dschungel");
         frage6.setSchwierigkeitsgrad(1);
@@ -208,7 +234,7 @@ public class TestRestService {
         frage7.setAntwort("Dampfmaschine");
         frage7.setKategorie("Geschichte");
         frage7.setSchwierigkeitsgrad(2);
-        frage7.setBild("https://de.wikipedia.org/wiki/James_Watt#/media/File:James_Watt_by_Henry_Howard.jpg");
+        frage7.setBild("https://kinneil.files.wordpress.com/2011/01/jameswatt-fromvictorianbook1.jpg");
         frage7.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
         service.createFrage(frage7, createFragenListener());
 
@@ -282,17 +308,16 @@ public class TestRestService {
         service.createFrage(frage15, createFragenListener());
 
         Frage frage16 = new Frage();
-        frage16.setFragetext("Go4: Welches Gebirge trennt Europa und Asien?");
-        frage16.setAntwort("Ural");
-        frage16.setKategorie("Erdkunde");
-        frage16.setSchwierigkeitsgrad(1);
-        frage16.setBild("http://phzh.educanet2.ch/asien3/.ws_gen/12/Uralgebirge.jpg");
+        frage16.setFragetext("Go4: Bor ist ein ...?");
+        frage16.setAntwort("Halbleiter");
+        frage16.setKategorie("Chemie");
+        frage16.setSchwierigkeitsgrad(3);
         frage16.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage16, createFragenListener());
 
         Frage frage17 = new Frage();
         frage17.setFragetext("Go4: Wie heißt der längste Fluss der Erde?");
-        frage17.setAntwort("Der Nil ist der längste Fluss der Erde mit 6671km");
+        frage17.setAntwort("Der Nil ist der längste Fluss der Erde mit 6.671 km");
         frage17.setKategorie("Erdkunde");
         frage17.setSchwierigkeitsgrad(0);
         frage17.setBild("http://www.splinterhh.de/nil/nil2.gif");
@@ -304,17 +329,34 @@ public class TestRestService {
         frage18.setAntwort("Russland, Kanada, USA, China, Brasilien");
         frage18.setKategorie("Erdkunde");
         frage18.setSchwierigkeitsgrad(1);
-        frage18.setBild("http://www.splinterhh.de/nil/nil2.gif");
         service.createFrage(frage18, createFragenListener());
 
         Frage frage19 = new Frage();
-        frage19.setFragetext("Go4: Nenne die flächenmäßig 5 größten Länder der Erde!");
-        frage19.setAntwort("Russland, Kanada, USA, China, Brasilien");
+        frage19.setFragetext("Go4: Nenne die 3 bevölkerungsreichsten Länder der Erde!");
+        frage19.setAntwort("China, Indien, USA");
         frage19.setKategorie("Erdkunde");
         frage19.setSchwierigkeitsgrad(1);
-        frage19.setBild("http://www.splinterhh.de/nil/nil2.gif");
+        frage19.setBild("http://noe.orf.at/static/images/site/oeka/20111042/volkszaehlung_body_lia.5012131.jpg");
         frage19.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage19, createFragenListener());
+
+        Frage frage20 = new Frage();
+        frage20.setFragetext("Go4: Wie nennt man Calciumhydroxid noch?");
+        frage20.setAntwort("gelöschter Kalk");
+        frage20.setKategorie("Chemie");
+        frage20.setSchwierigkeitsgrad(3);
+        frage20.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage20, createFragenListener());
+
+        Frage frage21 = new Frage();
+        frage21.setFragetext("Go4: Woraus gewinnt man Aluminium?");
+        frage21.setAntwort("Bauxit");
+        frage21.setKategorie("Chemie");
+        frage21.setSchwierigkeitsgrad(2);
+        frage21.setBild("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aluminium-4.jpg/150px-Aluminium-4.jpg");
+        frage21.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        service.createFrage(frage21, createFragenListener());
+
 
     }
 
@@ -332,5 +374,4 @@ public class TestRestService {
             }
         };
     }
-
 }

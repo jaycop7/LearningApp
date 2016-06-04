@@ -47,11 +47,14 @@
     <string name="einstellungen_anzahl_fragen_ueberspringen">Anz. Fragen überspr.</string>
     <string name="einstellungen_testfragen_hinzufuegen">Testfragen hinzufügen</string>
     <string name="einstellungen_testfragen_erstellt">Testfragen erfolgreich erstellt</string>
-    <string name="einstellungen_testfragen_loeschen">Testfragen löschen</string>
+    <string name="einstellungen_testfragen_loeschen">Go4 Testfragen löschen</string>
     <string name="einstellungen_testfragen_geloescht">Testfragen erfolgreich gelöscht</string>
     <string name="einstellungen_speichern">Einstellungen speichern</string>
     <string name="frage_geladen">Frage geladen</string>
     <string name="fragen_geladen">Fragen geladen</string>
     <string name="keine_fragen_verfuegbar">Es sind keine Fragen verfügbar.</string>
+    <string name="auswahl_schwierigkeit_hinweis">Fragen werden aufgrund der definierten Schwierigkeit in den Einstellungen geladen</string>
+    <string name="einstellungen_gespeichert">Ihre Einstellungen wurden erfolgreich gespeichert</string>
+    <string name="einstellungen_alle_testfragen_loeschen">Alle Testfragen löschen</string>
 
 </resources>
