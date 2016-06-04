@@ -29,12 +29,12 @@
     <string name="auswahl_wiederholungsfragen">Wiederholungsfragen</string>
     <string name="auswahl_eigenefragen">Eigene Fragen</string>
     <string name="auswahl_kategorien_fehler">Kategorien konnten nicht geladen werden.</string>
-    <string name="detail_antwort_einblenden">Antwort anzeigen</string>
+    <string name="detail_antwort_einblenden">Antwort</string>
     <string name="detail_frage">Frage</string>
     <string name="detail_antwort">Antwort</string>
-    <string name="detail_wiederholen">Frage merken</string>
-    <string name="detail_teilen">Frage teilen</string>
-    <string name="detail_wiederholen_gemerkt">Frage gemerkt</string>
+    <string name="detail_wiederholen">Merken</string>
+    <string name="detail_teilen">Teilen</string>
+    <string name="detail_wiederholen_gemerkt">Gemerkt</string>
     <string name="detail_frage_bottom">Frage</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>

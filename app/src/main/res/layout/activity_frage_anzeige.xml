@@ -4,68 +4,87 @@
     android:id="@+id/frageAnzeigeRootlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".FrageAnzeigeActivity">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/frageAnzeigeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="120dp">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="90dp"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:visibility="invisible">
 
-        <LinearLayout
-            android:id="@+id/frageAnzeigeLayout"
+        <TextView
+            android:id="@+id/frageAnzeigeHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Geografie (2):"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="@dimen/fragen_anzeige_header_textsize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/frageAnzeigeSchwierigkeit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:textColor="@android:color/tab_indicator_text"
+            android:textSize="14dp"
+            android:textStyle="italic" />
+
+        <ImageView
+            android:id="@+id/frageAnzeigeFrageFoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp" />
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:visibility="invisible">
+            android:layout_marginTop="20dp">
 
-            <TextView
-                android:id="@+id/frageAnzeigeHeader"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Geografie (2):"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textSize="@dimen/fragen_anzeige_header_textsize"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/frageAnzeigeFrageFoto"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/bayern_logo" />
+                <TextView
+                    android:id="@+id/frageAnzeigeFrage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
+                    android:textSize="@dimen/fragen_anzeige_textsize" />
 
-            <TextView
-                android:id="@+id/frageAnzeigeFrage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
-                android:textSize="@dimen/fragen_anzeige_textsize" />
-
-            <TextView
-                android:id="@+id/frageAnzeigeAntwort"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/detail_antwort"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="@dimen/fragen_anzeige_textsize" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/frageAnzeigeAntwort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/detail_antwort"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="@dimen/fragen_anzeige_textsize" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/frageAnzeigenKeineFragen"
@@ -81,67 +100,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/frageAnzeigeButtonAnwortEinblenden"
-                style="@style/BasicButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@color/default_fragen_color"
-                android:drawableStart="@drawable/ic_lightbulb_outline_black_48dp"
+                style="@style/FrageAnzeigenButton"
+                android:drawableStart="@drawable/ic_lightbulb_outline_black_24dp"
                 android:onClick="showAntwortClick"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:text="@string/detail_antwort_einblenden"
-                android:textSize="14dp" />
+                android:text="@string/detail_antwort_einblenden" />
 
             <Button
                 android:id="@+id/frageAnzeigeWiederholungsfrage"
-                style="@style/BasicButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@color/default_fragen_color"
-                android:drawableStart="@drawable/ic_star_border_black_48dp"
+                style="@style/FrageAnzeigenButton"
+                android:drawableStart="@drawable/ic_star_border_black_24dp"
                 android:onClick="wiederholungsFrageClick"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:text="@string/detail_wiederholen"
-                android:textSize="14dp" />
+                android:text="@string/detail_wiederholen" />
 
             <Button
                 android:id="@+id/frageAnzeigeTeilen"
-                style="@style/BasicButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@color/default_fragen_color"
-                android:drawableStart="@drawable/ic_share_black_48dp"
+                style="@style/FrageAnzeigenButton"
+                android:drawableStart="@drawable/ic_share_black_24dp"
                 android:onClick="frageTeilen"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
                 android:text="@string/detail_teilen" />
-
-            <!--<ToggleButton-->
-            <!--android:id="@+id/toggleButton"-->
-            <!--style="@style/toggleButton"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@drawable/ic_toggle_bg"-->
-            <!--android:text="Frage" />-->
 
         </LinearLayout>
 
@@ -149,7 +136,8 @@
             android:id="@+id/frageAnzeigeNavigator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:paddingBottom="10dp"
             android:text="@string/detail_frage_bottom"
@@ -160,6 +148,7 @@
         android:id="@+id/fragenAnzeigeProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:visibility="gone">
 
         <ProgressBar

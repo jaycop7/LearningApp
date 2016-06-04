@@ -24,3 +24,7 @@
 - Eigene Fragen anzeigen
     - es werden keine eigenen Fragen angezeigt (null)
 - Anzahl der Fragen pro Runde (lt. Einstellungen) wird noch nicht berücksichtigt
+
+- Schwierigkeit Ausschreiben nicht (0-3)
+- Random Fragen
+- Max Fragen berücksichtigen

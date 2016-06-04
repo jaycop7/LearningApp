@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -46,6 +45,16 @@ public class Utils {
         return liste;
     }
 
+    public static String getSchwierigkeitBezeichnung(int schwierigkeitId) {
+        String bezeichnung = String.valueOf(schwierigkeitId);
+        List<Schwierigkeit> schwierigkeiten = Utils.getSchwierigkeiten();
+        for (Schwierigkeit s : schwierigkeiten) {
+            if (s.getId() == schwierigkeitId)
+                bezeichnung = s.getBezeichnung();
+        }
+        return bezeichnung;
+    }
+
     public static void navigateToMainActivity(Context context) {
         //redirect to main activity
         Intent intent = new Intent(context, MainActivity.class);
@@ -56,7 +65,6 @@ public class Utils {
         Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
         toast.show();
     }
-
 
     @SuppressWarnings("ResourceType")
     public static Location getCurrentLocation(Activity context) {
@@ -77,7 +85,6 @@ public class Utils {
             }
         }
 
-
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -93,17 +100,11 @@ public class Utils {
                     rv = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 }
             }
-
             return rv;
 
         } catch (Exception ex) {
-
-
-            Log.e("LocationManager","Error creating location service: " + ex.getMessage());
+            Log.e("LocationManager", "Error creating location service: " + ex.getMessage());
             return null;
-
-
         }
-
     }
 }

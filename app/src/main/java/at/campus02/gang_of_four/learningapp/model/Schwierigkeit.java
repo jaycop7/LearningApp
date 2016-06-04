@@ -2,11 +2,11 @@ package at.campus02.gang_of_four.learningapp.model;
 
 public class Schwierigkeit {
     int id;
-    String name;
+    String bezeichnung;
 
-    public Schwierigkeit(int id, String name) {
+    public Schwierigkeit(int id, String bezeichnung) {
         this.id = id;
-        this.name = name;
+        this.bezeichnung = bezeichnung;
     }
 
     public int getId() {
@@ -17,16 +17,16 @@ public class Schwierigkeit {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBezeichnung() {
+        return bezeichnung;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBezeichnung(String name) {
+        this.bezeichnung = name;
     }
 
     @Override
     public String toString() {
-        return name;
+        return bezeichnung;
     }
 }

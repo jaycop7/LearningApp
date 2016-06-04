@@ -48,6 +48,20 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <style name="FrageAnzeigenButton" parent="BasicButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/default_fragen_color</item>
+        <item name="android:drawableStart">@drawable/ic_star_border_black_24dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
     <style name="KategorieItem" parent="BasicButton">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>

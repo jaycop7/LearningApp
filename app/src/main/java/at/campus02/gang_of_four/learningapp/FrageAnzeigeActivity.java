@@ -31,6 +31,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     View progress = null;
     LinearLayout anzeigeLayout = null;
     TextView fragenHeader = null;
+    TextView fragenSchwierigkeit = null;
     TextView frageText = null;
     TextView frageAntwort = null;
     TextView frageNavigator = null;
@@ -174,6 +175,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         progress = findViewById(R.id.fragenAnzeigeProgress);
         anzeigeLayout = (LinearLayout) findViewById(R.id.frageAnzeigeLayout);
         fragenHeader = (TextView) findViewById(R.id.frageAnzeigeHeader);
+        fragenSchwierigkeit = (TextView) findViewById(R.id.frageAnzeigeSchwierigkeit);
         frageText = (TextView) findViewById(R.id.frageAnzeigeFrage);
         frageAntwort = (TextView) findViewById(R.id.frageAnzeigeAntwort);
         frageNavigator = (TextView) findViewById(R.id.frageAnzeigeNavigator);
@@ -204,7 +206,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void fragenReceived(List<Frage> fragenList) {
         progress.setVisibility(View.INVISIBLE);
         this.fragen = fragenList;
-        Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
+//        Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
         if (fragen != null && fragen.size() > 0) {
             hideNoFragen();
             displayFrage();
@@ -225,7 +227,9 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void displayFrage() {
         hideLayout();
         Frage frage = getCurrentFrage();
-        fragenHeader.setText(String.format("%s (%s)", frage.getKategorie(), frage.getSchwierigkeitsgrad()));
+//        fragenHeader.setText(String.format("%s - %s", frage.getKategorie(), Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad())));
+        fragenHeader.setText(frage.getKategorie());
+        fragenSchwierigkeit.setText(getString(R.string.einstellungen_schwierigkeit) + ": " + Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad()));
         frageText.setText(frage.getFragetext());
         frageAntwort.setText(frage.getAntwort());
         frageAntwort.setVisibility(View.GONE);
@@ -240,11 +244,11 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void updateWiederholungsButton() {
         Frage frage = getCurrentFrage();
         if (wiederholungsFragenIds.contains(frage.getFrageID())) {
-            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_black_48dp); //FIXME Deprecated
+            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_black_24dp); //FIXME Deprecated
             wiederholungsButton.setCompoundDrawablesWithIntrinsicBounds(dw, null, null, null);
             wiederholungsButton.setText(getString(R.string.detail_wiederholen_gemerkt));
         } else {
-            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_border_black_48dp);
+            Drawable dw = getApplicationContext().getResources().getDrawable(R.drawable.ic_star_border_black_24dp);
             wiederholungsButton.setCompoundDrawablesWithIntrinsicBounds(dw, null, null, null);
             wiederholungsButton.setText(getString(R.string.detail_wiederholen));
         }
@@ -256,7 +260,6 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         else
             frageNavigator.setText(String.format("Frage %s von %s", currentFragePosition + 1, fragen.size()));
     }
-
 
     private void displayFragenErrorMessage() {
         progress.setVisibility(View.INVISIBLE);
@@ -279,14 +282,14 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     private void imageLoaded(Bitmap image) {
-        bildAnzeige.setVisibility(View.VISIBLE);
-        bildAnzeige.setImageBitmap(image);
         progress.setVisibility(View.INVISIBLE);
         showLayout();
+        bildAnzeige.setVisibility(View.VISIBLE);
+        bildAnzeige.setImageBitmap(image);
     }
 
     private void imageError() {
-        bildAnzeige.setVisibility(View.INVISIBLE);
+        bildAnzeige.setVisibility(View.GONE);
         showLayout();
     }
 
@@ -296,11 +299,11 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.detail_teilen_einleitung_nachricht));
         String bild = "";
         if (!(getCurrentFrage().getBild() == null || getCurrentFrage().getBild().isEmpty())) {
-            bild = " Hier der Link zum Bild: " + getCurrentFrage().getBild();
+            bild = " Hier ein Link zum Bild: " + getCurrentFrage().getBild();
         }
         String inhalt = "Weißt du die Antwort auf diese Frage? '" + getCurrentFrage().getFragetext() + "'" + bild + " Liebe Grüße " + Preferences.getBenutzername(this);
         shareIntent.putExtra(Intent.EXTRA_TEXT, inhalt);
-        startActivity(Intent.createChooser(shareIntent, "Share mit ..."));
+        startActivity(Intent.createChooser(shareIntent, "Teilen mit ..."));
     }
 
 }
