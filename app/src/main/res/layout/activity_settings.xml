@@ -192,6 +192,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="@color/default_settings_color"
-        android:onClick="einstellungenSpeichern"
+        android:onClick="einstellungenSpeichernClick"
         android:text="@string/einstellungen_speichern" />
 </RelativeLayout>

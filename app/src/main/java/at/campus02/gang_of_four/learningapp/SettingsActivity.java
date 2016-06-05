@@ -35,15 +35,18 @@ public class SettingsActivity extends AppCompatActivity {
         einstellungenLaden();
     }
 
-    public void einstellungenSpeichern(View view) {
+    public void einstellungenSpeichernClick(View view) {
+        speichern();
+        Utils.navigateToMainActivity(this);
+    }
+
+    private void speichern() {
         Preferences.setMaxFragen(Integer.valueOf(maxFragen.getText().toString()), this);
         Preferences.setGpsUmkreis(Integer.valueOf(gpsUmkreis.getText().toString()), this);
         Preferences.setBenutzername(benutzername.getText().toString(), this);
         Preferences.setFragenUeberspringenAnzahl(Integer.valueOf(fragenUeberspringen.getText().toString()), this);
         Preferences.setSchwierigkeit(((Schwierigkeit) schwierigkeit.getSelectedItem()).getId(), this);
-        Utils.showToast(getString(R.string.einstellungen_gespeichert), this);
-
-        Utils.navigateToMainActivity(this);
+        Utils.showLongToast(getString(R.string.einstellungen_gespeichert), this);
     }
 
     private void einstellungenLaden() {
@@ -74,18 +77,24 @@ public class SettingsActivity extends AppCompatActivity {
     public void testFragenErstellen(View view) {
         RestDataClientTest trs = new RestDataClientTest(this);
         trs.createTestFragen();
-        Utils.showToast(getString(R.string.einstellungen_testfragen_erstellt), this);
+        Utils.showLongToast(getString(R.string.einstellungen_testfragen_erstellt), this);
     }
 
     public void testFragenLoeschen(View view) {
         RestDataClientTest trs = new RestDataClientTest(this);
         trs.deleteTestFragen();
-        Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
+        Utils.showLongToast(getString(R.string.einstellungen_testfragen_geloescht), this);
     }
 
     public void alleFragenLoeschen(View view) {
         RestDataClientTest trs = new RestDataClientTest(this);
         trs.deleteAlleFragen();
-        Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
+        Utils.showLongToast(getString(R.string.einstellungen_testfragen_geloescht), this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        speichern();
+        Utils.navigateToMainActivity(this);
     }
 }

@@ -40,7 +40,8 @@
     <string name="detail_frage_bottom">Frage</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
-    <string name="detail_frage_gemerkt">Frage wurde zur Wiederholung gespeichert.</string>
+    <string name="detail_frage_gemerkt">Frage wurde zur Wiederholung vorgemerkt</string>
+    <string name="detail_frage_gemerkt_aufgehoben">Wiederholung aufgehoben</string>
     <string name="detail_teilen_einleitung_nachricht">Bitte um Hilfe</string>
     <string name="einstellungen_max_fragen">max. Fragen pro Runde</string>
     <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>

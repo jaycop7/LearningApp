@@ -1,7 +1,9 @@
 package at.campus02.gang_of_four.learningapp.model;
 
 
-public class Frage {
+import java.io.Serializable;
+
+public class Frage implements Serializable {
     private String FrageID;
     private String Fragetext;
     private String Antwort;

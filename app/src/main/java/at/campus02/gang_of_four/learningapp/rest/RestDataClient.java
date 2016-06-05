@@ -81,7 +81,7 @@ public class RestDataClient {
     }
 
     public void getFragenByGpsKoordinaten(Location location, int distance, FragenListener listener) {
-        String url = baseUrl + String.format("fragen/koordinaten/?la=%s&lo=%s&di=%s", location.getLatitude(), location.getLongitude(), distance);
+        String url = baseUrl + String.format("fragen/koordinaten/?La=%s&Lo=%s&Di=%s", location.getLatitude(), location.getLongitude(), distance);
         getFragen(url, listener);
     }
 

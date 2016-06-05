@@ -72,7 +72,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
             coordinate = latidue + ";" + altitude;
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
-            Utils.showToast(fail, this);
+            Utils.showLongToast(fail, this);
             coordinate = getString(R.string.frage_bearbeiten_aktuelle_position);
 
         }
@@ -130,7 +130,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
     }
 
     private void editFrageError() {
-        Utils.showToast(getString(R.string.frage_bearbeiten_error_loading), this);
+        Utils.showLongToast(getString(R.string.frage_bearbeiten_error_loading), this);
     }
 
     public void frageSpeichern(View view) {
@@ -184,7 +184,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
         }
         Utils.navigateToMainActivity(this);
         String info = getString(R.string.frage_gespeichert);
-        Utils.showToast(info, this);
+        Utils.showLongToast(info, this);
     }
 
     private void addEigeneFrageId(String guid) {
@@ -195,12 +195,12 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
 
     private void showFailMessage() {
         String fail = getString(R.string.frage_nicht_erstellt);
-        Utils.showToast(fail, this);
+        Utils.showLongToast(fail, this);
     }
 
     private void showFailMessage(String text) {
         String fail = getString(R.string.frage_bearbeiten_validation_fehler) + ": " + text;
-        Utils.showToast(fail, this);
+        Utils.showLongToast(fail, this);
     }
 
     private void populateSchwierigkeitSpinner() {

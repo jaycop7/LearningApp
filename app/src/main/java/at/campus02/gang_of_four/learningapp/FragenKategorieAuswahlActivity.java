@@ -78,6 +78,6 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     }
 
     private void showErrorMessage() {
-        Utils.showToast(getString(R.string.auswahl_kategorien_fehler), this);
+        Utils.showLongToast(getString(R.string.auswahl_kategorien_fehler), this);
     }
 }

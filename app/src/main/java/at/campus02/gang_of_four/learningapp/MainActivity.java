@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("startup", "start");
         Utils.getCurrentLocation(this);
 
-        Utils.showToast("Hallo " + Preferences.getBenutzername(this), this);
+        Utils.showLongToast("Hallo " + Preferences.getBenutzername(this), this);
     }
 
     private void checkNetwork() {

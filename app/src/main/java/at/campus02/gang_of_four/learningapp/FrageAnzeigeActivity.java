@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,6 +30,10 @@ import at.campus02.gang_of_four.learningapp.utils.Utils;
 public class FrageAnzeigeActivity extends SwipeActivity {
     public static final String EXTRA_FRAGEN_MODUS = "at.campus02.gang_of_four.learningapp.ExtraFragenModus";
     public static final String EXTRA_FRAGEN_KATEGORIE = "at.campus02.gang_of_four.learningapp.ExtraFragenKategorie";
+    public static final String CURRENT_FRAGE = "CurrentFrage";
+    public static final String FRAGEN = "Fragen";
+    public static final String FRAGE_MODUS = "Fragemodus";
+    public static final String KATEGORIE = "Kategorie";
 
     RestDataClient restClient = null;
     View progress = null;
@@ -58,9 +63,36 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         restClient = new RestDataClient();
         linkLayoutViews();
         loadPreferences();
-        Intent intent = getIntent();
-        retrieveIntentExtra(intent);
-        ladeFragen();
+//        if (savedInstanceState != null) {
+//            currentFragePosition = savedInstanceState.getInt(CURRENT_FRAGE);
+//            fragen = (List<Frage>) savedInstanceState.getSerializable(FRAGEN);
+//            fragenModus = (FragenModus) savedInstanceState.getSerializable(FRAGE_MODUS);
+//            kategorie = savedInstanceState.getString(KATEGORIE);
+//        } else {
+        if (savedInstanceState == null) {
+            Intent intent = getIntent();
+            retrieveIntentExtra(intent);
+            ladeFragen();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(CURRENT_FRAGE, currentFragePosition);
+        outState.putSerializable(FRAGEN, (Serializable) fragen);
+        outState.putSerializable(FRAGE_MODUS, fragenModus);
+        outState.putString(KATEGORIE, kategorie);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        currentFragePosition = savedInstanceState.getInt(CURRENT_FRAGE);
+        fragen = (List<Frage>) savedInstanceState.getSerializable(FRAGEN);
+        fragenModus = (FragenModus) savedInstanceState.getSerializable(FRAGE_MODUS);
+        kategorie = savedInstanceState.getString(KATEGORIE);
+        displayFrage();
     }
 
     @Override
@@ -78,7 +110,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             currentFragePosition++;
             displayFrage();
         } else
-            Utils.showToast(getString(R.string.detail_keine_weiteren_fragen), this);
+            Utils.showLongToast(getString(R.string.detail_keine_weiteren_fragen), this);
     }
 
     public void displayPreviousFrage() {
@@ -86,7 +118,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             currentFragePosition--;
             displayFrage();
         } else
-            Utils.showToast(getString(R.string.detail_keine_vorherigen_fragen), this);
+            Utils.showLongToast(getString(R.string.detail_keine_vorherigen_fragen), this);
     }
 
     public void showAntwortClick(View view) {
@@ -146,7 +178,9 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     private Frage getCurrentFrage() {
-        return fragen.get(currentFragePosition);
+        if (fragen.size() > 0)
+            return fragen.get(currentFragePosition);
+        return null;
     }
 
     private void addCurrentToWiederholungsfragen() {
@@ -154,7 +188,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         if (frage != null) {
             wiederholungsFragenIds.add(frage.getFrageID());
             saveWiederholungsfragenIds();
-            Utils.showToast(getString(R.string.detail_frage_gemerkt), this);
+            Utils.showShortToast(getString(R.string.detail_frage_gemerkt), this);
             updateWiederholungsButton();
         }
     }
@@ -164,6 +198,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         if (frage != null) {
             wiederholungsFragenIds.remove(frage.getFrageID());
             saveWiederholungsfragenIds();
+            Utils.showShortToast(getString(R.string.detail_frage_gemerkt_aufgehoben), this);
             updateWiederholungsButton();
         }
     }
@@ -206,20 +241,22 @@ public class FrageAnzeigeActivity extends SwipeActivity {
 
         @Override
         public void error() {
-            displayFragenErrorMessage();
+            displayKeineFragen();
         }
+
     }
 
     private void fragenReceived(List<Frage> fragenList) {
         progress.setVisibility(View.INVISIBLE);
-        this.fragen = filterFragen(fragenList);
-//        Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
+        if (fragenModus != FragenModus.EIGENE && fragenModus != FragenModus.WIEDERHOLUNG)
+            this.fragen = filterFragen(fragenList);
+        else
+            this.fragen = fragenList;
         if (fragen != null && fragen.size() > 0) {
             hideNoFragen();
             displayFrage();
         } else {
-            updateNavigator();
-            displayNoFragen();
+            displayKeineFragen();
         }
     }
 
@@ -229,11 +266,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private List<Frage> filterFragen(List<Frage> fragen) {
         int maxFragen = Preferences.getMaxFragen(this);
         Collections.shuffle(fragen, new Random(System.nanoTime()));
-        return fragen.size() > maxFragen ? fragen.subList(0, maxFragen) : fragen;
-    }
-
-    private void displayNoFragen() {
-        keineFragen.setVisibility(View.VISIBLE);
+        return fragen.size() > maxFragen ? new ArrayList<>(fragen.subList(0, maxFragen)) : fragen;
     }
 
     private void hideNoFragen() {
@@ -243,17 +276,20 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void displayFrage() {
         hideLayout();
         Frage frage = getCurrentFrage();
-        fragenHeader.setText(frage.getKategorie());
-        fragenSchwierigkeit.setText(getString(R.string.einstellungen_schwierigkeit) + ": " + Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad()));
-        frageText.setText(frage.getFragetext());
-        frageAntwort.setText(frage.getAntwort());
-        frageAntwort.setVisibility(View.GONE);
-        updateWiederholungsButton();
-        updateNavigator();
-        if (frage.getBild() != null && !frage.getBild().isEmpty()) {
-            setBild(frage.getBild());
+        if (frage != null) {
+            fragenHeader.setText(frage.getKategorie());
+            fragenSchwierigkeit.setText(getString(R.string.einstellungen_schwierigkeit) + ": " + Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad()));
+            frageText.setText(frage.getFragetext());
+            frageAntwort.setText(frage.getAntwort());
+            frageAntwort.setVisibility(View.GONE);
+            updateWiederholungsButton();
+            updateNavigator();
+            if (frage.getBild() != null && !frage.getBild().isEmpty()) {
+                setBild(frage.getBild());
+            } else
+                imageError();
         } else
-            imageError();
+            displayKeineFragen();
     }
 
     private void updateWiederholungsButton() {
@@ -276,9 +312,10 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             frageNavigator.setText(String.format("Frage %s von %s", currentFragePosition + 1, fragen.size()));
     }
 
-    private void displayFragenErrorMessage() {
+    private void displayKeineFragen() {
         progress.setVisibility(View.INVISIBLE);
-        Utils.showToast(getString(R.string.keine_fragen_verfuegbar), this);
+        updateNavigator();
+        keineFragen.setVisibility(View.VISIBLE);
     }
 
     private void setBild(String url) {
@@ -309,16 +346,17 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     }
 
     public void frageTeilen(View view) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.detail_teilen_einleitung_nachricht));
-        String bild = "";
-        if (!(getCurrentFrage().getBild() == null || getCurrentFrage().getBild().isEmpty())) {
-            bild = " Hier ein Link zum Bild: " + getCurrentFrage().getBild();
+        if (getCurrentFrage() != null) {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.detail_teilen_einleitung_nachricht));
+            String bild = "";
+            if (!(getCurrentFrage().getBild() == null || getCurrentFrage().getBild().isEmpty())) {
+                bild = " Hier ein Link zum Bild: " + getCurrentFrage().getBild();
+            }
+            String inhalt = "Weißt du die Antwort auf diese Frage? '" + getCurrentFrage().getFragetext() + "'" + bild + " Liebe Grüße " + Preferences.getBenutzername(this);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, inhalt);
+            startActivity(Intent.createChooser(shareIntent, "Teilen mit ..."));
         }
-        String inhalt = "Weißt du die Antwort auf diese Frage? '" + getCurrentFrage().getFragetext() + "'" + bild + " Liebe Grüße " + Preferences.getBenutzername(this);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, inhalt);
-        startActivity(Intent.createChooser(shareIntent, "Teilen mit ..."));
     }
-
 }

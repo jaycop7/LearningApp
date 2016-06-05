@@ -61,7 +61,12 @@ public class Utils {
         context.startActivity(intent);
     }
 
-    public static void showToast(String message, Context context) {
+    public static void showShortToast(String message, Context context) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public static void showLongToast(String message, Context context) {
         Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
         toast.show();
     }

@@ -120,7 +120,6 @@ public class RestDataClientTest {
                         });
                     }
                 }
-
             }
 
             @Override
@@ -179,6 +178,7 @@ public class RestDataClientTest {
         frage.setAntwort("Antwort200");
         frage.setBild("http://images.45cat.com/gang-of-four-damaged-goods-fast-product.jpg");
         frage.setKategorie("Software");
+        frage.setLaengenUndBreitengrad("47.053748;15.497375");
         frage.setSchwierigkeitsgrad(1);
         return frage;
     }
@@ -190,7 +190,7 @@ public class RestDataClientTest {
         frage1.setBild("https://s-media-cache-ak0.pinimg.com/736x/63/25/83/6325838c7f63fd1e3281bcb9e6d29165.jpg");
         frage1.setKategorie("Sport");
         frage1.setSchwierigkeitsgrad(1);
-        frage1.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage1.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage1, new CreateFragenListenerImpl());
 
         Frage frage2 = new Frage();
@@ -199,7 +199,7 @@ public class RestDataClientTest {
         frage2.setKategorie("Sport");
         frage2.setSchwierigkeitsgrad(0);
         frage2.setBild("http://www.spox.com/de/sport/fussball/wm/wm2010/0809/Bilder/ronaldinho-am-boden-514.jpg");
-        frage2.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage2.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage2, new CreateFragenListenerImpl());
 
         Frage frage3 = new Frage();
@@ -208,7 +208,7 @@ public class RestDataClientTest {
         frage3.setKategorie("Sport");
         frage3.setSchwierigkeitsgrad(3);
         frage3.setBild("http://globalmetalapocalypse.weebly.com/uploads/7/3/0/7/7307465/368594095.jpg");
-        frage3.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage3.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage3, new CreateFragenListenerImpl());
 
         Frage frage4 = new Frage();
@@ -217,7 +217,7 @@ public class RestDataClientTest {
         frage4.setKategorie("Dschungel");
         frage4.setSchwierigkeitsgrad(3);
         frage4.setBild("http://wfiles.brothersoft.com/a/amazon-forest_94321-1152x864.jpg");
-        frage4.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage4.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage4, new CreateFragenListenerImpl());
 
         Frage frage5 = new Frage();
@@ -225,7 +225,7 @@ public class RestDataClientTest {
         frage5.setAntwort("2.000");
         frage5.setKategorie("Dschungel");
         frage5.setSchwierigkeitsgrad(3);
-        frage5.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage5.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage5, new CreateFragenListenerImpl());
 
         Frage frage6 = new Frage();
@@ -234,7 +234,7 @@ public class RestDataClientTest {
         frage6.setKategorie("Dschungel");
         frage6.setSchwierigkeitsgrad(1);
         frage6.setBild("http://img.abendblatt.de/img/stormarn/crop120392578/8382608121-w820-cv16_9-q85/Mexikanische-Sumpfzypresse.jpg");
-        frage6.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage6.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage6, new CreateFragenListenerImpl());
 
         Frage frage7 = new Frage();
@@ -243,7 +243,7 @@ public class RestDataClientTest {
         frage7.setKategorie("Geschichte");
         frage7.setSchwierigkeitsgrad(2);
         frage7.setBild("https://kinneil.files.wordpress.com/2011/01/jameswatt-fromvictorianbook1.jpg");
-        frage7.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
+        frage7.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage7, new CreateFragenListenerImpl());
 
         Frage frage8 = new Frage();
@@ -252,7 +252,7 @@ public class RestDataClientTest {
         frage8.setBild("http://bilder.t-online.de/b/64/42/93/04/id_64429304/610/tid_da/das-kolosseum-in-rom-.jpg");
         frage8.setKategorie("Geschichte");
         frage8.setSchwierigkeitsgrad(1);
-        frage8.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage8.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage8, new CreateFragenListenerImpl());
 
         Frage frage9 = new Frage();
@@ -261,7 +261,7 @@ public class RestDataClientTest {
         frage9.setKategorie("Geschichte");
         frage9.setSchwierigkeitsgrad(1);
         frage9.setBild("http://seedsmission.org/wp/wp-content/uploads/2012/11/templeillus.jpg");
-        frage9.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage9.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage9, new CreateFragenListenerImpl());
 
         Frage frage10 = new Frage();
@@ -270,7 +270,7 @@ public class RestDataClientTest {
         frage10.setKategorie("Allgemeinwissen");
         frage10.setSchwierigkeitsgrad(0);
         frage10.setBild("http://media2.giga.de/2015/03/shutterstock_125112029.jpg");
-        frage10.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage10.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage10, new CreateFragenListenerImpl());
 
         Frage frage11 = new Frage();
@@ -279,7 +279,7 @@ public class RestDataClientTest {
         frage11.setBild("http://cms.groh-design.de/files/nichts_teaserbox3.jpg");
         frage11.setKategorie("Allgemeinwissen");
         frage11.setSchwierigkeitsgrad(0);
-        frage11.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage11.setLaengenUndBreitengrad("47.411895;15.212652");
         restClient.createFrage(frage11, new CreateFragenListenerImpl());
 
         Frage frage12 = new Frage();
@@ -288,7 +288,7 @@ public class RestDataClientTest {
         frage12.setBild("http://www.on-zine.net/wp-content/bilder/licht.jpg");
         frage12.setKategorie("Allgemeinwissen");
         frage12.setSchwierigkeitsgrad(1);
-        frage12.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage12.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage12, new CreateFragenListenerImpl());
 
         Frage frage13 = new Frage();
@@ -297,7 +297,7 @@ public class RestDataClientTest {
         frage13.setKategorie("Allgemeinwissen");
         frage13.setSchwierigkeitsgrad(1);
         frage13.setBild("http://imgs.su/tmp/2014-04-25/1398422399-504.jpg");
-        frage13.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage13.setLaengenUndBreitengrad("47.411895;15.212652");
         restClient.createFrage(frage13, new CreateFragenListenerImpl());
 
         Frage frage14 = new Frage();
@@ -306,7 +306,7 @@ public class RestDataClientTest {
         frage14.setKategorie("Erdkunde");
         frage14.setSchwierigkeitsgrad(1);
         frage14.setBild("http://www.alpaventure.fr/wp-content/uploads/2013/05/vol_mont_blanc.jpg");
-        frage14.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage14.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage14, new CreateFragenListenerImpl());
 
         Frage frage15 = new Frage();
@@ -315,7 +315,7 @@ public class RestDataClientTest {
         frage15.setKategorie("Erdkunde");
         frage15.setSchwierigkeitsgrad(2);
         frage15.setBild("http://phzh.educanet2.ch/asien3/.ws_gen/12/Uralgebirge.jpg");
-        frage15.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage15.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage15, new CreateFragenListenerImpl());
 
         Frage frage16 = new Frage();
@@ -324,7 +324,7 @@ public class RestDataClientTest {
         frage16.setKategorie("Chemie");
         frage16.setBild("http://www.chemie-master.de/pse/B_DSCN1026.jpg");
         frage16.setSchwierigkeitsgrad(3);
-        frage16.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage16.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage16, new CreateFragenListenerImpl());
 
         Frage frage17 = new Frage();
@@ -333,7 +333,7 @@ public class RestDataClientTest {
         frage17.setKategorie("Erdkunde");
         frage17.setSchwierigkeitsgrad(0);
         frage17.setBild("http://www.nathape.com/images/LB200812Aegypt%20(18).jpg");
-        frage17.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage17.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage17, new CreateFragenListenerImpl());
 
         Frage frage18 = new Frage();
@@ -341,6 +341,7 @@ public class RestDataClientTest {
         frage18.setAntwort("Russland, Kanada, USA, China, Brasilien");
         frage18.setKategorie("Erdkunde");
         frage18.setSchwierigkeitsgrad(1);
+        frage17.setLaengenUndBreitengrad("47.411895;15.212652");
         restClient.createFrage(frage18, new CreateFragenListenerImpl());
 
         Frage frage19 = new Frage();
@@ -349,7 +350,7 @@ public class RestDataClientTest {
         frage19.setKategorie("Erdkunde");
         frage19.setSchwierigkeitsgrad(1);
         frage19.setBild("http://noe.orf.at/static/images/site/oeka/20111042/volkszaehlung_body_lia.5012131.jpg");
-        frage19.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage19.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage19, new CreateFragenListenerImpl());
 
         Frage frage20 = new Frage();
@@ -358,7 +359,7 @@ public class RestDataClientTest {
         frage20.setBild("http://www.industriekalk.at/assets/images/6/Kalkhydrat_lose-570f4226.jpg");
         frage20.setKategorie("Chemie");
         frage20.setSchwierigkeitsgrad(3);
-        frage20.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage20.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage20, new CreateFragenListenerImpl());
 
         Frage frage21 = new Frage();
@@ -367,7 +368,7 @@ public class RestDataClientTest {
         frage21.setKategorie("Chemie");
         frage21.setSchwierigkeitsgrad(2);
         frage21.setBild("http://www.constellium.com/var/constellium/storage/images/media/images/aluminium-billets/42574-1-eng-GB/aluminium-billets.png");
-        frage21.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
+        frage21.setLaengenUndBreitengrad("47.411895;15.212652");
         restClient.createFrage(frage21, new CreateFragenListenerImpl());
     }
 
