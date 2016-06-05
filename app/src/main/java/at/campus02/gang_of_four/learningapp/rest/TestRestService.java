@@ -240,7 +240,7 @@ public class TestRestService {
         service.createFrage(frage7, createFragenListener());
 
         Frage frage8 = new Frage();
-        frage8.setFragetext("Go4:  In welchen Gebäude hielten die alten Römer ihre Gladiatorenwettkämpfe ab?");
+        frage8.setFragetext("Go4:  In welchem Gebäude hielten die alten Römer ihre Gladiatorenwettkämpfe ab?");
         frage8.setAntwort("Kolosseum");
         frage8.setBild("http://bilder.t-online.de/b/64/42/93/04/id_64429304/610/tid_da/das-kolosseum-in-rom-.jpg");
         frage8.setKategorie("Geschichte");
@@ -359,7 +359,7 @@ public class TestRestService {
         frage21.setAntwort("Bauxit");
         frage21.setKategorie("Chemie");
         frage21.setSchwierigkeitsgrad(2);
-        frage21.setBild("http://www.capral.com.au/Images/UserUploadedImages/292/extrusion-manufacturing.jpg");
+        frage21.setBild("http://www.constellium.com/var/constellium/storage/images/media/images/aluminium-billets/42574-1-eng-GB/aluminium-billets.png");
         frage21.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
         service.createFrage(frage21, createFragenListener());
 
