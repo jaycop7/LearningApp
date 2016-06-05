@@ -21,7 +21,7 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
-public class FrageErstellenActivity extends AppCompatActivity {
+public class FrageBearbeitenActivity extends AppCompatActivity {
     public static final String EXTRA_MAINTENANCE_MODE = "at.campus02.gang_of_four.learningapp.FrageMaintenanceModus";
     public static final String EXTRA_FRAGE_ID = "at.campus02.gang_of_four.learningapp.FrageId";
 
@@ -42,7 +42,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_frage_erstellen);
+        setContentView(R.layout.activity_frage_bearbeiten);
         service = new RestDataService();
         populateSchwierigkeitSpinner();
         linkLayoutViews();
@@ -51,12 +51,12 @@ public class FrageErstellenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
-            speichernButton.setText(getText(R.string.erstellen_speichern));
+            speichernButton.setText(getText(R.string.frage_bearbeiten_erstellen));
             currentFrage = new Frage();
             fillCurrentLocation();
         } else {
             loadEditFrage();
-            speichernButton.setText(getText(R.string.frage_edit_speichern));
+            speichernButton.setText(getText(R.string.frage_bearbeiten_speichern));
         }
     }
 
@@ -70,7 +70,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showToast(fail, this);
-            coordinate = getString(R.string.erstellen_aktuelle_position);
+            coordinate = getString(R.string.frage_bearbeiten_aktuelle_position);
 
         }
         positionView.setText(coordinate);
@@ -127,7 +127,7 @@ public class FrageErstellenActivity extends AppCompatActivity {
     }
 
     private void editFrageError() {
-        Utils.showToast(getString(R.string.frage_maintenance_error_loading), this);
+        Utils.showToast(getString(R.string.frage_bearbeiten_error_loading), this);
     }
 
     public void frageSpeichern(View view) {

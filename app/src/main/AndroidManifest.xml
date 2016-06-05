@@ -24,10 +24,10 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".FragenAuswahlActivity" />
-        <activity android:name=".FrageErstellenActivity" />
+        <activity android:name=".FrageBearbeitenActivity" />
         <activity android:name=".FragenKategorieAuswahlActivity" />
         <activity android:name=".FrageAnzeigeActivity" />
-        <activity android:name=".EigeneFragenAuswahlActivity"></activity>
+        <activity android:name=".EigeneFragenAuswahlActivity" />
     </application>
 
 </manifest>

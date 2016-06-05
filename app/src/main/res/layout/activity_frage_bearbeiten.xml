@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="at.campus02.gang_of_four.learningapp.FrageErstellenActivity">
+    tools:context=".FrageBearbeitenActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,13 +33,13 @@
                     android:id="@+id/textView_Frage"
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/erstellen_frage" />
+                    android:text="@string/frage_bearbeiten_frage" />
 
                 <EditText
                     android:id="@+id/editText_Frage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/erstellen_frage_hint"
+                    android:hint="@string/frage_bearbeiten_frage_hint"
                     android:inputType="textMultiLine"
                     android:selectAllOnFocus="true" />
             </LinearLayout>
@@ -54,13 +54,13 @@
                     android:id="@+id/textView_Antwort"
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/erstellen_antwort" />
+                    android:text="@string/frage_bearbeiten_antwort" />
 
                 <EditText
                     android:id="@+id/editText_Antwort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/erstellen_antwort_hint"
+                    android:hint="@string/frage_bearbeiten_antwort_hint"
                     android:inputType="textMultiLine"
                     android:selectAllOnFocus="true" />
 
@@ -76,7 +76,7 @@
                     android:id="@+id/textView_Schwierigkeit"
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/erstellen_schwierigkeit" />
+                    android:text="@string/frage_bearbeiten_schwierigkeit" />
 
                 <Spinner
                     android:id="@+id/editText_Schwierigkeit"
@@ -96,7 +96,7 @@
                     android:id="@+id/textView_Kategorie"
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/erstellen_kategorie" />
+                    android:text="@string/frage_bearbeiten_kategorie" />
 
                 <EditText
                     android:id="@+id/editText_Kategorie"
@@ -119,7 +119,7 @@
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/erstellen_position" />
+                    android:text="@string/frage_bearbeiten_position" />
 
                 <TextView
                     android:id="@+id/textView_aktuelle_position"
@@ -131,7 +131,7 @@
                     android:layout_weight="0.86"
                     android:gravity="center_vertical"
                     android:minHeight="50dp"
-                    android:text="@string/erstellen_aktuelle_position"
+                    android:text="@string/frage_bearbeiten_aktuelle_position"
                     android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <ImageButton
@@ -155,13 +155,13 @@
                     android:id="@+id/textView_Bild"
                     android:layout_width="@dimen/frage_erstellen_label_width"
                     android:layout_height="wrap_content"
-                    android:text="@string/erstellen_bild" />
+                    android:text="@string/frage_bearbeiten_bild" />
 
                 <EditText
                     android:id="@+id/editText_bild"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/erstellen_bild_hint"
+                    android:hint="@string/frage_bearbeiten_bild_hint"
                     android:inputType="textUri"
                     android:selectAllOnFocus="true" />
             </LinearLayout>
@@ -176,6 +176,6 @@
         android:layout_alignParentStart="true"
         android:background="@color/default_fragen_erstellen_color"
         android:onClick="frageSpeichern"
-        android:text="@string/erstellen_speichern" />
+        android:text="@string/frage_bearbeiten_erstellen" />
 
 </RelativeLayout>

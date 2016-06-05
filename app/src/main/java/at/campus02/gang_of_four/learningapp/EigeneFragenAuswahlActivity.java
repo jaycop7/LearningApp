@@ -82,9 +82,9 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
 
     private void frageClicked(int position) {
         Frage frage = eigeneFragen.get(position);
-        Intent intent = new Intent(this, FrageErstellenActivity.class);
-        intent.putExtra(FrageErstellenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.EDIT);
-        intent.putExtra(FrageErstellenActivity.EXTRA_FRAGE_ID, frage.getFrageID());
+        Intent intent = new Intent(this, FrageBearbeitenActivity.class);
+        intent.putExtra(FrageBearbeitenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.EDIT);
+        intent.putExtra(FrageBearbeitenActivity.EXTRA_FRAGE_ID, frage.getFrageID());
         startActivity(intent);
     }
 

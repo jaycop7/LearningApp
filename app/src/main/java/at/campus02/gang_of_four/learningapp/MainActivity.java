@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragenErstellen(View view) {
-        Intent intent = new Intent(this, FrageErstellenActivity.class);
-        intent.putExtra(FrageErstellenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.CREATE);
+        Intent intent = new Intent(this, FrageBearbeitenActivity.class);
+        intent.putExtra(FrageBearbeitenActivity.EXTRA_MAINTENANCE_MODE, FrageMaintenanceModus.CREATE);
         startActivity(intent);
     }
 
