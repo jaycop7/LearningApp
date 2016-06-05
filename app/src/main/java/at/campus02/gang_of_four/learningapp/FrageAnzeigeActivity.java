@@ -12,7 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
@@ -58,7 +60,6 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         retrieveIntentExtra(intent);
         ladeFragen();
     }
-
 
     @Override
     protected void swipePrevious() {
@@ -205,7 +206,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
 
     private void fragenReceived(List<Frage> fragenList) {
         progress.setVisibility(View.INVISIBLE);
-        this.fragen = fragenList;
+        this.fragen = filterFragen(fragenList);
 //        Utils.showToast(String.format("%s %s.", fragen.size(), fragen.size() == 1 ? getString(R.string.frage_geladen) : getString(R.string.fragen_geladen)), this);
         if (fragen != null && fragen.size() > 0) {
             hideNoFragen();
@@ -214,6 +215,15 @@ public class FrageAnzeigeActivity extends SwipeActivity {
             updateNavigator();
             displayNoFragen();
         }
+    }
+
+    /**
+     * Filtert die Fragen nach der Max Anzahl anzuzeigender Fragen und mischt diese durch.
+     */
+    private List<Frage> filterFragen(List<Frage> fragen) {
+        int maxFragen = Preferences.getMaxFragen(this);
+        Collections.shuffle(fragen, new Random(System.nanoTime()));
+        return fragen.size() > maxFragen ? fragen.subList(0, maxFragen) : fragen;
     }
 
     private void displayNoFragen() {
@@ -227,7 +237,6 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void displayFrage() {
         hideLayout();
         Frage frage = getCurrentFrage();
-//        fragenHeader.setText(String.format("%s - %s", frage.getKategorie(), Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad())));
         fragenHeader.setText(frage.getKategorie());
         fragenSchwierigkeit.setText(getString(R.string.einstellungen_schwierigkeit) + ": " + Utils.getSchwierigkeitBezeichnung(frage.getSchwierigkeitsgrad()));
         frageText.setText(frage.getFragetext());
