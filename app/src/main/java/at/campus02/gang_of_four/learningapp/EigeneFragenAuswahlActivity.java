@@ -90,11 +90,9 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
 
     private void keineFragenVerfuegbar() {
         Utils.showLongToast(getString(R.string.eigene_fragen_fehler), this);
-        displayKeineFragenText();
-    }
 
-    private void displayKeineFragenText() {
         keineFragenText.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.GONE);
     }
 
     private void hideKeineFragenText() {

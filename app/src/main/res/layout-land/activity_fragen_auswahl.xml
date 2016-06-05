@@ -16,14 +16,14 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_play_arrow_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_play_arrow_black_48dp"
             android:onClick="alleFragenClick"
             android:text="@string/auswahl_alle_kategorien" />
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_view_week_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_view_week_black_48dp"
             android:onClick="fragenNachKategorieClick"
             android:text="@string/auswahl_kategorie" />
     </LinearLayout>
@@ -36,14 +36,14 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_room_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_room_black_48dp"
             android:onClick="fragenNachGpsUmkreisClick"
             android:text="@string/auswahl_umgebung" />
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_trending_up_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_trending_up_black_48dp"
             android:onClick="fragenNachSchwierigkeitClick"
             android:text="@string/auswahl_schwierigkeit" />
 
@@ -58,14 +58,14 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_star_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_star_black_48dp"
             android:onClick="wiederholungsFragenClick"
             android:text="@string/auswahl_wiederholungsfragen" />
 
         <Button
-            style="@style/FragenAuswahlButton"
-            android:drawableTop="@drawable/ic_person_black_48dp"
+            style="@style/FrageAuswahlButtonLandscape"
+            android:drawableLeft="@drawable/ic_person_black_48dp"
             android:onClick="eigeneFragenClick"
             android:text="@string/auswahl_eigenefragen" />
 

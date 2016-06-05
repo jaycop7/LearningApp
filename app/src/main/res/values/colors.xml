@@ -6,6 +6,6 @@
     <color name="default_fragen_color">@android:color/holo_green_light</color>
     <color name="default_fragen_erstellen_color">@android:color/holo_blue_light</color>
     <color name="default_eigene_fragen_color">@android:color/holo_red_light</color>
-    <color name="default_text_color">@android:color/background_dark</color>
+    <color name="default_text_color">#222</color>
     <color name="default_settings_color">@android:color/holo_purple</color>
 </resources>

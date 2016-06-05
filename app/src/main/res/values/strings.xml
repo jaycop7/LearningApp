@@ -22,7 +22,7 @@
     <string name="frage_bearbeiten_erstellen">Frage erstellen</string>
     <string name="frage_bearbeiten_speichern">Frage speichern</string>
     <string name="frage_bearbeiten_error_loading">Gewünschte Frage konnte nicht geladen werden.</string>
-    <string name="eigene_fragen_header">In dieser Ansicht finden Sie Fragen, welche Sie selbst erstellt haben.\nUm diese zu bearbeiten, einfach auf die entsprechende Frage klicken.</string>
+    <string name="eigene_fragen_header">Meine erstellten Fragen</string>
     <string name="eigene_fragen_fehler">Es wurden keine eigenen Fragen geladen.</string>
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>

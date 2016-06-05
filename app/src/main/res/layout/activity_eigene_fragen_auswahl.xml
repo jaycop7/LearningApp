@@ -15,9 +15,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/eigene_fragen_header" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/eigene_fragen_header"
+            android:textColor="@color/default_text_color"
+            android:textSize="25dp" />
 
         <GridView
             android:id="@+id/eigeneFragenGrid"
@@ -35,12 +40,9 @@
 
     <TextView
         android:id="@+id/eigeneFragenKeineFragen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
+        style="@style/KeineFragenText"
+        android:layout_marginTop="40dp"
         android:text="@string/keine_fragen_verfuegbar"
-        android:textSize="@dimen/default_textsize"
         android:visibility="gone" />
 
     <RelativeLayout
