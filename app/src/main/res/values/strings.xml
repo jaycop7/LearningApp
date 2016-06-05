@@ -3,6 +3,7 @@
     <string name="no_network">Es ist keine Netzwerkverbindung vorhanden. Bitte stellen sie sicher, dass sie eine aufrechte Verbindung haben.</string>
     <string name="frage_gespeichert">Ihre Frage wurde erfolgreich gespeichert.</string>
     <string name="frage_nicht_erstellt">Ihre Frage konnte nicht erstellt werden</string>
+    <string name="frage_bearbeiten_validation_fehler">Fehldende Eingaben</string>
     <string name="location_nicht_moeglich">GPS Koordinaten nicht möglich. Default Koordinaten übernommen</string>
     <string name="menu_fragen_anzeigen">Fragen anzeigen</string>
     <string name="menu_fragen_erstellen">Fragen erstellen</string>
@@ -22,6 +23,7 @@
     <string name="frage_bearbeiten_speichern">Frage speichern</string>
     <string name="frage_bearbeiten_error_loading">Gewünschte Frage konnte nicht geladen werden.</string>
     <string name="eigene_fragen_header">In dieser Ansicht finden Sie Fragen, welche Sie selbst erstellt haben.\nUm diese zu bearbeiten, einfach auf die entsprechende Frage klicken.</string>
+    <string name="eigene_fragen_fehler">Es wurden keine eigenen Fragen geladen.</string>
     <string name="auswahl_alle_kategorien">Alle Fragen</string>
     <string name="auswahl_kategorie">nach Kategorie</string>
     <string name="auswahl_umgebung">Fragen in der Umgebung</string>
@@ -38,7 +40,7 @@
     <string name="detail_frage_bottom">Frage</string>
     <string name="detail_keine_weiteren_fragen">Letzte Frage erreicht</string>
     <string name="detail_keine_vorherigen_fragen">Erste Frage erreicht</string>
-    <string name="detail_frage_gemerkt">Die Frage wurde zur Wiederholung gespeichert.</string>
+    <string name="detail_frage_gemerkt">Frage wurde zur Wiederholung gespeichert.</string>
     <string name="detail_teilen_einleitung_nachricht">Bitte um Hilfe</string>
     <string name="einstellungen_max_fragen">max. Fragen pro Runde</string>
     <string name="einstellungen_gps_umkreis">GPS Umkreis in km</string>

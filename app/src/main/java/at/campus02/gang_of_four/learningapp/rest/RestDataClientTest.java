@@ -5,25 +5,28 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.HashSet;
 import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
+import at.campus02.gang_of_four.learningapp.utils.Preferences;
 
-public class TestRestService {
+public class RestDataClientTest {
     Context context = null;
-    RestDataService service = null;
+    RestDataClient restClient = null;
 
-    public TestRestService(Context context) {
+    public RestDataClientTest(Context context) {
         this.context = context;
-        service = new RestDataService();
+        restClient = new RestDataClient();
     }
 
     public void requestFragen() {
-        service.getAlleFragen(new FragenListener() {
+        restClient.getAlleFragen(new FragenListener() {
             @Override
             public void success(List<Frage> fragen) {
                 Log.i("Success", "Fragen success, count " + fragen.size());
@@ -37,7 +40,7 @@ public class TestRestService {
     }
 
     public void requestKategorien() {
-        service.getKategorien(new KategorienListener() {
+        restClient.getKategorien(new KategorienListener() {
             @Override
             public void success(List<String> kategorien) {
                 Log.i("Success", "Kategorien success, count " + kategorien.size());
@@ -52,9 +55,9 @@ public class TestRestService {
 
     public void createFrage() {
         Frage frage = getTestFrage();
-        service.createFrage(frage, new SuccessListener() {
+        restClient.createFrage(frage, new SaveFrageListener() {
             @Override
-            public void success() {
+            public void success(String guid) {
                 Log.i("Success", "Testfrage erfolgreich erstellt.");
             }
 
@@ -66,15 +69,15 @@ public class TestRestService {
     }
 
     public void updateFragen() {
-        service.getAlleFragen(new FragenListener() {
+        restClient.getAlleFragen(new FragenListener() {
             @Override
             public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
                     if ("Frage200".equals(f.getFragetext())) {
                         f.setSchwierigkeitsgrad(2);
-                        service.updateFrage(f, new SuccessListener() {
+                        restClient.updateFrage(f, new SaveFrageListener() {
                             @Override
-                            public void success() {
+                            public void success(String guid) {
                                 Log.i("Success", "Testfrage erfolgreich upgedated.");
                             }
 
@@ -96,13 +99,15 @@ public class TestRestService {
     }
 
     public void deleteTestFragen() {
-        service.getAlleFragen(new FragenListener() {
+        Preferences.setWiederholungsFragenIds(new HashSet<String>(), context);
+        Preferences.setEigeneFragenIds(new HashSet<String>(), context);
+        restClient.getAlleFragen(new FragenListener() {
             @Override
             public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
 
                     if (f.getFragetext() != null && f.getFragetext().contains("Go4")) {
-                        service.deleteFrage(f, new SuccessListener() {
+                        restClient.deleteFrage(f, new SuccessListener() {
                             @Override
                             public void success() {
                                 Log.i("Success", "Testfragen erfolgreich gelöscht.");
@@ -125,12 +130,14 @@ public class TestRestService {
         });
     }
 
-    public void deleteAlleTestFragen() {
-        service.getAlleFragen(new FragenListener() {
+    public void deleteAlleFragen() {
+        Preferences.setWiederholungsFragenIds(new HashSet<String>(), context);
+        Preferences.setEigeneFragenIds(new HashSet<String>(), context);
+        restClient.getAlleFragen(new FragenListener() {
             @Override
             public void success(List<Frage> fragen) {
                 for (Frage f : fragen) {
-                    service.deleteFrage(f, new SuccessListener() {
+                    restClient.deleteFrage(f, new SuccessListener() {
                         @Override
                         public void success() {
                             Log.i("Success", "Testfragen erfolgreich gelöscht.");
@@ -152,7 +159,7 @@ public class TestRestService {
     }
 
     public void getImage() {
-        service.getImage("http://images.clipartpanda.com/test-clip-art-cpa-school-test.png", new ImageListener() {
+        restClient.getImage("http://images.clipartpanda.com/test-clip-art-cpa-school-test.png", new ImageListener() {
             @Override
             public void success(Bitmap immage) {
                 Log.i("Success", "Image loaded successful.");
@@ -184,7 +191,7 @@ public class TestRestService {
         frage1.setKategorie("Sport");
         frage1.setSchwierigkeitsgrad(1);
         frage1.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage1, createFragenListener());
+        restClient.createFrage(frage1, new CreateFragenListenerImpl());
 
         Frage frage2 = new Frage();
         frage2.setFragetext("Go4: Welches Land wurde am häufigsten Fußballweltmeister?");
@@ -193,7 +200,7 @@ public class TestRestService {
         frage2.setSchwierigkeitsgrad(0);
         frage2.setBild("http://www.spox.com/de/sport/fussball/wm/wm2010/0809/Bilder/ronaldinho-am-boden-514.jpg");
         frage2.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage2, createFragenListener());
+        restClient.createFrage(frage2, new CreateFragenListenerImpl());
 
         Frage frage3 = new Frage();
         frage3.setFragetext("Go4: Was war die höchste Geschwindigkeit, die je ein Fallschirmspringer im freien Fall erreicht hat?");
@@ -202,7 +209,7 @@ public class TestRestService {
         frage3.setSchwierigkeitsgrad(3);
         frage3.setBild("http://globalmetalapocalypse.weebly.com/uploads/7/3/0/7/7307465/368594095.jpg");
         frage3.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage3, createFragenListener());
+        restClient.createFrage(frage3, new CreateFragenListenerImpl());
 
         Frage frage4 = new Frage();
         frage4.setFragetext("Go4: Wieviel Prozent der Erdoberfläche sind (noch) von Regenwald bedeckt?");
@@ -211,7 +218,7 @@ public class TestRestService {
         frage4.setSchwierigkeitsgrad(3);
         frage4.setBild("http://wfiles.brothersoft.com/a/amazon-forest_94321-1152x864.jpg");
         frage4.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage4, createFragenListener());
+        restClient.createFrage(frage4, new CreateFragenListenerImpl());
 
         Frage frage5 = new Frage();
         frage5.setFragetext("Go4: Wie viele Urwaldbäume werden ungefähr pro Minute umgesägt?");
@@ -219,7 +226,7 @@ public class TestRestService {
         frage5.setKategorie("Dschungel");
         frage5.setSchwierigkeitsgrad(3);
         frage5.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage5, createFragenListener());
+        restClient.createFrage(frage5, new CreateFragenListenerImpl());
 
         Frage frage6 = new Frage();
         frage6.setFragetext("Go4: Wie hoch ist der höchste Baum der Welt?");
@@ -228,7 +235,7 @@ public class TestRestService {
         frage6.setSchwierigkeitsgrad(1);
         frage6.setBild("http://img.abendblatt.de/img/stormarn/crop120392578/8382608121-w820-cv16_9-q85/Mexikanische-Sumpfzypresse.jpg");
         frage6.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage6, createFragenListener());
+        restClient.createFrage(frage6, new CreateFragenListenerImpl());
 
         Frage frage7 = new Frage();
         frage7.setFragetext("Go4: Was hat James Watt erfunden?");
@@ -237,7 +244,7 @@ public class TestRestService {
         frage7.setSchwierigkeitsgrad(2);
         frage7.setBild("https://kinneil.files.wordpress.com/2011/01/jameswatt-fromvictorianbook1.jpg");
         frage7.setLaengenUndBreitengrad("47.0848496;15.443150100000025");
-        service.createFrage(frage7, createFragenListener());
+        restClient.createFrage(frage7, new CreateFragenListenerImpl());
 
         Frage frage8 = new Frage();
         frage8.setFragetext("Go4:  In welchem Gebäude hielten die alten Römer ihre Gladiatorenwettkämpfe ab?");
@@ -246,7 +253,7 @@ public class TestRestService {
         frage8.setKategorie("Geschichte");
         frage8.setSchwierigkeitsgrad(1);
         frage8.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage8, createFragenListener());
+        restClient.createFrage(frage8, new CreateFragenListenerImpl());
 
         Frage frage9 = new Frage();
         frage9.setFragetext("Go4:  Welcher König baute den Tempel in Jerusalem?");
@@ -255,7 +262,7 @@ public class TestRestService {
         frage9.setSchwierigkeitsgrad(1);
         frage9.setBild("http://seedsmission.org/wp/wp-content/uploads/2012/11/templeillus.jpg");
         frage9.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage9, createFragenListener());
+        restClient.createFrage(frage9, new CreateFragenListenerImpl());
 
         Frage frage10 = new Frage();
         frage10.setFragetext("Go4:  In welcher Stadt steht der von Gustave Eiffel für die Weltausstellung 1889 erbaute Turm?");
@@ -264,7 +271,7 @@ public class TestRestService {
         frage10.setSchwierigkeitsgrad(0);
         frage10.setBild("http://media2.giga.de/2015/03/shutterstock_125112029.jpg");
         frage10.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage10, createFragenListener());
+        restClient.createFrage(frage10, new CreateFragenListenerImpl());
 
         Frage frage11 = new Frage();
         frage11.setFragetext("Go4:  Was hat der Arme, was der Reiche nicht hat, was der Verschwender spart und der Geizige gibt?");
@@ -273,7 +280,7 @@ public class TestRestService {
         frage11.setKategorie("Allgemeinwissen");
         frage11.setSchwierigkeitsgrad(0);
         frage11.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage11, createFragenListener());
+        restClient.createFrage(frage11, new CreateFragenListenerImpl());
 
         Frage frage12 = new Frage();
         frage12.setFragetext("Go4:  Wie lange braucht das Licht in etwa von der Sonne zur Erde?");
@@ -282,7 +289,7 @@ public class TestRestService {
         frage12.setKategorie("Allgemeinwissen");
         frage12.setSchwierigkeitsgrad(1);
         frage12.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage12, createFragenListener());
+        restClient.createFrage(frage12, new CreateFragenListenerImpl());
 
         Frage frage13 = new Frage();
         frage13.setFragetext("Go4:  Wo steht das höchste Haus der Welt?");
@@ -291,7 +298,7 @@ public class TestRestService {
         frage13.setSchwierigkeitsgrad(1);
         frage13.setBild("http://imgs.su/tmp/2014-04-25/1398422399-504.jpg");
         frage13.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage13, createFragenListener());
+        restClient.createFrage(frage13, new CreateFragenListenerImpl());
 
         Frage frage14 = new Frage();
         frage14.setFragetext("Go4:  Wie heißt der höchste Berg Europas?");
@@ -300,7 +307,7 @@ public class TestRestService {
         frage14.setSchwierigkeitsgrad(1);
         frage14.setBild("http://www.alpaventure.fr/wp-content/uploads/2013/05/vol_mont_blanc.jpg");
         frage14.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage14, createFragenListener());
+        restClient.createFrage(frage14, new CreateFragenListenerImpl());
 
         Frage frage15 = new Frage();
         frage15.setFragetext("Go4: Welches Gebirge trennt Europa und Asien?");
@@ -309,7 +316,7 @@ public class TestRestService {
         frage15.setSchwierigkeitsgrad(2);
         frage15.setBild("http://phzh.educanet2.ch/asien3/.ws_gen/12/Uralgebirge.jpg");
         frage15.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage15, createFragenListener());
+        restClient.createFrage(frage15, new CreateFragenListenerImpl());
 
         Frage frage16 = new Frage();
         frage16.setFragetext("Go4: Bor ist ein ...?");
@@ -318,7 +325,7 @@ public class TestRestService {
         frage16.setBild("http://www.chemie-master.de/pse/B_DSCN1026.jpg");
         frage16.setSchwierigkeitsgrad(3);
         frage16.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage16, createFragenListener());
+        restClient.createFrage(frage16, new CreateFragenListenerImpl());
 
         Frage frage17 = new Frage();
         frage17.setFragetext("Go4: Wie heißt der längste Fluss der Erde?");
@@ -327,14 +334,14 @@ public class TestRestService {
         frage17.setSchwierigkeitsgrad(0);
         frage17.setBild("http://www.nathape.com/images/LB200812Aegypt%20(18).jpg");
         frage17.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage17, createFragenListener());
+        restClient.createFrage(frage17, new CreateFragenListenerImpl());
 
         Frage frage18 = new Frage();
         frage18.setFragetext("Go4: Nenne die flächenmäßig 5 größten Länder der Erde!");
         frage18.setAntwort("Russland, Kanada, USA, China, Brasilien");
         frage18.setKategorie("Erdkunde");
         frage18.setSchwierigkeitsgrad(1);
-        service.createFrage(frage18, createFragenListener());
+        restClient.createFrage(frage18, new CreateFragenListenerImpl());
 
         Frage frage19 = new Frage();
         frage19.setFragetext("Go4: Nenne die 3 bevölkerungsreichsten Länder der Erde!");
@@ -343,7 +350,7 @@ public class TestRestService {
         frage19.setSchwierigkeitsgrad(1);
         frage19.setBild("http://noe.orf.at/static/images/site/oeka/20111042/volkszaehlung_body_lia.5012131.jpg");
         frage19.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage19, createFragenListener());
+        restClient.createFrage(frage19, new CreateFragenListenerImpl());
 
         Frage frage20 = new Frage();
         frage20.setFragetext("Go4: Wie nennt man Calciumhydroxid noch?");
@@ -352,7 +359,7 @@ public class TestRestService {
         frage20.setKategorie("Chemie");
         frage20.setSchwierigkeitsgrad(3);
         frage20.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage20, createFragenListener());
+        restClient.createFrage(frage20, new CreateFragenListenerImpl());
 
         Frage frage21 = new Frage();
         frage21.setFragetext("Go4: Woraus gewinnt man Aluminium?");
@@ -361,23 +368,18 @@ public class TestRestService {
         frage21.setSchwierigkeitsgrad(2);
         frage21.setBild("http://www.constellium.com/var/constellium/storage/images/media/images/aluminium-billets/42574-1-eng-GB/aluminium-billets.png");
         frage21.setLaengenUndBreitengrad("46.82820758544973;12.765481621026992");
-        service.createFrage(frage21, createFragenListener());
-
-
+        restClient.createFrage(frage21, new CreateFragenListenerImpl());
     }
 
-    @NonNull
-    private SuccessListener createFragenListener() {
-        return new SuccessListener() {
-            @Override
-            public void success() {
+    private class CreateFragenListenerImpl implements SaveFrageListener {
+        @Override
+        public void success(String guid) {
+            Log.i("Success", "Testfrage wurde erstellt");
+        }
 
-            }
-
-            @Override
-            public void error() {
-
-            }
-        };
+        @Override
+        public void error() {
+            Log.e("Error", "Testfrage konnte nicht erstellt werden");
+        }
     }
 }

@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
-import at.campus02.gang_of_four.learningapp.rest.TestRestService;
+import at.campus02.gang_of_four.learningapp.rest.RestDataClientTest;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
@@ -72,20 +72,20 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void testFragenErstellen(View view) {
-        TestRestService trs = new TestRestService(this);
+        RestDataClientTest trs = new RestDataClientTest(this);
         trs.createTestFragen();
         Utils.showToast(getString(R.string.einstellungen_testfragen_erstellt), this);
     }
 
     public void testFragenLoeschen(View view) {
-        TestRestService trs = new TestRestService(this);
+        RestDataClientTest trs = new RestDataClientTest(this);
         trs.deleteTestFragen();
         Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
     }
 
-    public void alleTestFragenLoeschen(View view) {
-        TestRestService trs = new TestRestService(this);
-        trs.deleteAlleTestFragen();
+    public void alleFragenLoeschen(View view) {
+        RestDataClientTest trs = new RestDataClientTest(this);
+        trs.deleteAlleFragen();
         Utils.showToast(getString(R.string.einstellungen_testfragen_geloescht), this);
     }
 }

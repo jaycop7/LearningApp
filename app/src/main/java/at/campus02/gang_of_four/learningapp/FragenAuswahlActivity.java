@@ -41,7 +41,9 @@ public class FragenAuswahlActivity extends AppCompatActivity {
     }
 
     public void eigeneFragenClick(View view) {
-        //TODO Phips Activity aufrufen
+        Intent intent = new Intent(this, FrageAnzeigeActivity.class);
+        intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_MODUS, FragenModus.EIGENE);
+        startActivity(intent);
     }
 
     public void wiederholungsFragenClick(View view) {

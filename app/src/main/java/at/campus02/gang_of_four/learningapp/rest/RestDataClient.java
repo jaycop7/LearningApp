@@ -30,9 +30,10 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 
-public class RestDataService {
+public class RestDataClient {
     private static final String baseUrl = "http://campus02learningapp.azurewebsites.net/api/";
     Gson gson = new Gson();
 
@@ -121,20 +122,81 @@ public class RestDataService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 listener.error();
-                Log.e("ERROR", "Error in RestDataService.getFrage.");
+                Log.e("ERROR", "Error in RestDataClient.getFrage.");
             }
         });
         ApplicationController.getInstance().addToRequestQueue(request);
     }
 
-    public void createFrage(Frage frage, final SuccessListener listener) {
+    public void createFrage(Frage frage, final SaveFrageListener listener) {
         String url = baseUrl + "fragen";
-        sendFrage(frage, url, Request.Method.POST, listener);
+        final String jsonFrage = new Gson().toJson(frage, Frage.class);
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String guid) {
+                guid = new Gson().fromJson(guid, String.class);
+                listener.success(guid);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.error();
+            }
+        }) {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return jsonFrage.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+        ApplicationController.getInstance().addToRequestQueue(request);
     }
 
-    public void updateFrage(Frage frage, final SuccessListener listener) {
+    public void updateFrage(Frage frage, final SaveFrageListener listener) {
         String url = baseUrl + "fragen/" + frage.getFrageID();
-        sendFrage(frage, url, Request.Method.PUT, listener);
+        try {
+            JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class).toString());
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.PUT,
+                    url,
+                    jsonObject,
+
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Frage updatedFrage = new Gson().fromJson(response.toString(), Frage.class);
+                            listener.success(updatedFrage.getFrageID());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            listener.error();
+                        }
+                    }) {
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json; charset=utf-8");
+                    return headers;
+                }
+            };
+            ApplicationController.getInstance().addToRequestQueue(request);
+        } catch (JSONException e) {
+            listener.error();
+        }
     }
 
     public void deleteFrage(Frage frage, final SuccessListener listener) {
@@ -183,66 +245,39 @@ public class RestDataService {
         ApplicationController.getInstance().addToRequestQueue(request);
     }
 
-    private void sendFrage(Frage frage, String url, int method, final SuccessListener listener) {
-        try {
-            final JSONObject jsonObject = new JSONObject(new Gson().toJson(frage, Frage.class));
-//            StringRequest request = new StringRequest(method, url, new Response.Listener<String>() {
-//                @Override
-//                public void onResponse(String guid) {
-//                    listener.success();
-//                }
-//            }, new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//                    listener.error();
-//                }
-//            }) {
-//                @Override
-//                public byte[] getBody() throws AuthFailureError {
-//                    return jsonObject.toString().getBytes();
-//                }
+//    private void persistFrage(Frage frage, String url, int method, final SaveFrageListener listener) {
+//        final String jsonFrage = new Gson().toJson(frage, Frage.class);
+//        StringRequest request = new StringRequest(method, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String guid) {
+//                guid = new Gson().fromJson(guid, String.class);
+//                listener.success(guid);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                listener.error();
+//            }
+//        }) {
+//            @Override
+//            public byte[] getBody() throws AuthFailureError {
+//                return jsonFrage.getBytes();
+//            }
 //
-//                @Override
-//                public Map<String, String> getHeaders() throws AuthFailureError {
-//                    HashMap<String, String> headers = new HashMap<String, String>();
-//                    headers.put("Content-Type", "application/json; charset=utf-8");
-//                    return headers;
-//                }
-//            };
-            JsonObjectRequest request = new JsonObjectRequest(
-                    method,
-                    url,
-                    jsonObject,
-
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            listener.success();
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if (error.getCause() instanceof JSONException)
-                                listener.success();
-                            else
-                                listener.error();
-                        }
-                    }) {
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json; charset=utf-8");
-                    return headers;
-                }
-            };
-            ApplicationController.getInstance().addToRequestQueue(request);
-
-        } catch (JSONException e) {
-            listener.error();
-        }
-    }
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                HashMap<String, String> headers = new HashMap<String, String>();
+//                headers.put("Content-Type", "application/json; charset=utf-8");
+//                return headers;
+//            }
+//        };
+//        ApplicationController.getInstance().addToRequestQueue(request);
+//    }
 
     public void getImage(String imageUrl, final ImageListener listener) {
         ImageRequest request = new ImageRequest(imageUrl,
@@ -250,14 +285,12 @@ public class RestDataService {
                     @Override
                     public void onResponse(Bitmap bitmap) {
                         listener.success(bitmap);
-//                        mImageView.setImageBitmap(bitmap);
                     }
                 }, 0, 0, null, null,
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         listener.error();
-                        Log.e("Fehler", "Fehler in RestDataService.loadImage()");
-//                        mImageView.setImageResource(R.drawable.image_load_error);
+                        Log.e("Fehler", "Fehler in RestDataClient.loadImage()");
                     }
                 });
         ApplicationController.getInstance().addToRequestQueue(request);

@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
-import at.campus02.gang_of_four.learningapp.rest.RestDataService;
+import at.campus02.gang_of_four.learningapp.rest.RestDataClient;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
 import at.campus02.gang_of_four.learningapp.utils.KategorieAdapter;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
-    RestDataService service = null;
+    RestDataClient restClient = null;
     List<String> kategorien = new ArrayList<>();
     View progress = null;
 
@@ -27,7 +27,7 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragen_kategorie_auswahl);
         progress = findViewById(R.id.fragenKategorieProgress);
-        service = new RestDataService();
+        restClient = new RestDataClient();
         loadKategorien();
     }
 
@@ -39,7 +39,7 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     private void loadKategorien() {
         progress.setVisibility(View.VISIBLE);
-        service.getKategorien(new KategorienListener() {
+        restClient.getKategorien(new KategorienListener() {
             @Override
             public void success(List<String> kategorienListe) {
                 populateKategorien(kategorienListe);

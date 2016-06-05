@@ -13,13 +13,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
-import at.campus02.gang_of_four.learningapp.rest.RestDataService;
+import at.campus02.gang_of_four.learningapp.rest.RestDataClient;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
@@ -29,7 +30,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     public static final String EXTRA_FRAGEN_MODUS = "at.campus02.gang_of_four.learningapp.ExtraFragenModus";
     public static final String EXTRA_FRAGEN_KATEGORIE = "at.campus02.gang_of_four.learningapp.ExtraFragenKategorie";
 
-    RestDataService service = null;
+    RestDataClient restClient = null;
     View progress = null;
     LinearLayout anzeigeLayout = null;
     TextView fragenHeader = null;
@@ -48,12 +49,13 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     int schwierigkeit = 0;
     int gpsUmkreis = 0;
     Set<String> wiederholungsFragenIds = null;
+    Set<String> eigeneFragenIds = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frage_anzeige);
-        service = new RestDataService();
+        restClient = new RestDataClient();
         linkLayoutViews();
         loadPreferences();
         Intent intent = getIntent();
@@ -111,23 +113,26 @@ public class FrageAnzeigeActivity extends SwipeActivity {
         hideLayout();
         switch (fragenModus) {
             case ALLE:
-                service.getAlleFragen(new FragenListenerImpl());
+                restClient.getAlleFragen(new FragenListenerImpl());
                 break;
             case GPS_UMKREIS:
                 Location location = Utils.getCurrentLocation(this);
-                service.getFragenByGpsKoordinaten(location, gpsUmkreis, new FragenListenerImpl());
+                restClient.getFragenByGpsKoordinaten(location, gpsUmkreis, new FragenListenerImpl());
                 break;
             case KATEGORIE:
-                service.getFragenByKategorie(kategorie, new FragenListenerImpl());
+                restClient.getFragenByKategorie(kategorie, new FragenListenerImpl());
                 break;
             case SCHWIERIGKEIT:
-                service.getFragenBySchwierigkeit(schwierigkeit, new FragenListenerImpl());
+                restClient.getFragenBySchwierigkeit(schwierigkeit, new FragenListenerImpl());
                 break;
             case WIEDERHOLUNG:
-                service.getFragenByIdSet(wiederholungsFragenIds, new FragenListenerImpl());
+                restClient.getFragenByIdSet(wiederholungsFragenIds, new FragenListenerImpl());
+                break;
+            case EIGENE:
+                restClient.getFragenByIdSet(eigeneFragenIds, new FragenListenerImpl());
                 break;
             default:
-                service.getAlleFragen(new FragenListenerImpl());
+                restClient.getAlleFragen(new FragenListenerImpl());
                 break;
         }
     }
@@ -188,7 +193,8 @@ public class FrageAnzeigeActivity extends SwipeActivity {
     private void loadPreferences() {
         gpsUmkreis = Preferences.getGpsUmkreis(this);
         schwierigkeit = Preferences.getSchwierigkeit(this);
-        wiederholungsFragenIds = Preferences.getWiederholungsFragenIds(this);
+        wiederholungsFragenIds = new HashSet<>(Preferences.getWiederholungsFragenIds(this));
+        eigeneFragenIds = new HashSet<>(Preferences.getEigeneFragenIds(this));
     }
 
     private class FragenListenerImpl implements FragenListener {
@@ -277,7 +283,7 @@ public class FrageAnzeigeActivity extends SwipeActivity {
 
     private void setBild(String url) {
         progress.setVisibility(View.VISIBLE);
-        service.getImage(url, new ImageListener() {
+        restClient.getImage(url, new ImageListener() {
             @Override
             public void success(Bitmap immage) {
                 imageLoaded(immage);

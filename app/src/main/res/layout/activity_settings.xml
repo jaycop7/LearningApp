@@ -177,7 +177,7 @@
                     android:layout_weight="1"
                     android:background="@android:color/holo_red_light"
                     android:drawableStart="@drawable/ic_remove_black_24dp"
-                    android:onClick="alleTestFragenLoeschen"
+                    android:onClick="alleFragenLoeschen"
                     android:paddingLeft="10dp"
                     android:text="@string/einstellungen_alle_testfragen_loeschen"
                     android:textSize="8dp" />

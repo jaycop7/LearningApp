@@ -13,7 +13,7 @@ import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.FrageMaintenanceModus;
-import at.campus02.gang_of_four.learningapp.rest.RestDataService;
+import at.campus02.gang_of_four.learningapp.rest.RestDataClient;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.utils.FragenAdapter;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
@@ -22,7 +22,7 @@ import at.campus02.gang_of_four.learningapp.utils.Utils;
 public class EigeneFragenAuswahlActivity extends AppCompatActivity {
 
     View progress = null;
-    RestDataService service = null;
+    RestDataClient restClient = null;
     List<Frage> eigeneFragen = null;
     TextView keineFragenText = null;
 
@@ -32,7 +32,7 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_eigene_fragen_auswahl);
         progress = findViewById(R.id.eigeneFragenProgress);
         keineFragenText = (TextView) findViewById(R.id.eigeneFragenKeineFragen);
-        service = new RestDataService();
+        restClient = new RestDataClient();
         loadEigeneFragen();
     }
 
@@ -45,7 +45,7 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
         Set<String> eigeneFragenIds = Preferences.getEigeneFragenIds(this);
         if (eigeneFragenIds.size() > 0) {
-            service.getFragenByIdSet(eigeneFragenIds, new FragenListener() {
+            restClient.getFragenByIdSet(eigeneFragenIds, new FragenListener() {
                 @Override
                 public void success(List<Frage> fragen) {
                     fragenReceived(fragen);
@@ -89,7 +89,7 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
     }
 
     private void keineFragenVerfuegbar() {
-        Utils.showToast(getString(R.string.auswahl_kategorien_fehler), this);
+        Utils.showToast(getString(R.string.eigene_fragen_fehler), this);
         displayKeineFragenText();
     }
 

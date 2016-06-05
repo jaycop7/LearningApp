@@ -11,14 +11,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.model.Frage;
 import at.campus02.gang_of_four.learningapp.model.FrageMaintenanceModus;
 import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
-import at.campus02.gang_of_four.learningapp.rest.RestDataService;
+import at.campus02.gang_of_four.learningapp.rest.RestDataClient;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
-import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
+import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class FrageBearbeitenActivity extends AppCompatActivity {
@@ -37,13 +40,13 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
     FrageMaintenanceModus maintenanceModus = null;
     String editFrageId = null;
 
-    RestDataService service = null;
+    RestDataClient restClient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frage_bearbeiten);
-        service = new RestDataService();
+        restClient = new RestDataClient();
         populateSchwierigkeitSpinner();
         linkLayoutViews();
 
@@ -93,7 +96,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
 
     private void loadEditFrage() {
         if (!editFrageId.isEmpty())
-            service.getFrage(editFrageId, new FrageListener() {
+            restClient.getFrage(editFrageId, new FrageListener() {
                 @Override
                 public void success(Frage frage) {
                     editFrageGeladen(frage);
@@ -132,13 +135,13 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
 
     public void frageSpeichern(View view) {
         if (frageView.getText() == null || frageView.getText().toString().isEmpty()) {
-            showFailMessage("Keine 'Frage' angegeben");
+            showFailMessage("Keine 'Frage'");
             return;
         }
         currentFrage.setFragetext(frageView.getText().toString());
 
         if (antwortView.getText() == null || antwortView.getText().toString().isEmpty()) {
-            showFailMessage("Keine 'Antwort' angegeben");
+            showFailMessage("Keine 'Antwort'");
             return;
         }
         currentFrage.setAntwort(antwortView.getText().toString());
@@ -156,17 +159,17 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
         currentFrage.setKategorie(kategorieView.getText().toString());
         currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
-            service.createFrage(currentFrage, new FrageErstellenListenerImpl());
+            restClient.createFrage(currentFrage, new FrageErstellenListenerImpl());
         } else {
-            service.updateFrage(currentFrage, new FrageErstellenListenerImpl());
+            restClient.updateFrage(currentFrage, new FrageErstellenListenerImpl());
         }
     }
 
-    private class FrageErstellenListenerImpl implements SuccessListener {
+    private class FrageErstellenListenerImpl implements SaveFrageListener {
 
         @Override
-        public void success() {
-            frageSuccess();
+        public void success(String guid) {
+            frageSuccess(guid);
         }
 
         @Override
@@ -175,10 +178,19 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
         }
     }
 
-    private void frageSuccess() {
+    private void frageSuccess(String guid) {
+        if (maintenanceModus == FrageMaintenanceModus.CREATE) {
+            addEigeneFrageId(guid);
+        }
+        Utils.navigateToMainActivity(this);
         String info = getString(R.string.frage_gespeichert);
         Utils.showToast(info, this);
-        Utils.navigateToMainActivity(this);
+    }
+
+    private void addEigeneFrageId(String guid) {
+        Set<String> eigeneFragenIds = new HashSet<>(Preferences.getEigeneFragenIds(this));
+        eigeneFragenIds.add(guid);
+        Preferences.setEigeneFragenIds(eigeneFragenIds, this);
     }
 
     private void showFailMessage() {
@@ -187,7 +199,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
     }
 
     private void showFailMessage(String text) {
-        String fail = getString(R.string.frage_nicht_erstellt) + " " + text;
+        String fail = getString(R.string.frage_bearbeiten_validation_fehler) + ": " + text;
         Utils.showToast(fail, this);
     }
 
