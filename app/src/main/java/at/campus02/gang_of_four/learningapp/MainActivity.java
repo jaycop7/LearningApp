@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import at.campus02.gang_of_four.learningapp.model.FrageMaintenanceModus;
-import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("startup", "start");
         Utils.getCurrentLocation(this);
-
-        Utils.showLongToast("Hallo " + Preferences.getBenutzername(this), this);
     }
 
     private void checkNetwork() {

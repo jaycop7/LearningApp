@@ -8,6 +8,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
 
+import at.campus02.gang_of_four.learningapp.utils.Preferences;
+import at.campus02.gang_of_four.learningapp.utils.Utils;
+
 /**
  * Class inspired from:
  * http://arnab.ch/blog/2013/08/asynchronous-http-requests-in-android-using-volley/
@@ -34,6 +37,7 @@ public class ApplicationController extends Application {
 
         // initialize the singleton
         sInstance = this;
+        Utils.showLongToast("Hallo " + Preferences.getBenutzername(this), this);
     }
 
     /**

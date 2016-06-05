@@ -260,7 +260,7 @@ public class RestDataClientTest {
         frage9.setAntwort("Salomo");
         frage9.setKategorie("Geschichte");
         frage9.setSchwierigkeitsgrad(1);
-        frage9.setBild("http://seedsmission.org/wp/wp-content/uploads/2012/11/templeillus.jpg");
+        frage9.setBild("http://www.israelmagazin.de/wp-content/uploads/2014/11/Jerusalem-Tempel-Salomons-2197-550.jpg");
         frage9.setLaengenUndBreitengrad("47.053748;15.497375");
         restClient.createFrage(frage9, new CreateFragenListenerImpl());
 
