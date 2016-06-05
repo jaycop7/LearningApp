@@ -15,3 +15,5 @@ Optional:
     - Pflichtfelder beim Frage speichern fehlen?
 
 - Anzahl der Fragen bei Buttons anzeigen
+
+- Kategorie "Schwierigkeit" lädt keine Fragen wenn in Einstellungen zufällig gewählt wurde
