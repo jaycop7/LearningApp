@@ -2,14 +2,20 @@
 
 - FUCKING GPS (Phips) !!!!!! BLOCKER !!!!!!
 
+- Save State beim Neigen, Fragen beim Ansehen merken, damit nicht neue random geladen werden, beim neigen
+
 Optional:
 
 - Bei Verlassen der App, auf Mainscreen gehen, wenn wieder gestartet
+
+- Willkommenstoast nur beim Starten der App
 
 - Neue Frage anlegen
     - Sollen wir für die Kategorie eine Auswahl bestehender Kategorien anzeigen?
     - Pflichtfelder beim Frage speichern fehlen?
 
 - Anzahl der Fragen bei Buttons anzeigen
+
+- Kategorie "Schwierigkeit" lädt keine Fragen wenn in Einstellungen zufällig gewählt wurde
 
 - Toasts verkürzen /abbrechen bei neuen
