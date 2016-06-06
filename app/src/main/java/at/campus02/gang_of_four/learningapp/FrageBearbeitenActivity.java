@@ -1,8 +1,12 @@
 package at.campus02.gang_of_four.learningapp;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +32,7 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
-public class FrageBearbeitenActivity extends AppCompatActivity {
+public class FrageBearbeitenActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final String EXTRA_MAINTENANCE_MODE = "at.campus02.gang_of_four.learningapp.FrageMaintenanceModus";
     public static final String EXTRA_FRAGE_ID = "at.campus02.gang_of_four.learningapp.FrageId";
 
@@ -41,6 +49,7 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
     String editFrageId = null;
 
     RestDataClient restClient = null;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,13 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
         populateSchwierigkeitSpinner();
         linkLayoutViews();
 
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
 
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
@@ -63,8 +79,30 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
     private void fillCurrentLocation() {
-        Location location = Utils.getCurrentLocation(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = Utils.getCurrentLocation(this); //LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         String coordinate;
         if (location != null) {
             String latidue = String.valueOf(location.getLatitude());
@@ -213,8 +251,21 @@ public class FrageBearbeitenActivity extends AppCompatActivity {
     }
 
     public void setLocalPosition(View view) {
-
         fillCurrentLocation();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        fillCurrentLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }

@@ -15,6 +15,7 @@ public class Preferences {
     public static final String FRAGEN_UEBERSPRINGEN = "anzahlFragenUeberspringen";
     public static final String WIEDERHOLUNGS_FRAGEN = "wiederholungsFragen";
     public static final String EIGENE_FRAGEN = "eigeneFragen";
+    public static final int ZUFALL_SCHWIERIGKEIT = 10;
 
     private static SharedPreferences getSettings(Context context) {
         return context.getSharedPreferences(PREFS_NAME, 0);
@@ -57,7 +58,7 @@ public class Preferences {
     }
 
     public static int getSchwierigkeit(Context context) {
-        return getSettings(context).getInt(SCHWIERIGKEIT, 10); //10 = zufällige Schwierigkeit
+        return getSettings(context).getInt(SCHWIERIGKEIT, ZUFALL_SCHWIERIGKEIT); //10 = zufällige Schwierigkeit
     }
 
     public static void setSchwierigkeit(int schwierigkeit, Context context) {

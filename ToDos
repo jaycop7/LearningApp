@@ -1,14 +1,11 @@
 - Landscape modus testen
 
 - FUCKING GPS (Phips) !!!!!! BLOCKER !!!!!!
-
-- Save State beim Neigen, Fragen beim Ansehen merken, damit nicht neue random geladen werden, beim neigen
+  GPS Feld jetzt nicht mehr änderbar.
 
 Optional:
 
 - Bei Verlassen der App, auf Mainscreen gehen, wenn wieder gestartet
-
-- Willkommenstoast nur beim Starten der App
 
 - Neue Frage anlegen
     - Sollen wir für die Kategorie eine Auswahl bestehender Kategorien anzeigen?
@@ -16,6 +13,6 @@ Optional:
 
 - Anzahl der Fragen bei Buttons anzeigen
 
-- Kategorie "Schwierigkeit" lädt keine Fragen wenn in Einstellungen zufällig gewählt wurde
+- Map Picker
 
-- Toasts verkürzen /abbrechen bei neuen
+- Start emulator mit: "geo fix 47.053748 15.497375" um GPS zu simulieren

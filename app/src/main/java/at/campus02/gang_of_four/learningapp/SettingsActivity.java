@@ -33,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
         fragenUeberspringen = (EditText) findViewById(R.id.fragenUeberspringen);
         populateSchwierigkeitSpinner();
         einstellungenLaden();
+
     }
 
     public void einstellungenSpeichernClick(View view) {

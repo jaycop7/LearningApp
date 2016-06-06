@@ -155,7 +155,10 @@ public class FrageAnzeigeActivity extends SwipeActivity {
                 restClient.getFragenByKategorie(kategorie, new FragenListenerImpl());
                 break;
             case SCHWIERIGKEIT:
-                restClient.getFragenBySchwierigkeit(schwierigkeit, new FragenListenerImpl());
+                if (schwierigkeit == Preferences.ZUFALL_SCHWIERIGKEIT)
+                    restClient.getAlleFragen(new FragenListenerImpl());
+                else
+                    restClient.getFragenBySchwierigkeit(schwierigkeit, new FragenListenerImpl());
                 break;
             case WIEDERHOLUNG:
                 restClient.getFragenByIdSet(wiederholungsFragenIds, new FragenListenerImpl());

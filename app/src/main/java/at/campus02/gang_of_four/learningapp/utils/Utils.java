@@ -24,6 +24,7 @@ import at.campus02.gang_of_four.learningapp.model.Schwierigkeit;
 public class Utils {
 
     private static final int REQUEST_CODE_LOCATION = 2;
+    private static Toast lastToast = null;
 
 
     public static boolean isNetworkOnline(Context context) {
@@ -62,13 +63,19 @@ public class Utils {
     }
 
     public static void showShortToast(String message, Context context) {
+        if (lastToast != null)
+            lastToast.cancel();
         Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         toast.show();
+        lastToast = toast;
     }
 
     public static void showLongToast(String message, Context context) {
+        if (lastToast != null)
+            lastToast.cancel();
         Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
         toast.show();
+        lastToast = toast;
     }
 
     @SuppressWarnings("ResourceType")

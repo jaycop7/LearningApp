@@ -59,5 +59,6 @@
     <string name="auswahl_schwierigkeit_hinweis">Fragen werden aufgrund der definierten Schwierigkeit in den Einstellungen geladen</string>
     <string name="einstellungen_gespeichert">Ihre Einstellungen wurden erfolgreich gespeichert</string>
     <string name="einstellungen_alle_testfragen_loeschen">Alle Testfragen</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
