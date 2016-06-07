@@ -32,9 +32,13 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             android:animateLayoutChanges="true"
-            android:horizontalSpacing="10dp"
+            android:horizontalSpacing="16dp"
             android:numColumns="2"
-            android:verticalSpacing="40dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:verticalSpacing="16dp"
             tools:context=".EigeneFragenAuswahlActivity" />
     </LinearLayout>
 
