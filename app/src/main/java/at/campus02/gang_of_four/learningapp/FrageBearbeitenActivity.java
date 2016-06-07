@@ -13,11 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,16 +37,16 @@ import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
 import at.campus02.gang_of_four.learningapp.utils.Preferences;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
-public class FrageBearbeitenActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class FrageBearbeitenActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, OnMapReadyCallback {
     public static final String EXTRA_MAINTENANCE_MODE = "at.campus02.gang_of_four.learningapp.FrageMaintenanceModus";
     public static final String EXTRA_FRAGE_ID = "at.campus02.gang_of_four.learningapp.FrageId";
+    public static final float MAP_ZOOM_LEVEL = 4f;
 
     EditText frageView = null;
     EditText antwortView = null;
     Spinner schwierigkeitView = null;
     EditText kategorieView = null;
     EditText bildView = null;
-    TextView positionView = null;
     Button speichernButton = null;
 
     Frage currentFrage = null;
@@ -50,6 +55,8 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
 
     RestDataClient restClient = null;
     private GoogleApiClient mGoogleApiClient;
+    private GoogleMap map;
+    private MarkerOptions currentMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +73,15 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
                     .addApi(LocationServices.API)
                     .build();
         }
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         Intent intent = getIntent();
         retrieveIntentExtra(intent);
         if (maintenanceModus == FrageMaintenanceModus.CREATE) {
             speichernButton.setText(getText(R.string.frage_bearbeiten_erstellen));
             currentFrage = new Frage();
-            fillCurrentLocation();
         } else {
             loadEditFrage();
             speichernButton.setText(getText(R.string.frage_bearbeiten_speichern));
@@ -91,6 +100,29 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
         super.onStop();
     }
 
+    @Override
+    public void onMapReady(GoogleMap map) {
+        this.map = map;
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                addMarker(latLng);
+            }
+        });
+        if (maintenanceModus == FrageMaintenanceModus.CREATE)
+            fillCurrentLocation();
+    }
+
+    private void addMarker(LatLng latLng) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+//        markerOptions.title("Your Position");
+        currentMarker = markerOptions;
+        map.clear();
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, MAP_ZOOM_LEVEL));
+        map.addMarker(markerOptions);
+    }
+
     private void fillCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -102,19 +134,19 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Location location = Utils.getCurrentLocation(this); //LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         String coordinate;
         if (location != null) {
             String latidue = String.valueOf(location.getLatitude());
             String altitude = String.valueOf(location.getAltitude());
             coordinate = latidue + ";" + altitude;
+            addMarker(new LatLng(location.getLatitude(), location.getLongitude()));
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showLongToast(fail, this);
             coordinate = getString(R.string.frage_bearbeiten_aktuelle_position);
-
+            addMarker(new LatLng(47.0880728, 15.439806500000032));
         }
-        positionView.setText(coordinate);
     }
 
     private void linkLayoutViews() {
@@ -123,7 +155,6 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
         schwierigkeitView = (Spinner) findViewById(R.id.editText_Schwierigkeit);
         kategorieView = (EditText) findViewById(R.id.editText_Kategorie);
         bildView = (EditText) findViewById(R.id.editText_bild);
-        positionView = (TextView) findViewById(R.id.textView_aktuelle_position);
         speichernButton = (Button) findViewById(R.id.maintenanceSpeichernButton);
     }
 
@@ -154,7 +185,13 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
         frageView.setText(frage.getFragetext());
         antwortView.setText(frage.getAntwort());
         kategorieView.setText(frage.getKategorie());
-        positionView.setText(frage.getLaengenUndBreitengrad());
+        if (frage.getLaengenUndBreitengrad() != null && !frage.getLaengenUndBreitengrad().isEmpty()) {
+            String laengenUndBreitengrad = frage.getLaengenUndBreitengrad();
+            double latitude = Double.parseDouble(frage.getLaengenUndBreitengrad().substring(0, laengenUndBreitengrad.indexOf(';')));
+            double longitude = Double.parseDouble(frage.getLaengenUndBreitengrad().substring(laengenUndBreitengrad.indexOf(';') + 1, laengenUndBreitengrad.length()));
+            LatLng position = new LatLng(latitude, longitude);
+            addMarker(position);
+        }
         int schwierigkeitId = frage.getSchwierigkeitsgrad();
         int index = 0;
         List<Schwierigkeit> schwierigkeiten = Utils.getSchwierigkeiten();
@@ -188,7 +225,8 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
             currentFrage.setBild(bildView.getText().toString());
         }
 
-        currentFrage.setLaengenUndBreitengrad(positionView.getText().toString());
+        if (currentMarker != null)
+            currentFrage.setLaengenUndBreitengrad(String.format("%s;%s", currentMarker.getPosition().latitude, currentMarker.getPosition().longitude));
 
         if (kategorieView.getText() == null || kategorieView.getText().toString().isEmpty()) {
             showFailMessage("Keine 'Kategorie'");

@@ -8,7 +8,7 @@
     <dimen name="fragen_auswahl_space">10dp</dimen>
     <dimen name="settings_label_width">180dp</dimen>
     <dimen name="settings_row_space">10dp</dimen>
-    <dimen name="frage_erstellen_label_width">170dp</dimen>
+    <dimen name="frage_erstellen_label_width">160dp</dimen>
     <dimen name="frage_erstellen_row_space">12dp</dimen>
     <dimen name="fragen_anzeige_textsize">20dp</dimen>
     <dimen name="fragen_anzeige_header_textsize">30dp</dimen>

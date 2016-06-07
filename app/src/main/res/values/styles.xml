@@ -94,10 +94,10 @@
     <style name="FrageItem" parent="BasicButton">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_margin">20dp</item>
         <item name="android:textSize">18dp</item>
         <item name="android:background">@color/default_eigene_fragen_color</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>

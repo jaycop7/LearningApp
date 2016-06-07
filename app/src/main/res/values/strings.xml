@@ -18,7 +18,7 @@
     <string name="frage_bearbeiten_position">Position</string>
     <string name="frage_bearbeiten_aktuelle_position">47.0880728;15.439806500000032</string>
     <string name="frage_bearbeiten_bild">Bild</string>
-    <string name="frage_bearbeiten_bild_hint">URL hier eingeben </string>
+    <string name="frage_bearbeiten_bild_hint">Bild-URL hier eingeben </string>
     <string name="frage_bearbeiten_erstellen">Frage erstellen</string>
     <string name="frage_bearbeiten_speichern">Frage speichern</string>
     <string name="frage_bearbeiten_error_loading">Gewünschte Frage konnte nicht geladen werden.</string>
