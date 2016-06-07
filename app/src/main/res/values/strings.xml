@@ -60,5 +60,6 @@
     <string name="einstellungen_gespeichert">Ihre Einstellungen wurden erfolgreich gespeichert</string>
     <string name="einstellungen_alle_testfragen_loeschen">Alle Testfragen</string>
     <string name="title_activity_maps">Map</string>
+    <string name="detail_gps_fehler">Keine GPS-Verbindung möglich, gehe zurück!</string>
 
 </resources>

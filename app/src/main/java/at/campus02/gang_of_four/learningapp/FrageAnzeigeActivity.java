@@ -149,6 +149,12 @@ public class FrageAnzeigeActivity extends SwipeActivity {
                 break;
             case GPS_UMKREIS:
                 Location location = Utils.getCurrentLocation(this);
+                if (location == null) {
+                    Utils.showShortToast(getString(R.string.detail_gps_fehler), this);
+                    //              location = new Location();
+
+                    break;
+                }
                 restClient.getFragenByGpsKoordinaten(location, gpsUmkreis, new FragenListenerImpl());
                 break;
             case KATEGORIE:
