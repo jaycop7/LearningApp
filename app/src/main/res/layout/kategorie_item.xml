@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/KategorieItem"
-    android:text="Test Item" />
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/kategorieItemText"
+        style="@style/KategorieItemText" />
+
+    <TextView
+        android:id="@+id/kategorieItemAnzahl"
+        style="@style/KategorieItemAnzahl" />
+
+</LinearLayout>

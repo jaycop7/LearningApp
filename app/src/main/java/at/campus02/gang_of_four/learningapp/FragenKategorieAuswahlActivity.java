@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.campus02.gang_of_four.learningapp.model.FragenModus;
+import at.campus02.gang_of_four.learningapp.model.KategorieWithAnzahl;
 import at.campus02.gang_of_four.learningapp.rest.RestDataClient;
-import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienWithAnzahlListener;
 import at.campus02.gang_of_four.learningapp.utils.KategorieAdapter;
 import at.campus02.gang_of_four.learningapp.utils.Utils;
 
 public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     RestDataClient restClient = null;
-    List<String> kategorien = new ArrayList<>();
+    List<KategorieWithAnzahl> kategorien = new ArrayList<>();
     View progress = null;
 
     @Override
@@ -39,9 +40,9 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
 
     private void loadKategorien() {
         progress.setVisibility(View.VISIBLE);
-        restClient.getKategorien(new KategorienListener() {
+        restClient.getKategorienWithAnzahl(new KategorienWithAnzahlListener() {
             @Override
-            public void success(List<String> kategorienListe) {
+            public void success(List<KategorieWithAnzahl> kategorienListe) {
                 populateKategorien(kategorienListe);
             }
 
@@ -52,10 +53,9 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
         });
     }
 
-    private void populateKategorien(List<String> kategorieListe) {
+    private void populateKategorien(List<KategorieWithAnzahl> kategorieListe) {
         progress.setVisibility(View.GONE);
         this.kategorien = kategorieListe;
-//        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.kategorie_item, kategorien) ;
         KategorieAdapter adapter = new KategorieAdapter(this, kategorien);
         GridView gridView = (GridView) findViewById(R.id.kategorieAuswahlGrid);
         if (gridView != null) {
@@ -70,10 +70,10 @@ public class FragenKategorieAuswahlActivity extends AppCompatActivity {
     }
 
     private void kategorieClicked(int position) {
-        String kategorie = kategorien.get(position);
+        KategorieWithAnzahl kategorie = kategorien.get(position);
         Intent intent = new Intent(this, FrageAnzeigeActivity.class);
         intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_MODUS, FragenModus.KATEGORIE);
-        intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_KATEGORIE, kategorie);
+        intent.putExtra(FrageAnzeigeActivity.EXTRA_FRAGEN_KATEGORIE, kategorie.getKategorie());
         startActivity(intent);
     }
 

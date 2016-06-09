@@ -26,10 +26,12 @@ import java.util.Set;
 
 import at.campus02.gang_of_four.learningapp.ApplicationController;
 import at.campus02.gang_of_four.learningapp.model.Frage;
+import at.campus02.gang_of_four.learningapp.model.KategorieWithAnzahl;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.FragenListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.ImageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienListener;
+import at.campus02.gang_of_four.learningapp.rest.restListener.KategorienWithAnzahlListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SaveFrageListener;
 import at.campus02.gang_of_four.learningapp.rest.restListener.SuccessListener;
 
@@ -63,6 +65,39 @@ public class RestDataClient {
             }
         });
         ApplicationController.getInstance().addToRequestQueue(request);
+    }
+
+    public void getKategorienWithAnzahl(final KategorienWithAnzahlListener listener) {
+        getKategorien(new KategorienListener() {
+            @Override
+            public void success(final List<String> kategorien) {
+                getAlleFragen(new FragenListener() {
+                    @Override
+                    public void success(List<Frage> fragen) {
+                        ArrayList<KategorieWithAnzahl> kategorienWithAnzahlListe = new ArrayList<>();
+                        for (int i = 0; i < kategorien.size(); i++) {
+                            int count = 0;
+                            for (Frage frage : fragen) {
+                                if (frage.getKategorie().equals(kategorien.get(i)))
+                                    count++;
+                            }
+                            kategorienWithAnzahlListe.add(new KategorieWithAnzahl(kategorien.get(i), count));
+                        }
+                        listener.success(kategorienWithAnzahlListe);
+                    }
+
+                    @Override
+                    public void error() {
+                        listener.error();
+                    }
+                });
+            }
+
+            @Override
+            public void error() {
+                listener.error();
+            }
+        });
     }
 
     public void getAlleFragen(FragenListener listener) {

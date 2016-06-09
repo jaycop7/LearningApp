@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -66,7 +66,7 @@ public class EigeneFragenAuswahlActivity extends AppCompatActivity {
         if (eigeneFragen.size() > 0) {
             hideKeineFragenText();
             FragenAdapter adapter = new FragenAdapter(this, eigeneFragen);
-            GridView gridView = (GridView) findViewById(R.id.eigeneFragenGrid);
+            AbsListView gridView = (AbsListView) findViewById(R.id.eigeneFragenGrid);
             if (gridView != null) {
                 gridView.setAdapter(adapter);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

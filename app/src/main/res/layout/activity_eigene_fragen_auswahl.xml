@@ -24,21 +24,37 @@
             android:textColor="@color/default_text_color"
             android:textSize="25dp" />
 
-        <GridView
+        <!--<GridView-->
+        <!--android:id="@+id/eigeneFragenGrid"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:animateLayoutChanges="true"-->
+        <!--android:horizontalSpacing="16dp"-->
+        <!--android:numColumns="2"-->
+        <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+        <!--android:paddingLeft="0dp"-->
+        <!--android:paddingRight="0dp"-->
+        <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+        <!--android:stretchMode="columnWidth"-->
+        <!--android:verticalSpacing="100dp"-->
+        <!--tools:context=".EigeneFragenAuswahlActivity" />-->
+
+        <ListView
             android:id="@+id/eigeneFragenGrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             android:animateLayoutChanges="true"
-            android:horizontalSpacing="16dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
             android:numColumns="2"
             android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:verticalSpacing="16dp"
             tools:context=".EigeneFragenAuswahlActivity" />
     </LinearLayout>
 

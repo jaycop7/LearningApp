@@ -135,16 +135,11 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        String coordinate;
         if (location != null) {
-            String latidue = String.valueOf(location.getLatitude());
-            String altitude = String.valueOf(location.getAltitude());
-            coordinate = latidue + ";" + altitude;
             addMarker(new LatLng(location.getLatitude(), location.getLongitude()));
         } else {
             String fail = getString(R.string.location_nicht_moeglich);
             Utils.showLongToast(fail, this);
-            coordinate = getString(R.string.frage_bearbeiten_aktuelle_position);
             addMarker(new LatLng(47.0880728, 15.439806500000032));
         }
     }
@@ -294,7 +289,6 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        fillCurrentLocation();
     }
 
     @Override

@@ -81,28 +81,62 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_margin">20dp</item>
-        <item name="android:textSize">18dp</item>
         <item name="android:background">@color/default_fragen_color</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingBottom">40dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">40dp</item>
+    </style>
+
+    <style name="KategorieItemText" parent="BasicButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
+    <style name="KategorieItemAnzahl" parent="BasicButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/default_text_color</item>
     </style>
 
     <style name="FrageItem" parent="BasicButton">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:layout_margin">20dp</item>
-        <item name="android:textSize">18dp</item>
-        <item name="android:background">@color/default_eigene_fragen_color</item>
+        <item name="android:layout_margin">50dp</item>
+        <item name="android:background">@color/default_fragen_erstellen_color</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">20dp</item>
+    </style>
+
+    <style name="FrageItemText" parent="BasicButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
+    <style name="FrageItemDetail" parent="BasicButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/default_text_color</item>
     </style>
 
