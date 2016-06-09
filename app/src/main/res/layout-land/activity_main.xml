@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
+    android:background="@color/mainBackground"
     android:orientation="vertical"
     android:padding="5dp">
 

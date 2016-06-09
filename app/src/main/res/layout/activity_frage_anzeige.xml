@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:background="@color/mainBackground"
     tools:context=".FrageAnzeigeActivity">
 
     <LinearLayout
@@ -13,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="80dp"
         android:animateLayoutChanges="true"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -65,23 +66,12 @@
 
                 <TextView
                     android:id="@+id/frageAnzeigeFrage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
-                    android:textSize="@dimen/fragen_anzeige_textsize" />
+                    style="@style/FrageAnzeigenFrage" />
 
                 <TextView
                     android:id="@+id/frageAnzeigeAntwort"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/detail_antwort"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textSize="@dimen/fragen_anzeige_textsize" />
+                    style="@style/FrageAnzeigenAntwort"
+                    android:text="@string/detail_antwort" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

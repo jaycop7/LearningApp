@@ -5,23 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:background="@color/mainBackground"
     tools:context=".FrageAnzeigeActivity">
 
     <LinearLayout
         android:id="@+id/frageAnzeigeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="85dp"
         android:animateLayoutChanges="true"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:animateLayoutChanges="true"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingBottom="0dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="@dimen/activity_vertical_margin">
@@ -54,7 +56,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="0dp"
                 android:layout_marginTop="20dp">
 
                 <LinearLayout
@@ -66,26 +68,12 @@
 
                     <TextView
                         android:id="@+id/frageAnzeigeFrage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="Was ist die Hauptstadt des Bundeslandes Steiermark?"
-                        android:textSize="@dimen/fragen_anzeige_textsize" />
+                        style="@style/FrageAnzeigeFrageLandscape" />
 
                     <TextView
                         android:id="@+id/frageAnzeigeAntwort"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/detail_antwort"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textSize="@dimen/fragen_anzeige_textsize" />
+                        style="@style/FrageAnzeigenAntwortLandscape"
+                        android:text="@string/detail_antwort" />
                 </LinearLayout>
             </ScrollView>
 

@@ -68,13 +68,45 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">@color/default_fragen_color</item>
+        <item name="android:background">@android:color/holo_green_light</item>
         <item name="android:drawableStart">@drawable/ic_star_border_black_24dp</item>
-        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingTop">15dp</item>
         <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="FrageAnzeigenFrage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/fragen_anzeige_textsize</item>
+    </style>
+
+    <style name="FrageAnzeigeFrageLandscape" parent="FrageAnzeigenFrage">
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="FrageAnzeigenAntwort">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@android:color/holo_blue_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textSize">@dimen/fragen_anzeige_textsize</item>
+    </style>
+
+    <style name="FrageAnzeigenAntwortLandscape" parent="FrageAnzeigenAntwort">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_marginTop">15dp</item>
     </style>
 
     <style name="KategorieItem" parent="BasicButton">

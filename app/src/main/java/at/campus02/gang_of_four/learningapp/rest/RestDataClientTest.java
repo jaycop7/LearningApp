@@ -266,7 +266,7 @@ public class RestDataClientTest {
 
         Frage frage10 = new Frage();
         frage10.setFragetext("Go4:  In welcher Stadt steht der von Gustave Eiffel für die Weltausstellung 1889 erbaute Turm?");
-        frage10.setAntwort("Die Stadt liegt in Frankreich und heißt Paris. Sie hat .... Einwohner, blablablablablabl ablablablabl ablablablablablablabl ablablablablabla blablablabla blablabla blablablablablablablab lablablab lablablabl ablablablab lablab l a blablablabl ablablablablab lablablab lablablab lablablablab lablablab lablabla blablabla blabla blablabl ablabl ablablab lablabla");
+        frage10.setAntwort("Die Stadt liegt in Frankreich und heißt Paris");
         frage10.setKategorie("Allgemeinwissen");
         frage10.setSchwierigkeitsgrad(0);
         frage10.setBild("http://media2.giga.de/2015/03/shutterstock_125112029.jpg");

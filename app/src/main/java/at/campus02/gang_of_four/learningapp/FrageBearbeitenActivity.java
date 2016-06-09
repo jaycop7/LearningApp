@@ -204,17 +204,27 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
     }
 
     public void frageSpeichern(View view) {
+        boolean validationError = false;
         if (frageView.getText() == null || frageView.getText().toString().isEmpty()) {
-            showFailMessage("Keine 'Frage'");
-            return;
+            frageView.setError("Bitte Frage eingeben");
+            validationError = true;
+//            showFailMessage("Keine 'Frage'");
         }
         currentFrage.setFragetext(frageView.getText().toString());
 
         if (antwortView.getText() == null || antwortView.getText().toString().isEmpty()) {
-            showFailMessage("Keine 'Antwort'");
-            return;
+            antwortView.setError("Bitte Antwort eingeben");
+            validationError = true;
+//            showFailMessage("Keine 'Antwort'");
         }
         currentFrage.setAntwort(antwortView.getText().toString());
+
+        if (kategorieView.getText() == null || kategorieView.getText().toString().isEmpty()) {
+            kategorieView.setError("Bitte Kategorie eingeben");
+            validationError = true;
+//            showFailMessage("Keine 'Kategorie'");
+        }
+        currentFrage.setKategorie(kategorieView.getText().toString());
 
         if (bildView.getText() != null || !bildView.getText().toString().isEmpty()) {
             currentFrage.setBild(bildView.getText().toString());
@@ -223,17 +233,17 @@ public class FrageBearbeitenActivity extends AppCompatActivity implements Google
         if (currentMarker != null)
             currentFrage.setLaengenUndBreitengrad(String.format("%s;%s", currentMarker.getPosition().latitude, currentMarker.getPosition().longitude));
 
-        if (kategorieView.getText() == null || kategorieView.getText().toString().isEmpty()) {
-            showFailMessage("Keine 'Kategorie'");
-            return;
-        }
         currentFrage.setKategorie(kategorieView.getText().toString());
         currentFrage.setSchwierigkeitsgrad(((Schwierigkeit) schwierigkeitView.getSelectedItem()).getId());
-        if (maintenanceModus == FrageMaintenanceModus.CREATE) {
-            restClient.createFrage(currentFrage, new FrageErstellenListenerImpl());
-        } else {
-            restClient.updateFrage(currentFrage, new FrageErstellenListenerImpl());
-        }
+
+        if (!validationError) {
+            if (maintenanceModus == FrageMaintenanceModus.CREATE) {
+                restClient.createFrage(currentFrage, new FrageErstellenListenerImpl());
+            } else {
+                restClient.updateFrage(currentFrage, new FrageErstellenListenerImpl());
+            }
+        } else
+            Utils.showShortToast("Eingaben sind nicht vollständig.", this);
     }
 
     private class FrageErstellenListenerImpl implements SaveFrageListener {
